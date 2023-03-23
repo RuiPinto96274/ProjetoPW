@@ -1,9 +1,9 @@
 /********** Template CSS **********/
 :root {
-    --primary: #348E38;
+    --primary: #D77A61;
     --secondary: #525368;
     --light: #E8F5E9;
-    --dark: #0F4229;
+    --dark: black;
 }
 
 .back-to-top {
@@ -170,7 +170,7 @@ h6,
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: rgba(15, 66, 41, .6);
+    background: rgba(200, 109, 48, 0.3);
     z-index: 1;
 }
 
@@ -203,7 +203,7 @@ h6,
 }
 
 .page-header {
-    background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../img/carousel-1.jpg) center center no-repeat;
+    background: linear-gradient(rgba(200, 109, 48, 0.6), rgba(200, 109, 48, 0.6)), url(../img/carousel-1.jpg) center center no-repeat;
     background-size: cover;
 }
 
@@ -231,7 +231,7 @@ h6,
 /*** Facts & Quote ***/
 .facts,
 .quote {
-    background: rgba(15, 66, 41, .6);
+    background: rgba(200, 109, 48, 0.6);
 }
 
 
@@ -273,7 +273,7 @@ h6,
 }
 
 .service-item:hover .service-text {
-    background: rgba(15, 66, 41, .6);
+    background: rgba(200, 109, 48, 0.6);
 }
 
 .service-item .service-text h4,
@@ -352,7 +352,7 @@ h6,
     height: 100%;
     top: 0;
     left: 0;
-    background: rgba(15, 66, 41, .6);
+    background: rgba(200, 109, 48, 0.6);
     transition: .5s;
 }
 
@@ -512,7 +512,7 @@ h6,
 
 .copyright {
     color: var(--light);
-    background: #072A19;
+    background: #6b2d14;
 }
 
 .copyright a {
