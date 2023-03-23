@@ -1,7 +1,7 @@
 /********** Template CSS **********/
 :root {
     --primary: #D77A61;
-    --secondary: #525368;
+    --secondary: #223843;
     --light: #E8F5E9;
     --dark: black;
 }
@@ -58,6 +58,14 @@ h6,
 .btn {
     transition: .5s;
     font-weight: 500;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:focus {
+  color: var(--primary);
+  background-color: var(--secondary);
+  border-color: var(--secondary);
 }
 
 .btn-primary,
@@ -231,9 +239,8 @@ h6,
 /*** Facts & Quote ***/
 .facts,
 .quote {
-    background: rgba(200, 109, 48, 0.6);
+    background: rgba(200, 109, 48, 0.2);
 }
-
 
 /*** Service ***/
 .service-item {
@@ -273,7 +280,7 @@ h6,
 }
 
 .service-item:hover .service-text {
-    background: rgba(200, 109, 48, 0.6);
+    background: rgba(200, 109, 48, 0.2);
 }
 
 .service-item .service-text h4,
@@ -352,7 +359,7 @@ h6,
     height: 100%;
     top: 0;
     left: 0;
-    background: rgba(200, 109, 48, 0.6);
+    background: rgba(200, 109, 48, 0.2);
     transition: .5s;
 }
 
@@ -485,6 +492,9 @@ h6,
 
 
 /*** Footer ***/
+.footer {
+    background: #223843;
+}
 .footer .btn.btn-link {
     display: block;
     margin-bottom: 5px;
@@ -511,12 +521,11 @@ h6,
 }
 
 .copyright {
-    color: var(--light);
-    background: #6b2d14;
+    background: #EFF1F3;
 }
 
 .copyright a {
-    color: #FFFFFF;
+    color: var(--secondary);
 }
 
 .copyright a:hover {
