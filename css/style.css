@@ -2,8 +2,8 @@
 :root {
     --primary: #D77A61;
     --secondary: #223843;
-    --light: #E8F5E9;
-    --dark: black;
+    --light: #ffffff;
+    --dark: #223843;
 }
 
 .back-to-top {
@@ -20,6 +20,7 @@ h2,
 .h2,
 .fw-bold {
     font-weight: 700 !important;
+    color:var(--secondary);
 }
 
 h3,
@@ -28,6 +29,7 @@ h4,
 .h4,
 .fw-medium {
     font-weight: 600 !important;
+    color:var(--secondary);
 }
 
 h5,
@@ -36,6 +38,7 @@ h6,
 .h6,
 .fw-semi-bold {
     font-weight: 500 !important;
+    color:var(--secondary);
 }
 
 
@@ -192,8 +195,8 @@ h6,
     width: 3rem;
     height: 3rem;
     border-radius: 3rem;
-    background-color: var(--primary);
-    border: 10px solid var(--primary);
+    background-color: var(--secondary);
+    border: 10px solid var(--secondary);
 }
 
 @media (max-width: 768px) {
