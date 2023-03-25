@@ -233,6 +233,14 @@ h6,
     color: var(--light);
 }
 
+.display-4.text-white{
+    text-shadow: 2px 2px 4px #000;
+}
+
+.fs-5.fw-semi-bold.text-light{
+    text-shadow: 2px 2px 4px #000;
+}
+
 
 /*** Top Feature ***/
 @media (min-width: 991.98px) {
