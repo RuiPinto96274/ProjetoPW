@@ -91,9 +91,22 @@ h6,
     height: 32px;
 }
 
-.btn-lg-square {
+.btn-lg-square{
+    background-color: var(--secondary);
+    color: var(--light);
     width: 48px;
     height: 48px;
+}
+
+.btn-lg-square.bg-secondary {
+    background-color: var(--secondary);
+    color: var(--light);
+    width: 48px;
+    height: 48px;
+}
+
+.btn-lg-square i.text-white {
+    color: white;
 }
 
 .btn-square,
@@ -509,7 +522,7 @@ h6,
 
 /*** Footer ***/
 .footer {
-    background: #223843;
+    background: var(--secondary);
 }
 .footer .btn.btn-link {
     display: block;
@@ -534,6 +547,21 @@ h6,
     color: var(--primary);
     letter-spacing: 1px;
     box-shadow: none;
+}
+
+.footer .mb-2{
+    color:var(--light);
+}
+
+.footer .me-2{
+    background-color:var(--secondary);
+    color: var(--light);
+}
+
+.footer .me-2:hover{
+    background-color:var(--secondary);
+    color: var(--primary);
+    border-color: var(--primary);
 }
 
 .copyright {
