@@ -3837,7 +3837,7 @@ fieldset:disabled .btn {
     color: #525368;
     text-align: left;
     list-style: none;
-    background-color: #fff;
+    background-color: #ffff;
     background-clip: padding-box;
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 4px
