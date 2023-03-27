@@ -118,6 +118,12 @@ h6,
     height: 80px
 }
 
+.navbar {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+
 .navbar .navbar-nav .nav-link {
     margin-right: 35px;
     padding: 25px 0;
