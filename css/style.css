@@ -519,11 +519,11 @@ h6,
     color: var(--light);
 }
 
-
 /*** Footer ***/
 .footer {
     background: var(--secondary);
 }
+
 .footer .btn.btn-link {
     display: block;
     margin-bottom: 5px;
@@ -564,12 +564,17 @@ h6,
     border-color: var(--primary);
 }
 
+.footer p{
+    color: var(--light);
+}
+
 .copyright {
-    background: #EFF1F3;
+    background: #162534;
+    color:var(--light);
 }
 
 .copyright a {
-    color: var(--secondary);
+    color: var(--light);
 }
 
 .copyright a:hover {
