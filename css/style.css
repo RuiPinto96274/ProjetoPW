@@ -567,3 +567,183 @@ h6,
 .copyright a:hover {
     color: var(--primary);
 }
+
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 720px;
+    margin: 100px auto;
+    overflow: hidden;
+  }
+  .login .form-body {
+    padding: 0 20px;
+    min-width: 300px;
+  }
+  .login .form-name {
+    margin: 20px 0;
+    text-align: center;
+    color: var(--primary);
+  }
+  /* Email */
+  .login .form-body .email {
+    margin-bottom: 15px;
+    color: var(--secondary);
+    width: 100%;
+  }
+  .login .form-body .email label {
+    display: block;
+  }
+  .login .form-body .email input {
+    width: 100%;
+    height: 35px;
+    color: var(--secondary);
+    border: 1px solid rgb(182, 182, 182);
+    border-radius: 0.2rem;
+    margin-top: 5px;
+    outline-color: var(--secondary);
+    padding: 5px;
+  }
+  /* Password */
+  .login .form-body .password {
+    margin-bottom: 15px;
+    color: var(--secondary);
+    width: 100%;
+  }
+  .login .form-body .password label {
+    display: block;
+  }
+  .login .form-body .password input {
+    width: 100%;
+    height: 35px;
+    color: var(--secondary);
+    border: 1px solid rgb(182, 182, 182);
+    border-radius: 0.2rem;
+    margin-top: 5px;
+    outline-color: var(--secondary);
+    padding: 5px;
+  }
+  /* Button Submit */
+  .login .form-body .submit {
+    margin: 10px 0;
+  }
+  .login .form-body .submit button {
+    margin-top: 20px;
+    padding: 5px;
+    width: 100%;
+    height: 40px;
+    background: var(--primary);
+    border: none;
+    border-radius: 0.3rem;
+    color: white;
+    font-size: 0.9rem;
+  }
+  .login .form-body .submit button:hover {
+    background: #d37771;
+  }
+  
+  /* Save and Forgot Password */
+  .login .form-body .password-config {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .login .form-body .password-config .save {
+    display: flex;
+    align-items: center;
+  }
+  .login .form-body .password-config .save label {
+    color: var(--secondary);
+    font-size: 0.8rem;
+    margin-left: 5px;
+  }
+  .login .form-body .password-config .forgot a {
+    text-decoration: none;
+    color: var(--primary);
+    font-size: 0.9rem;
+  }
+  
+  /* Create new account */
+  .login .sign-up-account a {
+    text-decoration: none;
+    font-size: 0.8rem;
+    color: var(--primary);
+  }
+  .login .sign-up-account {
+    margin: 20px 0;
+  }
+  
+  .save {
+    margin-right: 20px;
+  }
+  
+  .ougrey{
+      color: grey; 
+      display: flex;
+  }
+  .ougrey::before, .ougrey::after{
+      content:'';
+      width:100%;
+      height: 1px;
+      background: grey;
+      margin:auto;
+  }
+  
+  .ougrey::before{
+      margin-right: 1rem;
+  }
+  
+  .ougrey::after{
+      margin-left: 1rem;
+  }
+
+  /* Google Button */
+  .google-login {
+    width: 100%;
+  }
+  .google-button {
+    text-decoration: none;
+    width: 100%;
+    height: 40px;
+    background: white;
+    color: var(--secondary);
+    border-radius: 5px;
+    white-space: nowrap;
+    box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+    -webkit-transition-property: background-color, box-shadow;
+    transition-property: background-color, box-shadow;
+    -webkit-transition-duration: 150ms;
+    transition-duration: 150ms;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .google-button:focus,
+  .google-button:hover {
+    box-shadow: 1px 4px 5px 1px rgba(0, 0, 0, 0.1);
+  }
+  .google-button:active {
+    background-color: #e5e5e5;
+    box-shadow: none;
+    -webkit-transition-duration: 10ms;
+    transition-duration: 10ms;
+  }
+  .google-button-icon {
+    /* display: inline-block; */
+    vertical-align: middle;
+    margin: 8px 0 8px 8px;
+    width: 18px;
+    height: 18px;
+    box-sizing: border-box;
+  }
+  .google-button-text {
+    /* display: inline-block; */
+    vertical-align: middle;
+    padding: 0 24px;
+    font-size: 14px;
+  }

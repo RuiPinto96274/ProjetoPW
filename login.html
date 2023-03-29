@@ -73,59 +73,49 @@
     </div>
     <!-- Page Header End -->
 
-
-    <!-- Quote Start -->
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <p class="fs-5 fw-bold text-primary">Login</p>
-                <h1 class="display-5 mb-5">Inicie Sessão</h1>
+    <!--Login Start-->
+    <div class="login">
+        <div class="form-body">
+          <div class="form-name">
+            <h2>Login</h2>
+          </div>
+          <form onsubmit="handleSubmit(event)">
+            <div class="email">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email">
             </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-7">
-                    <div class="bg-light rounded p-4 p-sm-5 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="row g-3">
-                            <div class="col-sm-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control border-0" id="gname" placeholder="Gurdian Name">
-                                    <label for="gname">Your Name</label>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-floating">
-                                    <input type="email" class="form-control border-0" id="gmail" placeholder="Gurdian Email">
-                                    <label for="gmail">Your Email</label>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control border-0" id="cname" placeholder="Child Name">
-                                    <label for="cname">Your Mobile</label>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control border-0" id="cage" placeholder="Child Age">
-                                    <label for="cage">Service Type</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <textarea class="form-control border-0" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
-                                    <label for="message">Message</label>
-                                </div>
-                            </div>
-                            <div class="col-12 text-center">
-                                <button class="btn btn-primary py-3 px-4" type="submit">Submit Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="password">
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password">
             </div>
+            <div class="submit">
+              <button type="submit">Login</button>
+            </div>
+            <div class="password-config">
+              <div class="save">
+                <input type="checkbox" id="save" name="save">
+                <label for="save">Guardar Password</label>
+              </div>
+              <div class="forgot">
+                <a href="#">Esqueceu-se da password?</a>
+              </div>
+            </div>
+          </form>
+          <br>
+          <span class="ougrey">ou</span>
+          <br>
+          <div class="google-login">
+            <a href="#" class="google-button">
+              <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google Logo" class="google-button-icon">
+              <span class="google-button-text ougrey">Sign in with Google</span>
+            </a>
+          </div>
+          <div class="sign-up-account">
+            <p>Não tem uma conta? <a href="#">Criar conta</a></p>
+          </div>
         </div>
-    </div>
-    <!-- Quote End -->
-
+      </div>
+    <!--Login End-->
 
     <!-- Footer Start -->
     <div class="container-fluid text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
