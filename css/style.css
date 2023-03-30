@@ -567,6 +567,7 @@ h6,
 .copyright a:hover {
     color: var(--primary);
 }
+/*Login Start*/
 
 .login {
     display: flex;
@@ -576,6 +577,16 @@ h6,
     max-width: 720px;
     margin: 100px auto;
     overflow: hidden;
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    z-index: 10000; /* Higher z-index value than the overlay */
+  }
+  .close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
   }
   .login .form-body {
     padding: 0 20px;
@@ -747,3 +758,5 @@ h6,
     padding: 0 24px;
     font-size: 14px;
   }
+
+/*Login End*/
