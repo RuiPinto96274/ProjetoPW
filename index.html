@@ -14,7 +14,7 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">  
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -34,13 +34,14 @@
 
 <body>
     <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
     </div>
     <!-- Spinner End -->
 
-   <!-- Navbar Start -->
-   <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <div id="imagem"><img src="img/icon/logotipo.png" alt="logo" height="35px"> </div>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -49,14 +50,85 @@
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="index.html" class="nav-item nav-link active">Início</a>
                 <a href="about.html" class="nav-item nav-link">Sobre nós</a>
-                <a href="service.html" class="nav-item nav-link">Atividades</a>   
+                <a href="service.html" class="nav-item nav-link">Atividades</a>
                 <a href="project.html" class="nav-item nav-link">Testemunhos</a>
                 <a href="contact.html" class="nav-item nav-link">Contacto</a>
             </div>
-            <a href="login.html" class="login-button btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Login<i class="fa fa-arrow-right ms-3" data-toggle="modal" href="javascript:void(0)" onclick="openLogin();"></i></a>
+            <a id="loginBtnNav" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block" data-toggle="modal"
+                href="javascript:void(0)" onclick="openLoginModal();">Login<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
     <!-- Navbar End -->
+
+    <!-- Modal for Login/Register -->
+    <div class="modal fade login" id="loginModal">
+        <div class="modal-dialog login animated">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Login</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="box">
+                        <div class="content">
+                            <div class="social">
+                                <div id="googleSignin">
+                                    <a href="#" class="google-button">
+                                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+                                            alt="Google Logo" class="google-button-icon">
+                                        <span class="google-button-text">Sign in with Google</span>
+                                    </a>
+                                    <div class="or">
+                                        <span class="ougrey">ou</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form loginBox">
+                                <form id="loginUser" method="POST" accept-charset="UTF-8">
+                                    <input id="emailLogin" class="form-control" type="email" placeholder="Email"
+                                        name="email" required>
+                                    <input id="passwordLogin" class="form-control" type="password"
+                                        placeholder="Password" name="password" required>
+                                    <button id="loginBtn" class="btn btn-default btn-login" type="submit">Login</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="content registerBox" style="display:none;">
+                            <div class="form"> 
+                                <!-- Form for account registration -->
+                                <form id="createUser" method="POST" accept-charset="UTF-8">
+                                    <input id="usernameNew" class="form-control" type="text" placeholder="Username"
+                                        name="usernameNew" required minlength="4">
+                                    <input id="nomeNew" class="form-control" type="text" placeholder="Nome" name="nome"
+                                        required minlength="3">
+                                    <input id="emailNew" class="form-control" type="email" placeholder="Email"
+                                        name="email" required>
+                                    <input id="passwordNew" class="form-control" type="password" placeholder="Password"
+                                        name="password" required minlength="6">
+                                    <input id="password_confirmationNew" class="form-control" type="password"
+                                        placeholder="Confirmar Password" name="password_confirmation" required
+                                        minlength="6">
+                                    <button id="signupBtn" class="btn btn-default btn-register" type="submit">Criar
+                                        Conta</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="forgot login-footer">
+                        <span>Não tem uma conta? <a href="javascript: showRegisterForm();">Criar Conta</a>.</span>
+                    </div>
+                    <div class="forgot register-footer" style="display:none">
+                        <span>Já tem uma conta?</span>
+                        <a href="javascript: showLoginForm();">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <!-- Carousel Start -->
@@ -69,7 +141,8 @@
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
-                                    <h1 class="display-1 text-white mb-5 animated slideInDown">Explora o teu lado artístico connosco!</h1>
+                                    <h1 class="display-1 text-white mb-5 animated slideInDown">Explora o teu lado
+                                        artístico connosco!</h1>
                                     <a href="" class="btn btn-primary py-sm-3 px-sm-4">Explorar Mais</a>
                                 </div>
                             </div>
@@ -82,7 +155,8 @@
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-lg-7">
-                                    <h1 class="display-1 text-white mb-5 animated slideInDown">Venha aprender, criar e divertir-se connosco!</h1>
+                                    <h1 class="display-1 text-white mb-5 animated slideInDown">Venha aprender, criar e
+                                        divertir-se connosco!</h1>
                                     <a href="" class="btn btn-primary py-sm-3 px-sm-4">Explorar Mais</a>
                                 </div>
                             </div>
@@ -90,13 +164,11 @@
                     </div>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
-                data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#header-carousel"
-                data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
@@ -165,7 +237,9 @@
                     <h1 class="display-1 text-primary mb-0">5</h1>
                     <p class="text-primary mb-4">Anos de experiência</p>
                     <h1 class="display-5 mb-4">We Make Your Home Like A Garden</h1>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et
+                        eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet
+                    </p>
                     <a class="btn btn-primary py-3 px-4" href="">Explorar Mais</a>
                 </div>
                 <div class="col-lg-3 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
@@ -225,7 +299,10 @@
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                     <p class="fs-5 fw-bold text-primary">Porquê escolher-nos?</p>
                     <h1 class="display-5 mb-4">Algumas razões que leva as pessoas a participar!</h1>
-                    <p class="mb-4">Se estás à procura de uma forma de te expressares artisticamente, aprimorar as tuas habilidades ou simplesmente desfrutar de um tempo criativo e inspirador, os nossos workshops de arte são a escolha perfeita para ti. Com a nossa equipa dedicada e materiais de qualidade, podes ter a certeza que terás uma experiência de aprendizagem valiosa e agradável.</p>
+                    <p class="mb-4">Se estás à procura de uma forma de te expressares artisticamente, aprimorar as tuas
+                        habilidades ou simplesmente desfrutar de um tempo criativo e inspirador, os nossos workshops de
+                        arte são a escolha perfeita para ti. Com a nossa equipa dedicada e materiais de qualidade, podes
+                        ter a certeza que terás uma experiência de aprendizagem valiosa e agradável.</p>
                     <a class="btn btn-primary py-3 px-4" href="">Explorar Mais</a>
                 </div>
                 <div class="col-lg-6">
@@ -233,16 +310,20 @@
                         <div class="col-md-6">
                             <div class="row g-4">
                                 <div class="col-12 wow fadeIn" data-wow-delay="0.3s">
-                                    <div class="text-center rounded py-5 px-4" style="box-shadow: 0 0 45px rgba(0,0,0,.08);">
-                                        <div class="btn-square bg-light rounded-circle mx-auto mb-4" style="width: 90px; height: 90px;">
+                                    <div class="text-center rounded py-5 px-4"
+                                        style="box-shadow: 0 0 45px rgba(0,0,0,.08);">
+                                        <div class="btn-square bg-light rounded-circle mx-auto mb-4"
+                                            style="width: 90px; height: 90px;">
                                             <i class="fa fa-check fa-3x text-primary"></i>
                                         </div>
                                         <h4 class="mb-0">100% Satisfação</h4>
                                     </div>
                                 </div>
                                 <div class="col-12 wow fadeIn" data-wow-delay="0.5s">
-                                    <div class="text-center rounded py-5 px-4" style="box-shadow: 0 0 45px rgba(0,0,0,.08);">
-                                        <div class="btn-square bg-light rounded-circle mx-auto mb-4" style="width: 90px; height: 90px;">
+                                    <div class="text-center rounded py-5 px-4"
+                                        style="box-shadow: 0 0 45px rgba(0,0,0,.08);">
+                                        <div class="btn-square bg-light rounded-circle mx-auto mb-4"
+                                            style="width: 90px; height: 90px;">
                                             <i class="fa fa-users fa-3x text-primary"></i>
                                         </div>
                                         <h4 class="mb-0">Equipa Dedicada</h4>
@@ -252,7 +333,8 @@
                         </div>
                         <div class="col-md-6 wow fadeIn" data-wow-delay="0.7s">
                             <div class="text-center rounded py-5 px-4" style="box-shadow: 0 0 45px rgba(0,0,0,.08);">
-                                <div class="btn-square bg-light rounded-circle mx-auto mb-4" style="width: 90px; height: 90px;">
+                                <div class="btn-square bg-light rounded-circle mx-auto mb-4"
+                                    style="width: 90px; height: 90px;">
                                     <i class="fa fa-tools fa-3x text-primary"></i>
                                 </div>
                                 <h4 class="mb-0">Materiais de Qualidade</h4>
@@ -283,7 +365,8 @@
                                 <img class="img-fluid" src="img/icon/icon-art.png" alt="Icon">
                             </div>
                             <h4 class="mb-3">Pintura</h4>
-                            <p class="mb-4">Workshops principiante e livres para aprender técnicas e dar uso à criatividade.</p>
+                            <p class="mb-4">Workshops principiante e livres para aprender técnicas e dar uso à
+                                criatividade.</p>
                             <a class="btn btn-sm" href=""><i class="fa fa-plus text-primary me-2"></i>Ler Mais</a>
                         </div>
                     </div>
@@ -298,7 +381,8 @@
                                 <img class="img-fluid" src="img/icon/icon-crochet.png" alt="Icon">
                             </div>
                             <h4 class="mb-3">Crochê</h4>
-                            <p class="mb-4">Workshops para principiantes onde pode aprender tanto a arte dos Amigurumi ou dos tão famosos Granny Square.</p>
+                            <p class="mb-4">Workshops para principiantes onde pode aprender tanto a arte dos Amigurumi
+                                ou dos tão famosos Granny Square.</p>
                             <a class="btn btn-sm" href=""><i class="fa fa-plus text-primary me-2"></i>Ler Mais</a>
                         </div>
                     </div>
@@ -313,7 +397,8 @@
                                 <img class="img-fluid" src="img/icon/icon-sculpture.png" alt="Icon">
                             </div>
                             <h4 class="mb-3">Escultura</h4>
-                            <p class="mb-4">Workshop de escultura principiantes ou livres para aprender as técnicas básicas de escultura ou criar obras de arte tridimensionais.</p>
+                            <p class="mb-4">Workshop de escultura principiantes ou livres para aprender as técnicas
+                                básicas de escultura ou criar obras de arte tridimensionais.</p>
                             <a class="btn btn-sm" href=""><i class="fa fa-plus text-primary me-2"></i>Ler Mais</a>
                         </div>
                     </div>
@@ -328,7 +413,8 @@
                                 <img class="img-fluid" src="img/icon/icon-sewing.png" alt="Icon">
                             </div>
                             <h4 class="mb-3">Costura </h4>
-                            <p class="mb-4">Workshop apenas para principiantes que pretendem aprender conceitos básicos e breves de costura realizando pequenos projetos.</p>
+                            <p class="mb-4">Workshop apenas para principiantes que pretendem aprender conceitos básicos
+                                e breves de costura realizando pequenos projetos.</p>
                             <a class="btn btn-sm" href=""><i class="fa fa-plus text-primary me-2"></i>Ler Mais</a>
                         </div>
                     </div>
@@ -343,7 +429,9 @@
                                 <img class="img-fluid" src="img/icon/icon-embroidery.png" alt="Icon">
                             </div>
                             <h4 class="mb-3">Bordado</h4>
-                            <p class="mb-4">Workshop para principiantes onde terá a chance de aprender as técnicas fundamentais, desde os pontos básicos até os mais complexos para criar belas peças de arte.</p>
+                            <p class="mb-4">Workshop para principiantes onde terá a chance de aprender as técnicas
+                                fundamentais, desde os pontos básicos até os mais complexos para criar belas peças de
+                                arte.</p>
                             <a class="btn btn-sm" href=""><i class="fa fa-plus text-primary me-2"></i>Ler Mais</a>
                         </div>
                     </div>
@@ -358,7 +446,8 @@
                                 <img class="img-fluid" src="img/icon/icon-ceramic.png" alt="Icon">
                             </div>
                             <h4 class="mb-3">Cerâmica</h4>
-                            <p class="mb-4">Workshop para principiantes e livres para experimentar diferentes tipos de argila, ferramentas e técnicas de decoração para criar objetos exclusivos e únicos.</p>
+                            <p class="mb-4">Workshop para principiantes e livres para experimentar diferentes tipos de
+                                argila, ferramentas e técnicas de decoração para criar objetos exclusivos e únicos.</p>
                             <a class="btn btn-sm" href=""><i class="fa fa-plus text-primary me-2"></i>Ler Mais</a>
                         </div>
                     </div>
@@ -371,7 +460,8 @@
     <!-- Projects Start -->
     <div class="container-xxl py-5">
         <div class="container">
-            <div id="fotostest" class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <div id="fotostest" class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s"
+                style="max-width: 500px;">
                 <p class="fs-5 fw-bold text-primary"></p>
                 <h1 class="display-5 mb-5">Fotos dos nossos workshops</h1>
             </div>
@@ -394,7 +484,8 @@
                         <img class="img-fluid" src="img/atividade1.jpg" alt="">
                         <div class="portfolio-text">
                             <div class="d-flex">
-                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/atividade1.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/atividade1.jpg"
+                                    data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
                                 <a class="btn btn-lg-square rounded-circle mx-2" href=""><i class="fa fa-link"></i></a>
                             </div>
                         </div>
@@ -405,7 +496,8 @@
                         <img class="img-fluid" src="img/atividade2.jpg" alt="">
                         <div class="portfolio-text">
                             <div class="d-flex">
-                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/atividade2.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/atividade2.jpg"
+                                    data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
                                 <a class="btn btn-lg-square rounded-circle mx-2" href=""><i class="fa fa-link"></i></a>
                             </div>
                         </div>
@@ -416,7 +508,8 @@
                         <img class="img-fluid" src="img/atividade3.jpg" alt="">
                         <div class="portfolio-text">
                             <div class="d-flex">
-                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/atividade3.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/atividade3.jpg"
+                                    data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
                                 <a class="btn btn-lg-square rounded-circle mx-2" href=""><i class="fa fa-link"></i></a>
                             </div>
                         </div>
@@ -427,7 +520,8 @@
                         <img class="img-fluid" src="img/atividade4.jpg" alt="">
                         <div class="portfolio-text">
                             <div class="d-flex">
-                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/atividade4.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/atividade4.jpg"
+                                    data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
                                 <a class="btn btn-lg-square rounded-circle mx-2" href=""><i class="fa fa-link"></i></a>
                             </div>
                         </div>
@@ -438,7 +532,8 @@
                         <img class="img-fluid" src="img/atividade5.jpg" alt="">
                         <div class="portfolio-text">
                             <div class="d-flex">
-                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/atividade5.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/atividade5.jpg"
+                                    data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
                                 <a class="btn btn-lg-square rounded-circle mx-2" href=""><i class="fa fa-link"></i></a>
                             </div>
                         </div>
@@ -449,7 +544,8 @@
                         <img class="img-fluid" src="img/atividade6.jpg" alt="">
                         <div class="portfolio-text">
                             <div class="d-flex">
-                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/atividade6.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/atividade6.jpg"
+                                    data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
                                 <a class="btn btn-lg-square rounded-circle mx-2" href=""><i class="fa fa-link"></i></a>
                             </div>
                         </div>
@@ -460,7 +556,8 @@
                         <img class="img-fluid" src="img/atividade7.jpg" alt="">
                         <div class="portfolio-text">
                             <div class="d-flex">
-                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/atividade7.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/atividade7.jpg"
+                                    data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
                                 <a class="btn btn-lg-square rounded-circle mx-2" href=""><i class="fa fa-link"></i></a>
                             </div>
                         </div>
@@ -471,7 +568,8 @@
                         <img class="img-fluid" src="img/atividade8.jpg" alt="">
                         <div class="portfolio-text">
                             <div class="d-flex">
-                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/atividade8.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/atividade8.jpg"
+                                    data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
                                 <a class="btn btn-lg-square rounded-circle mx-2" href=""><i class="fa fa-link"></i></a>
                             </div>
                         </div>
@@ -482,7 +580,8 @@
                         <img class="img-fluid" src="img/atividade9.jpg" alt="">
                         <div class="portfolio-text">
                             <div class="d-flex">
-                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/atividade9.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/atividade9.jpg"
+                                    data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
                                 <a class="btn btn-lg-square rounded-circle mx-2" href=""><i class="fa fa-link"></i></a>
                             </div>
                         </div>
@@ -493,7 +592,8 @@
                         <img class="img-fluid" src="img/atividade10.jpg" alt="">
                         <div class="portfolio-text">
                             <div class="d-flex">
-                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/atividade10.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/atividade10.jpg"
+                                    data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
                                 <a class="btn btn-lg-square rounded-circle mx-2" href=""><i class="fa fa-link"></i></a>
                             </div>
                         </div>
@@ -504,7 +604,8 @@
                         <img class="img-fluid" src="img/atividade11.jpg" alt="">
                         <div class="portfolio-text">
                             <div class="d-flex">
-                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/atividade11.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/atividade11.jpg"
+                                    data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
                                 <a class="btn btn-lg-square rounded-circle mx-2" href=""><i class="fa fa-link"></i></a>
                             </div>
                         </div>
@@ -515,7 +616,8 @@
                         <img class="img-fluid" src="img/atividade12.jpg" alt="">
                         <div class="portfolio-text">
                             <div class="d-flex">
-                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/atividade12.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/atividade12.jpg"
+                                    data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
                                 <a class="btn btn-lg-square rounded-circle mx-2" href=""><i class="fa fa-link"></i></a>
                             </div>
                         </div>
@@ -526,7 +628,8 @@
                         <img class="img-fluid" src="img/atividade13.jpg" alt="">
                         <div class="portfolio-text">
                             <div class="d-flex">
-                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/atividade13.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/atividade13.jpg"
+                                    data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
                                 <a class="btn btn-lg-square rounded-circle mx-2" href=""><i class="fa fa-link"></i></a>
                             </div>
                         </div>
@@ -536,71 +639,6 @@
         </div>
     </div>
     <!-- Projects End -->
- 
-    <!--Login  Start-->
-    <div class="modal fade login" id="loginModal">
-        <div class="modal-dialog login animated">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Login com</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-            <div class="modal-body">
-              <div class="box">
-                <div class="content">
-                  <div class="social">
-                    <div id="googleSignin"></div>
-                  </div>
-                  <div class="division">
-                    <div class="line l"></div>
-                    <span>ou</span>
-                    <div class="line r"></div>
-                  </div>
-                  <div class="form loginBox">
-                    <form id="loginUser" method="POST" accept-charset="UTF-8">
-                      <input id="emailLogin" class="form-control" type="text" placeholder="Email" name="email" data-rule="required|email" />
-                      <input id="passwordLogin" class="form-control" type="password" placeholder="Password" name="password" data-rule="required|minlength-6" autocomplete="off">
-                      <input id="loginBtn" class="btn btn-default btn-login" type="submit" value="Login">
-                    </form>
-                  </div>
-                </div>
-              </div>
-              <div class="box">
-                <div class="content registerBox" style="display:none;">
-                  <div class="form">
-                    <!-- Form para registo de conta -->
-                    <form id="createUser" method="POST" accept-charset="UTF-8">
-                      <input id="usernameNew" class="form-control" type="text" placeholder="Nome de Utilizador" name="usernameNew"
-                        data-rule="required|minlength-4">
-                      <input id="nomeNew" class="form-control" type="text" placeholder="Nome" name="nome"
-                        data-rule="required|minlength-3">
-                      <input id="emailNew" class="form-control" type="text" placeholder="Email" name="email"
-                        data-rule="required|email" />
-                      <input id="passwordNew" class="form-control" type="password" placeholder="Password" name="password"
-                        data-rule="required|password|minlength-6" autocomplete="off">
-                      <input id="password_confirmationNew" class="form-control" type="password" placeholder="Repetir Password"
-                        name="password_confirmation" data-rule="required|password">
-                      <input id="signupBtn" class="btn btn-default btn-register" type="submit" value="Criar conta">
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <div class="forgot login-footer">
-                <span>Deseja
-                  <a href="javascript: showRegisterForm();">criar uma conta</a>
-                  ?</span>
-              </div>
-              <div class="forgot register-footer" style="display:none">
-                <span>JÃ¡ tem uma conta?</span>
-                <a href="javascript: showLoginForm();">Login</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    <!--Login End-->
 
     <!-- Footer Start -->
     <div class="container-fluid text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
@@ -612,10 +650,14 @@
                     <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+351 939 026 282</p>
                     <p class="mb-2"><i class="fa fa-envelope me-3"></i>artandcrafts.workshops@gmail.com</p>
                     <div class="d-flex pt-2">
-                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="https://twitter.com/home"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="https://www.linkedin.com/feed/"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2"
+                            href="https://twitter.com/home"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2"
+                            href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2"
+                            href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2"
+                            href="https://www.linkedin.com/feed/"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3-2 col-md-6">
@@ -638,47 +680,47 @@
                     <p>Inscreva-se na nossa Newsletter para estar a par de tudo!</p>
                     <div class="position-relative w-100">
                         <input class="form-control border-light w-100 py-3 ps-4 pe-5" type="text" placeholder="Email">
-                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                        <button type="button"
+                            class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
                     </div>
-                </div>
-            </div>
-            <script src="js/login.js"></script>
-        </div>
-    <!-- Footer End -->
-
-
-    <!-- Copyright Start -->
-    <div class="container-fluid copyright py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a class="border-bottom" href="#">Art&Crafts</a>, All Right Reserved.
                 </div>
             </div>
         </div>
     </div>
-    <!-- Copyright End -->
+        <!-- Footer End -->
 
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+        <!-- Copyright Start -->
+        <div class="container-fluid copyright py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" href="#">Art&Crafts</a>, All Right Reserved.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright End -->
 
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/parallax/parallax.min.js"></script>
-    <script src="lib/isotope/isotope.pkgd.min.js"></script>
-    <script src="lib/lightbox/js/lightbox.min.js"></script>
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i
+                class="bi bi-arrow-up"></i></a>
 
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/wow/wow.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="lib/counterup/counterup.min.js"></script>
+        <script src="lib/parallax/parallax.min.js"></script>
+        <script src="lib/isotope/isotope.pkgd.min.js"></script>
+        <script src="lib/lightbox/js/lightbox.min.js"></script>
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-</div>
+    <script src="js/login.js"></script>
 </body>
-
 </html>
