@@ -75,7 +75,7 @@
     </div>
     <!-- Page Header End -->
 
-    <!-- Modal for Login/Register -->
+    <!-- Modal Login/Register Cliente-->
     <div class="modal fade login" id="loginModal">
         <div class="modal-dialog login animated">
             <div class="modal-content">
@@ -145,6 +145,45 @@
         </div>
     </div>
 
+    <!-- Modal Login/Register Admin -->
+    <div class="modal fade login" id="adminLoginModal">
+        <div class="modal-dialog login animated">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Login Admin</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="box">
+                        <div class="content">
+                            <div class="social">
+                                <div id="googleSignin">
+                                    <a href="#" class="google-button">
+                                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+                                            alt="Google Logo" class="google-button-icon">
+                                        <span class="google-button-text">Sign in with Google</span>
+                                    </a>
+                                    <div class="or">
+                                        <span class="ougrey">ou</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form loginBox">
+                                <form id="adminloginUser" method="POST" accept-charset="UTF-8">
+                                    <input id="emailLogin" class="form-control" type="email" placeholder="Email"
+                                        name="email" required>
+                                    <input id="passwordLogin" class="form-control" type="password"
+                                        placeholder="Password" name="password" required>
+                                    <button id="loginBtn" class="btn btn-default btn-login" type="submit">Login</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Contact Start -->
     <div class="container-xxl py-5">
         <div class="container">
@@ -160,7 +199,7 @@
                     <i class="bi bi-cash"></i> <span> Custo por pessoa: 25€</span><br><br>
 
                     <br><br>
-                    <a class="btn btn-primary py-3 px-4" href="">Inscrição</a>
+                    <a class="btn btn-primary py-3 px-4" href="inscricao.html">Inscrição</a>
                    
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
@@ -237,6 +276,8 @@
                     <a class="btn btn-link" href="about.html">Sobre nós</a>
                     <a class="btn btn-link" href="contact.html">Contacto</a>
                     <a class="btn btn-link" href="service.html">As nossas Atividades</a>
+                    <a id="loginBtnFooter" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block" data-toggle="modal"
+                href="javascript:void(0)" onclick="openAdminLoginModal();">Login Admin<i class="fa fa-arrow-right ms-3"></i></a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Newsletter</h4>
@@ -284,7 +325,7 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script src="js/login.js"></script>
-
+    <script src="js/login_admin.js"></script>
 </body>
 
 </html>
