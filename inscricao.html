@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Art&Crafts - Inscrição</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/icon/favicon.png" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">  
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+    </div>
+    <!-- Spinner End -->
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+        <div id="imagem"><img src="img/icon/logotipo.png" alt="logo" height="35px"> </div>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="index.html" class="nav-item nav-link">Início</a>
+                <a href="about.html" class="nav-item nav-link">Sobre nós</a>
+                <a href="service.html" class="nav-item nav-link active">Atividades</a> 
+                <a href="project.html" class="nav-item nav-link">Testemunhos</a>
+                <a href="contact.html" class="nav-item nav-link">Contacto</a>
+            </div>
+            <a id="loginBtnNav" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block" data-toggle="modal"
+                href="javascript:void(0)" onclick="openLoginModal();">Login<i class="fa fa-arrow-right ms-3"></i></a>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header py-5 mb-5 wow fadeIn inscricao" data-wow-delay="0.1s">
+        <div class="container text-center py-5">
+            <h1 class="display-3 text-white mb-4 animated slideInDown">Inscrição</h1>
+            <nav aria-label="breadcrumb animated slideInDown">
+                <ol class="breadcrumb justify-content-center mb-0">
+                    <li class="breadcrumb-item"><a href="#">Início</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Inscrição</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+    <!-- Inscrição Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                    <p class="fs-5 fw-bold text-primary">Inscrição</p>
+                    <h1 class="display-5 mb-5">Não perca tempo e inscreva-se já!</h1>
+                    <p class="mb-4">Preencha o formulário de inscrição abaixo, para efetuar reserva.</p>
+                    <form method="POST" accept-charset="UTF-8">
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="nome" placeholder="Nome Completo">
+                        </div>
+                        <div class="mb-3">
+                            <label for="telefone" class="form-label">Telefone</label>
+                            <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Insira o número de telefone" pattern="[0-9]{9}" required>
+                            <small class="form-text text-muted">Insira um número de telefone válido com 9 dígitos (apenas números).</small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tipo_atividade" class="form-label">Tipo de atividade</label>
+                            <select class="form-select" id="tipo_atividade" name="tipo_atividade" required>
+                                <option value="">Selecione o tipo de atividade</option>
+                                <option value="Atividade 1" data-limite="8" data-minimo="4" data-maximo="8">Bordado</option>
+                                <option value="Atividade 2" data-limite="7" data-minimo="3" data-maximo="7">Cerâmica</option>
+                                <option value="Atividade 3" data-limite="6" data-minimo="4" data-maximo="6">Costura</option>
+                                <option value="Atividade 4" data-limite="9" data-minimo="5" data-maximo="9">Crochê</option>
+                                <option value="Atividade 5" data-limite="6" data-minimo="3" data-maximo="6">Escultura</option>
+                                <option value="Atividade 6" data-limite="10" data-minimo="5" data-maximo="10">Pintura</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nivel_atividade" class="form-label">Nível</label>
+                            <select class="form-select" id="nivel_atividade" name="nivel_atividade" required>
+                                <option value="">Selecione o nível da atividade</option>
+                                <option value="Nivel 1">Principiante</option>
+                                <option value="Nivel 2">Livre</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="num_participantes" class="form-label">Número de participantes</label>
+                            <select class="form-select" id="num_participantes" name="num_participantes" required>
+                                <option value="">Selecione o número de participantes</option>
+                            </select>
+                            <small class="form-text text-muted" id="limite_grupo">Limite de pessoas por grupo: -</small>
+                            <small class="form-text text-muted" id="minimo_maximo_participantes">Número mínimo e máximo de participantes por grupo: -</small>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="data">Data</label>
+                            <input type="date" class="form-control" id="data">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="data">Horas</label>
+                            <input type="time" class="form-control" id="data">
+                        </div>
+                        <button id="inscricaoBtn" class="btn btn-primary py-3 px-4" type="submit">Inscrever</button>
+                    </form>
+                    <script>
+                        document.getElementById('tipo_atividade').addEventListener('change', function() {
+                            var limite = this.options[this.selectedIndex].dataset.limite;
+                            var minimo = this.options[this.selectedIndex].dataset.minimo;
+                            var maximo = this.options[this.selectedIndex].dataset.maximo;
+                            document.getElementById('limite_grupo').innerHTML = 'Limite de pessoas por grupo: ' + (limite ? limite : "-");
+                            document.getElementById('minimo_maximo_participantes').innerHTML = 'Número mínimo e máximo de participantes por grupo: ' + (minimo ? minimo : "-") + ' a ' + (maximo ? maximo : "-");
+                    
+                            var select = document.getElementById('num_participantes');
+                            select.innerHTML = '<option value="">Selecione o número de participantes</option>';
+                    
+                            for (var i = (minimo ? minimo : 1); i <= (maximo ? maximo : 10); i++) {
+                                var option = document.createElement('option');
+                                option.value = i;
+                                option.text = i;
+                                select.add(option);
+                            }
+                        });
+                    </script>                    
+                    <script>
+                        // Adiciona a validação do campo de telefone
+                        var telefoneInput = document.getElementById('telefone');
+                        telefoneInput.addEventListener('input', function() {
+                            telefoneInput.setCustomValidity('');
+                            if (!telefoneInput.checkValidity()) {
+                                telefoneInput.setCustomValidity('Por favor insira um número de telefone válido (9 dígitos numéricos).');
+                            }
+                        });
+                    </script>                   
+                </div>
+                <div class="col-lg-6 wow fadeIn">
+                    <p class="fs-5 fw-bold text-primary">Reservas</p>
+                    <h1 class="display-5 mb-5">Visualização do estado das Reservas</h1>
+                    <p class="mb-4">Na tabela abaixo pode verificar se o seu pedido de reserva está pendente, confirmado ou cancelado.</p>
+                    <div id="reservas">
+                        <!-- Popule este elemento com a lista de reservas -->
+                    </div>
+                </div>
+                <script>
+                    // Dados fictícios de reservas para testar a tabela
+                    const reservas = [
+                    {atividade: "Bordado", nivel: "Principiante", num_participantes: "5", status: "Confirmada" },
+                    {atividade: "Cerâmica", nivel: "Livre", num_participantes: "3", status: "Cancelada" },
+                    {atividade: "Costura", nivel: "Livre", num_participantes: "4", status: "Pendente" },
+                    {atividade: "Escultura", nivel: "Principiante", num_participantes: "6", status: "Confirmada" },
+                    {atividade: "Pintura", nivel: "Livre", num_participantes: "7", status: "Pendente" },
+                    {atividade: "Crochê", nivel: "Principiante", num_participantes: "9", status: "Pendente" },
+                    ];
+
+                    // Criação da tabela com as reservas
+                    let tabelaReservas = "<table class='table'>";
+                    tabelaReservas += "<thead><tr><th scope='col'>Atividade</th><th scope='col'>Nível</th><th scope='col'>Número de Participantes</th><th scope='col'>Status</th></tr></thead>";
+                    tabelaReservas += "<tbody>";
+
+                    for (let i = 0; i < reservas.length; i++) {
+                    tabelaReservas += "<tr>";
+                    tabelaReservas += "<td>" + reservas[i].atividade + "</td>";
+                    tabelaReservas += "<td>" + reservas[i].nivel + "</td>";
+                    tabelaReservas += "<td class='text-center'>" + reservas[i].num_participantes + "</td>";
+                    tabelaReservas += "<td>" + reservas[i].status + "</td>";
+                    tabelaReservas += "</tr>";
+                    }
+
+                    tabelaReservas += "</tbody></table>";
+
+                    // Adiciona a tabela de reservas à página
+                    document.getElementById("reservas").innerHTML = tabelaReservas;
+                </script>
+                <script>
+                    // Variável "confirmada" com valor "true" ou "false"
+                    var confirmada = true;
+                    
+                    var reservaStatus = document.querySelector('.reserva-status');
+                    if (confirmada) {
+                      reservaStatus.innerHTML = '<p class="text-success">Reserva confirmada!</p>';
+                    } else {
+                      reservaStatus.innerHTML = '<p class="text-danger">Reserva cancelada!</p>';
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+    <!-- Inscrição End -->
+
+    <!-- Modal Login/Register Cliente -->
+    <div class="modal fade login" id="loginModal">
+        <div class="modal-dialog login animated">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Login Cliente</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="box">
+                        <div class="content">
+                            <div class="social">
+                                <div id="googleSignin">
+                                    <a href="#" class="google-button">
+                                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+                                            alt="Google Logo" class="google-button-icon">
+                                        <span class="google-button-text">Sign in with Google</span>
+                                    </a>
+                                    <div class="or">
+                                        <span class="ougrey">ou</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form loginBox">
+                                <form id="loginUser" method="POST" accept-charset="UTF-8">
+                                    <input id="emailLogin" class="form-control" type="email" placeholder="Email"
+                                        name="email" required>
+                                    <input id="passwordLogin" class="form-control" type="password"
+                                        placeholder="Password" name="password" required>
+                                    <button id="loginBtn" class="btn btn-default btn-login" type="submit">Login</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="content registerBox" style="display:none;">
+                            <div class="form"> 
+                                <!-- Form for account registration -->
+                                <form id="createUser" method="POST" accept-charset="UTF-8">
+                                    <input id="usernameNew" class="form-control" type="text" placeholder="Username"
+                                        name="usernameNew" required minlength="4">
+                                    <input id="nomeNew" class="form-control" type="text" placeholder="Nome" name="nome"
+                                        required minlength="3">
+                                    <input id="emailNew" class="form-control" type="email" placeholder="Email"
+                                        name="email" required>
+                                    <input id="passwordNew" class="form-control" type="password" placeholder="Password"
+                                        name="password" required minlength="6">
+                                    <input id="password_confirmationNew" class="form-control" type="password"
+                                        placeholder="Confirmar Password" name="password_confirmation" required
+                                        minlength="6">
+                                    <button id="signupBtn" class="btn btn-default btn-register" type="submit">Criar
+                                        Conta</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="forgot login-footer">
+                        <span>Não tem uma conta? <a href="javascript: showRegisterForm();">Criar Conta</a>.</span>
+                    </div>
+                    <div class="forgot register-footer" style="display:none">
+                        <span>Já tem uma conta?</span>
+                        <a href="javascript: showLoginForm();">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Login/Register Admin -->
+    <div class="modal fade login" id="adminLoginModal">
+        <div class="modal-dialog login animated">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Login Admin</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="box">
+                        <div class="content">
+                            <div class="social">
+                                <div id="googleSignin">
+                                    <a href="#" class="google-button">
+                                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+                                            alt="Google Logo" class="google-button-icon">
+                                        <span class="google-button-text">Sign in with Google</span>
+                                    </a>
+                                    <div class="or">
+                                        <span class="ougrey">ou</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form loginBox">
+                                <form id="adminloginUser" method="POST" accept-charset="UTF-8">
+                                    <input id="emailLogin" class="form-control" type="email" placeholder="Email"
+                                        name="email" required>
+                                    <input id="passwordLogin" class="form-control" type="password"
+                                        placeholder="Password" name="password" required>
+                                    <button id="loginBtn" class="btn btn-default btn-login" type="submit">Login</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Start -->
+    <div class="container-fluid text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3-1 col-md-6">
+                    <h4 class="text-white mb-4">O Nosso Estúdio</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>195 R. Teixeira de Pascoais</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+351 939 026 282</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>artandcrafts.workshops@gmail.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="https://twitter.com/home"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="https://www.linkedin.com/feed/"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3-2 col-md-6">
+                    <h4 class="text-white mb-4">Atividades</h4>
+                    <a class="btn btn-link" href="info_pintura.html">Pintura</a>
+                    <a class="btn btn-link" href="info_croche.html">Crochê</a>
+                    <a class="btn btn-link" href="info_escultura.html">Escultura</a>
+                    <a class="btn btn-link" href="info_costura.html">Costura</a>
+                    <a class="btn btn-link" href="info_bordado.html">Bordado</a>
+                    <a class="btn btn-link" href="info_ceramica.html">Cerâmica</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Links de Acesso</h4>
+                    <a class="btn btn-link" href="about.html">Sobre nós</a>
+                    <a class="btn btn-link" href="contact.html">Contacto</a>
+                    <a class="btn btn-link" href="service.html">As nossas Atividades</a>
+                    <a id="loginBtnFooter" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block" data-toggle="modal"
+                href="javascript:void(0)" onclick="openAdminLoginModal();">Login Admin<i class="fa fa-arrow-right ms-3"></i></a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Newsletter</h4>
+                    <p>Inscreva-se na nossa Newsletter para estar a par de tudo!</p>
+                    <div class="position-relative w-100">
+                        <input class="form-control border-light w-100 py-3 ps-4 pe-5" type="text" placeholder="Email">
+                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="border-bottom" href="#">Activities4All</a>, All Right Reserved.
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/parallax/parallax.min.js"></script>
+    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/login_admin.js"></script>
+</body>
+
+</html>

@@ -268,6 +268,10 @@ h6,
     background-size: cover;
 }
 
+.page-header.inscricao {
+    background: linear-gradient(rgba(200, 109, 48, 0.2), rgba(200, 109, 48, 0.2)), url(../img/inscricao.jpg) center center no-repeat;
+    background-size: cover;
+}
 
 .page-header .breadcrumb-item+.breadcrumb-item::before {
     color: var(--light);
