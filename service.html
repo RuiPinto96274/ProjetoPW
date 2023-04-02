@@ -28,6 +28,9 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Toastify Stylesheet -->
+    <link href="js/vendors/toastify.css" rel="stylesheet">
+
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 </head>
@@ -210,10 +213,11 @@
                                 <img class="img-fluid" src="img/icon/icon-art.png" alt="Icon">
                             </div>
                             <h4 class="mb-3">Pintura</h4>
-                            <p class="mb-4">Workshops principiante e livres para aprender técnicas e dar uso à criatividade.</p>
-                            <a class="btn btn-sm" href=""><i class="fa fa-plus text-primary me-2"></i>Ler Mais</a>
+                            <p class="mb-4">Workshops principiante e livres para aprender técnicas e dar uso à
+                                criatividade.</p>
+                            <a class="btn btn-sm" href="info_pintura.html"><i class="fa fa-plus text-primary me-2"></i>Ler Mais</a>
                         </div>
-                    </div> 
+                    </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="service-item rounded d-flex h-100">
@@ -225,7 +229,8 @@
                                 <img class="img-fluid" src="img/icon/icon-crochet.png" alt="Icon">
                             </div>
                             <h4 class="mb-3">Crochê</h4>
-                            <p class="mb-4">Workshops para principiantes onde pode aprender tanto a arte dos Amigurumi ou dos tão famosos Granny Square.</p>
+                            <p class="mb-4">Workshops para principiantes onde pode aprender tanto a arte dos Amigurumi
+                                ou dos tão famosos Granny Square.</p>
                             <a class="btn btn-sm" href="info_croche.html"><i class="fa fa-plus text-primary me-2"></i>Ler Mais</a>
                         </div>
                     </div>
@@ -240,8 +245,9 @@
                                 <img class="img-fluid" src="img/icon/icon-sculpture.png" alt="Icon">
                             </div>
                             <h4 class="mb-3">Escultura</h4>
-                            <p class="mb-4">Workshop de escultura principiantes ou livres para aprender as técnicas básicas de escultura ou criar obras de arte tridimensionais.</p>
-                            <a class="btn btn-sm" href=""><i class="fa fa-plus text-primary me-2"></i>Ler Mais</a>
+                            <p class="mb-4">Workshop de escultura principiantes ou livres para aprender as técnicas
+                                básicas de escultura ou criar obras de arte tridimensionais.</p>
+                            <a class="btn btn-sm" href="info_escultura.html"><i class="fa fa-plus text-primary me-2"></i>Ler Mais</a>
                         </div>
                     </div>
                 </div>
@@ -255,8 +261,9 @@
                                 <img class="img-fluid" src="img/icon/icon-sewing.png" alt="Icon">
                             </div>
                             <h4 class="mb-3">Costura </h4>
-                            <p class="mb-4">Workshop apenas para principiantes que pretendem aprender conceitos básicos e breves de costura realizando pequenos projetos.</p>
-                            <a class="btn btn-sm" href=""><i class="fa fa-plus text-primary me-2"></i>Ler Mais</a>
+                            <p class="mb-4">Workshop apenas para principiantes que pretendem aprender conceitos básicos
+                                e breves de costura realizando pequenos projetos.</p>
+                            <a class="btn btn-sm" href="info_costura.html"><i class="fa fa-plus text-primary me-2"></i>Ler Mais</a>
                         </div>
                     </div>
                 </div>
@@ -270,8 +277,10 @@
                                 <img class="img-fluid" src="img/icon/icon-embroidery.png" alt="Icon">
                             </div>
                             <h4 class="mb-3">Bordado</h4>
-                            <p class="mb-4">Workshop para principiantes onde terá a chance de aprender as técnicas fundamentais, desde os pontos básicos até os mais complexos para criar belas peças de arte.</p>
-                            <a class="btn btn-sm" href=""><i class="fa fa-plus text-primary me-2"></i>Ler Mais</a>
+                            <p class="mb-4">Workshop para principiantes onde terá a chance de aprender as técnicas
+                                fundamentais, desde os pontos básicos até os mais complexos para criar belas peças de
+                                arte.</p>
+                            <a class="btn btn-sm" href="info_bordado.html"><i class="fa fa-plus text-primary me-2"></i>Ler Mais</a>
                         </div>
                     </div>
                 </div>
@@ -285,8 +294,9 @@
                                 <img class="img-fluid" src="img/icon/icon-ceramic.png" alt="Icon">
                             </div>
                             <h4 class="mb-3">Cerâmica</h4>
-                            <p class="mb-4">Workshop para principiantes e livres para experimentar diferentes tipos de argila, ferramentas e técnicas de decoração para criar objetos exclusivos e únicos.</p>
-                            <a class="btn btn-sm" href=""><i class="fa fa-plus text-primary me-2"></i>Ler Mais</a>
+                            <p class="mb-4">Workshop para principiantes e livres para experimentar diferentes tipos de
+                                argila, ferramentas e técnicas de decoração para criar objetos exclusivos e únicos.</p>
+                            <a class="btn btn-sm" href="info_ceramica.html"><i class="fa fa-plus text-primary me-2"></i>Ler Mais</a>
                         </div>
                     </div>
                 </div>
@@ -334,7 +344,7 @@
                 <p>Inscreva-se na nossa Newsletter para estar a par de tudo!</p>
                 <div class="position-relative w-100">
                     <input class="form-control border-light w-100 py-3 ps-4 pe-5" type="text" placeholder="Email">
-                    <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                    <button id="bottom-center" type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
                 </div>
             </div>
         </div>
@@ -376,5 +386,7 @@
     <script src="js/main.js"></script>
     <script src="js/login.js"></script>
     <script src="js/login_admin.js"></script>
+    <script src="js/toastify.js"></script>
+    <script src="js/vendors/toastify.js"></script>
 </body>
 </html>
