@@ -218,10 +218,56 @@ h6,
     }
 }
 
-.page-header {
-    background: linear-gradient(rgba(200, 109, 48, 0.2), rgba(200, 109, 48, 0.2)), url(../img/carousel-1.jpg) center center no-repeat;
+
+.page-header.sobre {
+    background: linear-gradient(rgba(200, 109, 48, 0.2), rgba(200, 109, 48, 0.2)), url(../img/sobre.jpg) center center no-repeat;
     background-size: cover;
 }
+.page-header.atividades {
+    background: linear-gradient(rgba(200, 109, 48, 0.2), rgba(200, 109, 48, 0.2)), url(../img/atividades.jpg) center center no-repeat;
+    background-size: cover;
+}
+
+.page-header.pintura {
+    background: linear-gradient(rgba(200, 109, 48, 0.2), rgba(200, 109, 48, 0.2)), url(../img/pintura.jpg) center center no-repeat;
+    background-size: cover;
+}
+
+.page-header.croche {
+    background: linear-gradient(rgba(200, 109, 48, 0.2), rgba(200, 109, 48, 0.2)), url(../img/croche.jpg) center center no-repeat;
+    background-size: cover;
+}
+
+.page-header.escultura {
+    background: linear-gradient(rgba(200, 109, 48, 0.2), rgba(200, 109, 48, 0.2)), url(../img/escultura.jpg) center center no-repeat;
+    background-size: cover;
+}
+
+.page-header.costura {
+    background: linear-gradient(rgba(200, 109, 48, 0.2), rgba(200, 109, 48, 0.2)), url(../img/costura.jpg) center center no-repeat;
+    background-size: cover;
+}
+
+.page-header.bordado {
+    background: linear-gradient(rgba(200, 109, 48, 0.2), rgba(200, 109, 48, 0.2)), url(../img/bordado.jpg) center center no-repeat;
+    background-size: cover;
+}
+
+.page-header.ceramica {
+    background: linear-gradient(rgba(200, 109, 48, 0.2), rgba(200, 109, 48, 0.2)), url(../img/ceramica.jpg) center center no-repeat;
+    background-size: cover;
+}
+
+.page-header.testemunhos {
+    background: linear-gradient(rgba(200, 109, 48, 0.2), rgba(200, 109, 48, 0.2)), url(../img/testemunhos.jpg) center center no-repeat;
+    background-size: cover;
+}
+
+.page-header.contacto {
+    background: linear-gradient(rgba(200, 109, 48, 0.2), rgba(200, 109, 48, 0.2)), url(../img/contacto.jpg) center center no-repeat;
+    background-size: cover;
+}
+
 
 .page-header .breadcrumb-item+.breadcrumb-item::before {
     color: var(--light);
