@@ -38,18 +38,11 @@ function openRegisterModal(){
 }
 
 function loginAjax(){
-  /*   Remove this comments when moving to server
-  $.post( "/login", function( data ) {
-          if(data == 1){
-              window.location.replace("/home");            
-          } else {
-               shakeModal(); 
-          }
-      });
-  */
-
-/*   Simulate error message from the server   */
-   shakeModal();
+  // verificar credenciais do usuário e autenticá-lo
+  // ...
+  // após o login bem sucedido
+  //document.getElementById("loginBtnNav").style.display = "none"; // esconde botão de login
+  document.getElementById("logoutBtnNav").style.display = "block"; // exibe botão de logout
 }
 
 function shakeModal(){
