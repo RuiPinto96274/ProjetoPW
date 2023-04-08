@@ -104,14 +104,18 @@
                             <p class="fs-5 fw-bold text-primary">Dados Pessoais</p>
                             <h1 class="display-5 mb-5">Visualize os seus dados!</h1>
                             <p class="mb-4">Caso pretenda alterar os seus dados pode fazê-lo.</p>
-                                <form>
+                                <form action="/" class="was-validated">
                                     <div class="mb-3">
                                         <label for="name" class="form-label">Nome</label>
-                                        <input type="text" class="form-control" id="name" value="Nome do Utilizador">
+                                        <input type="text" class="form-control" id="name" placeholder="Nome do Utilizador">
+                                        <div class="valid-feedback">Válido.</div>
+                                        <div class="invalid-feedback">Por favor preencha este campo.</div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="email" class="form-label">E-mail</label>
-                                        <input type="email" class="form-control" id="email" value="email@exemplo.com">
+                                        <input type="email" class="form-control" id="email" placeholder="email@exemplo.com">
+                                        <div class="valid-feedback">Válido.</div>
+                                        <div class="invalid-feedback">Por favor preencha este campo.</div>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Guardar</button>
                                 </form>
@@ -122,15 +126,19 @@
                                 <p class="fs-5 fw-bold text-primary">Inscrição</p>
                                 <h1 class="display-5 mb-5">Não perca tempo e inscreva-se já!</h1>
                                 <p class="mb-4">Preencha o formulário de inscrição abaixo, para efetuar reserva.</p>
-                                <form method="POST" accept-charset="UTF-8">
+                                <form method="POST" accept-charset="UTF-8" class="was-validated">
                                     <div class="mb-3">
                                         <label for="nome" class="form-label">Nome</label>
                                         <input type="text" class="form-control" id="nome" placeholder="Nome Completo">
+                                        <div class="valid-feedback">Válido.</div>
+                                        <div class="invalid-feedback">Por favor preencha este campo.</div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="telefone" class="form-label">Telefone</label>
                                         <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Insira o número de telefone" pattern="[0-9]{9}" required>
                                         <small class="form-text text-muted">Insira um número de telefone válido com 9 dígitos (apenas números).</small>
+                                        <div class="valid-feedback">Válido.</div>
+                                        <div class="invalid-feedback">Por favor preencha este campo.</div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="tipo_atividade" class="form-label">Tipo de atividade</label>
@@ -162,11 +170,15 @@
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="data">Data</label>
-                                        <input type="date" class="form-control" id="data">
+                                        <input type="date" class="form-control" id="data" required>
+                                        <div class="valid-feedback">Válido.</div>
+                                        <div class="invalid-feedback">Por favor preencha este campo.</div>
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="data">Horas</label>
-                                        <input type="time" class="form-control" id="data">
+                                        <input type="time" class="form-control" id="horas" required>
+                                        <div class="valid-feedback">Válido.</div>
+                                        <div class="invalid-feedback">Por favor preencha este campo.</div>
                                     </div>
                                     <button id="inscricaoBtn" class="btn btn-primary py-3 px-4" type="submit">Inscrever</button>
                                 </form>
@@ -208,45 +220,6 @@
                             <div id="lista_pedidos" class="list-group">
                                 
                             </div>
-                             <!--Modal para aceitar ou rejeitar pedidos de atividade-->
-                            <div class="modal fade text-left" id="primary" tabindex="-1" role="dialog"
-                            aria-labelledby="myModalLabel160" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header bg-primary">
-                                        <h5 class="modal-title white" id="myModalLabel160">
-                                            Informação do Workshop
-                                        </h5>
-                                        <button type="button" class="close" data-bs-dismiss="modal"
-                                            aria-label="Close">
-                                            <i data-feather="x"></i>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-light-secondary"
-                                            data-bs-dismiss="modal">
-                                            <i class="bx bx-x d-block d-sm-none"></i>
-                                            <span class="d-none d-sm-block">Close</span>
-                                        </button>
-                                        <button type="button" class="btn btn-primary ml-1"
-                                        data-bs-dismiss="modal">
-                                        <i class="bx bx-check d-block d-sm-none"></i>
-                                        <span class="d-none d-sm-block">Rejeitado</span>
-                                    </button>
-                                        <button type="button" class="btn btn-primary ml-1"
-                                            data-bs-dismiss="modal">
-                                            <i class="bx bx-check d-block d-sm-none"></i>
-                                            <span class="d-none d-sm-block">Aceite</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Fim do Modal para aceitar ou rejeitar pedidos de atividade-->
                         </div>
                     </div>
                 </div>
@@ -352,11 +325,11 @@
                             </div>
                             <div class="form loginBox">
                                 <form id="adminloginUser" method="POST" accept-charset="UTF-8">
-                                    <input id="emailLogin" class="form-control" type="email" placeholder="Email"
+                                    <input id="adminemailLogin" class="form-control" type="email" placeholder="Email"
                                         name="email" required>
-                                    <input id="passwordLogin" class="form-control" type="password"
+                                    <input id="adminpasswordLogin" class="form-control" type="password"
                                         placeholder="Password" name="password" required>
-                                    <button id="loginBtn" class="btn btn-default btn-login" type="submit">Login</button>
+                                    <button id="adminloginBtn" class="btn btn-default btn-login" type="submit">Login</button>
                                 </form>
                             </div>
                         </div>
@@ -365,6 +338,45 @@
             </div>
         </div>
     </div>
+
+    <!--Modal para aceitar ou rejeitar pedidos de atividade-->
+    <div class="modal fade text-left" id="primary" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+            role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h5 class="modal-title white" id="myModalLabel160">
+                        Informação do Workshop
+                    </h5>
+                    <button type="button" class="close" data-bs-dismiss="modal"
+                        aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-secondary"
+                        data-bs-dismiss="modal">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Close</span>
+                    </button>
+                    <button type="button" class="btn btn-primary ml-1"
+                    data-bs-dismiss="modal">
+                    <i class="bx bx-check d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">Rejeitado</span>
+                </button>
+                    <button type="button" class="btn btn-primary ml-1"
+                        data-bs-dismiss="modal">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Aceite</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Fim do Modal para aceitar ou rejeitar pedidos de atividade-->
 
     <!-- Footer Start -->
     <div class="container-fluid text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
