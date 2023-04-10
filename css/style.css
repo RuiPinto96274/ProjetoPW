@@ -983,3 +983,8 @@ h6,
 }
 
 /*Login End*/
+
+.status-badge {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }

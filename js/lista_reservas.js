@@ -1,108 +1,102 @@
 // Sample data retrieved from the database
 const data = [
-    {
-      type: 'Workshop Costura Livre',
-      date: '04/05/2023',
-      time: '10:00',
-      contact: 961269447,
-      groupSize: 6,
-      status: 'confirmada'
-    },
-    {
-      type: 'Workshop Cerâmica Iniciante',
-      date: '04/06/2023',
-      time: '14:00',
-      contact: 935147788,
-      groupSize: 8,
-      status: 'pendente'
-    },
-    {
-      type: 'Workshop Bordado Livre',
-      date: '04/07/2023',
-      time: '16:00',
-      contact: 914588126,
-      groupSize: 5,
-      status: 'cancelada'
-    }
-  ];
+  {
+    type: 'Workshop Costura Livre',
+    date: '04/05/2023',
+    time: '10:00',
+    contact: 961269447,
+    groupSize: 6,
+    status: 'confirmada'
+  },
+  {
+    type: 'Workshop Cerâmica Iniciante',
+    date: '04/06/2023',
+    time: '14:00',
+    contact: 935147788,
+    groupSize: 8,
+    status: 'pendente'
+  },
+  {
+    type: 'Workshop Bordado Livre',
+    date: '04/07/2023',
+    time: '16:00',
+    contact: 914588126,
+    groupSize: 5,
+    status: 'cancelada'
+  }
+];
 
-  // Get the list group element
-  const listGroup = document.querySelector('#lista_pedidos');
+// Get the accordion element
+const accordion = document.getElementById('accordion');
 
-  // Iterate over the data array and create a new list item for each item
-  data.forEach(item => {
-    // Create a new list item
-    const listItem = document.createElement('a');
-    listItem.className = 'list-group-item list-group-item-action';
-    listItem.setAttribute('data-bs-toggle', 'modal');
-    listItem.setAttribute('data-bs-target', '#primary');
+// Iterate over the data array and create a new accordion item for each item
+data.forEach((item, index) => {
+   // Initialize statusLabel with an empty string
+   let statusLabel = '';
+  // Create a new accordion item
+  const accordionItem = document.createElement('div');
+  accordionItem.className = 'accordion-item';
 
-    // Determine the appropriate status label
-  let statusLabel = '';
+  // Create the header of the accordion item
+  const accordionHeader = document.createElement('h2');
+  accordionHeader.className = 'accordion-header';
+  accordionHeader.innerHTML = `
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-${index}" aria-expanded="false" aria-controls="collapse-${index}">
+      ${item.type}
+    </button>
+  `;
+  // Determine the appropriate status label
   switch (item.status) {
     case 'confirmada':
-      statusLabel = '<span class="badge rounded-pill bg-success">Confirmada</span>';
+      statusLabel = '<span class="badge rounded-pill bg-success status-badge">Confirmada</span>';
       break;
     case 'pendente':
-      statusLabel = '<span class="badge rounded-pill bg-warning text-dark">Pendente</span>';
+      statusLabel = '<span class="badge rounded-pill bg-warning text-dark status-badge">Pendente</span>';
       break;
     case 'cancelada':
-      statusLabel = '<span class="badge rounded-pill bg-danger">Cancelada</span>';
+      statusLabel = '<span class="badge rounded-pill bg-danger status-badge">Cancelada</span>';
       break;
   }
 
-    // Create the content of the list item
-    const content = `
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">${item.type}</h5>
-        ${statusLabel}
-      </div>
-      <p class="mb-1">Dia: ${item.date} Hora: ${item.time}</p>
-      <p class="mb-1">Contacto: ${item.contact}</p>
-      <small>Grupo de ${item.groupSize} elementos</small>
-    `;
+  // Update the accordion header with the status label
+  accordionHeader.innerHTML = `
+  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-${index}" aria-expanded="false" aria-controls="collapse-${index}">
+    ${item.type}
+  </button>
+  `;
 
-    // Set the content of the list item
-    listItem.innerHTML = content;
+  // Create the body of the accordion item
+  const accordionBody = document.createElement('div');
+  accordionBody.id = `collapse-${index}`;
+  accordionBody.className = 'accordion-collapse collapse';
+  accordionBody.setAttribute('aria-labelledby', `heading-${index}`);
+  accordionBody.setAttribute('data-bs-parent', '#accordion');
 
-    // Add the new list item to the list group
-    listGroup.appendChild(listItem);
-  });
+ // Create the content of the accordion body
+const content = `
+<div class="accordion-body d-flex flex-column">
+  <p>Dia: ${item.date} Hora: ${item.time}</p>
+  <p>Contacto: ${item.contact}</p>
+  <p>Grupo de ${item.groupSize} elementos</p>
+  <div class="d-flex justify-content-between">
+    <p>${statusLabel}</p>
+    <div>
+      <button type="button" class="btn btn-danger me-2">Rejeitar</button>
+      <button type="button" class="btn btn-success">Aceitar</button>
+    </div>
+  </div>
+</div>
+`;
 
-// Handle click events on list items
-listGroup.addEventListener('click', event => {
-    const listItem = event.target.closest('.list-group-item');
-    if (listItem) {
-      // Get the index of the clicked item
-      const index = Array.from(listGroup.children).indexOf(listItem);
-  
-      // Get the data of the selected item
-      const selectedItem = data[index];
-  
-      // Set the content of the modal with the selected item's data
-      const modalTitle = document.querySelector('#primary .modal-title');
-      modalTitle.textContent = selectedItem.type;
-  
-      const modalBody = document.querySelector('#primary .modal-body');
-      modalBody.innerHTML = `
-        <p>Dia: ${selectedItem.date}  ${selectedItem.time}</p>
-        <p>Contacto: ${selectedItem.contact}</p>
-        <p>Grupo de ${selectedItem.groupSize} elementos</p>
-      `;
-  
-      // Open the modal
-      const modal = new bootstrap.Modal(document.querySelector('#primary'));
-      modal.show();
-    }
-  });
-  
-  // Get the modal element
-const modal = document.querySelector('#primary');
+  // Set the body content of the accordion item
+  accordionBody.innerHTML = content;
 
-// Add an event listener to the modal that will remove the backdrop when the modal is closed
-modal.addEventListener('hidden.bs.modal', () => {
-    const backdrop = document.querySelector('.modal-backdrop');
-    if (backdrop) {
-      backdrop.remove();
-    }
-  });
+  // Add the header and body to the accordion item
+  accordionItem.appendChild(accordionHeader);
+  accordionItem.appendChild(accordionBody);
+
+  // Add the accordion item to the accordion
+  accordion.appendChild(accordionItem);
+});
+
+
