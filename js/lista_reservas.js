@@ -6,7 +6,9 @@ const data = [
     time: '10:00',
     contact: 961269447,
     groupSize: 6,
-    status: 'confirmada'
+    price: 156,
+    status: 'confirmada',
+    sala: 3
   },
   {
     type: 'Workshop Cerâmica Iniciante',
@@ -14,6 +16,7 @@ const data = [
     time: '14:00',
     contact: 935147788,
     groupSize: 8,
+    price: 240,
     status: 'pendente'
   },
   {
@@ -22,6 +25,7 @@ const data = [
     time: '16:00',
     contact: 914588126,
     groupSize: 5,
+    price: 100,
     status: 'cancelada'
   }
 ];
@@ -73,17 +77,33 @@ data.forEach((item, index) => {
   accordionBody.setAttribute('data-bs-parent', '#accordion');
 
  // Create the content of the accordion body
-const content = `
+let content = `
 <div class="accordion-body d-flex flex-column">
   <p>Dia: ${item.date} Hora: ${item.time}</p>
   <p>Contacto: ${item.contact}</p>
   <p>Grupo de ${item.groupSize} elementos</p>
-  <div class="d-flex justify-content-between">
-    <p>${statusLabel}</p>
-    <div>
-      <button type="button" class="btn btn-danger me-2">Rejeitar</button>
-      <button type="button" class="btn btn-success">Aceitar</button>
+  <p>Preço Total: ${item.price} €</p>
+`;
+
+if (item.status === 'confirmada') {
+  content += `
+    <p>Sala: ${item.sala}</p>
+    <div class="d-flex justify-content-between">
+      <p>${statusLabel}</p>
+      <div>
+        <button type="button" class="btn btn-danger me-2">Cancelar</button>
+      </div>
     </div>
+  `;
+} else {
+  content += `
+    <div class="d-flex justify-content-between">
+      <p>${statusLabel}</p>
+    </div>
+  `;
+}
+
+content += `
   </div>
 </div>
 `;
