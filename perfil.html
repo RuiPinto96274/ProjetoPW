@@ -126,7 +126,7 @@
                                 <p class="fs-5 fw-bold text-primary">Inscrição</p>
                                 <h1 class="display-5 mb-5">Não perca tempo e inscreva-se já!</h1>
                                 <p class="mb-4">Preencha o formulário de inscrição abaixo, para efetuar reserva.</p>
-                                <form method="POST" accept-charset="UTF-8" class="was-validated">
+                                <form id="form_inscricao" accept-charset="UTF-8" class="was-validated">
                                     <div class="mb-3">
                                         <label for="nome" class="form-label">Nome</label>
                                         <input type="text" class="form-control" id="nome" placeholder="Nome Completo" required>
@@ -144,20 +144,20 @@
                                         <label for="tipo_atividade" class="form-label">Tipo de atividade</label>
                                         <select class="form-select" id="tipo_atividade" name="tipo_atividade" required>
                                             <option value="">Selecione o tipo de atividade</option>
-                                            <option value="Atividade 1" data-limite="8" data-minimo="4" data-maximo="8">Bordado</option>
-                                            <option value="Atividade 2" data-limite="7" data-minimo="3" data-maximo="7">Cerâmica</option>
-                                            <option value="Atividade 3" data-limite="6" data-minimo="4" data-maximo="6">Costura</option>
-                                            <option value="Atividade 4" data-limite="9" data-minimo="5" data-maximo="9">Crochê</option>
-                                            <option value="Atividade 5" data-limite="6" data-minimo="3" data-maximo="6">Escultura</option>
-                                            <option value="Atividade 6" data-limite="10" data-minimo="5" data-maximo="10">Pintura</option>
+                                            <option value="Bordado" data-limite="8" data-minimo="4" data-maximo="8">Bordado</option>
+                                            <option value="Cerâmica" data-limite="7" data-minimo="3" data-maximo="7">Cerâmica</option>
+                                            <option value="Costura" data-limite="6" data-minimo="4" data-maximo="6">Costura</option>
+                                            <option value="Crochê" data-limite="9" data-minimo="5" data-maximo="9">Crochê</option>
+                                            <option value="Escultura" data-limite="6" data-minimo="3" data-maximo="6">Escultura</option>
+                                            <option value="Pintura" data-limite="10" data-minimo="5" data-maximo="10">Pintura</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
                                         <label for="nivel_atividade" class="form-label">Nível</label>
                                         <select class="form-select" id="nivel_atividade" name="nivel_atividade" required>
                                             <option value="">Selecione o nível da atividade</option>
-                                            <option value="Nivel 1">Principiante</option>
-                                            <option value="Nivel 2">Livre</option>
+                                            <option value="Principiante">Principiante</option>
+                                            <option value="Livre">Livre</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
@@ -187,6 +187,12 @@
                                         var limite = this.options[this.selectedIndex].dataset.limite;
                                         var minimo = this.options[this.selectedIndex].dataset.minimo;
                                         var maximo = this.options[this.selectedIndex].dataset.maximo;
+
+                                        if (this.value === "Pintura") {
+                                            minimo = 5;
+                                            maximo = 10;
+                                        }
+                                        
                                         document.getElementById('limite_grupo').innerHTML = 'Limite de pessoas por grupo: ' + (limite ? limite : "-");
                                         document.getElementById('minimo_maximo_participantes').innerHTML = 'Número mínimo e máximo de participantes por grupo: ' + (minimo ? minimo : "-") + ' a ' + (maximo ? maximo : "-");
                                 
@@ -418,6 +424,7 @@
     <script src="js/login_admin.js"></script>
     <script src="js/toastify.js"></script>
     <script src="js/vendors/toastify.js"></script>
+    <script src="js/inscricao.js"></script>
     <script src="js/lista_reservas.js"></script>
 </body>
 
