@@ -114,6 +114,11 @@ document.getElementById("loginUser").addEventListener("submit", function(event){
   $("#loginModal").modal("hide");
 });
 
+function closeLogin(){
+  $("#logoutBtnNav").hide();
+  $("#loginBtnNav").show();
+}
+
 $(document).ready(function () {
   // Fechar o modal quando o botão 'fechar' for clicado
   $(".modal-header button").click(function () {
