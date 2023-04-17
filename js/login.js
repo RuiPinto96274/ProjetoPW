@@ -108,8 +108,6 @@ document.getElementById("loginUser").addEventListener("submit", function(event){
   };
   users.push(user);
   // após o login bem sucedido
-  //document.getElementById("loginBtnNav").style.display = "none"; // esconde botão de login
-  //document.getElementById("logoutBtnNav").style.display = "block"; // exibe botão de logout
   // fechar o modal
   $("#loginModal").modal("hide");
 });
