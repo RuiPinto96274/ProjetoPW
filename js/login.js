@@ -15,7 +15,6 @@ function openRegisterModal(){
   setTimeout(function(){
       $('#loginModal').modal('show');    
   }, 230);
-  
 }
 
 document.getElementById("createUser").addEventListener("submit", function(event){
@@ -92,11 +91,8 @@ document.getElementById("loginUser").addEventListener("submit", function(event){
     document.getElementById("loginUser").reset();
 
     $('#loginModal').modal('hide');
-    /*$(".loginBox").fadeOut(function () {
-      $("#loginBtnNav").hide();
-      $("#logoutBtnNav").show();
-      $(".modal-title").html(user.nome);
-    });*/
+    $("#loginBtnNav").hide();
+    $("#logoutBtnNav").show();
   } else {
     // exibir mensagem de erro
     alert("Credenciais inválidas. Por favor, verifique seu e-mail e senha e tente novamente.");
