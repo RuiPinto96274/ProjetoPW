@@ -185,11 +185,11 @@
                             </div>
                             <div class="form loginBox">
                                 <form id="adminloginUser" method="POST" accept-charset="UTF-8">
-                                    <input id="emailLogin" class="form-control" type="email" placeholder="Email"
+                                    <input id="adminemailLogin" class="form-control" type="email" placeholder="Email"
                                         name="email" required>
-                                    <input id="passwordLogin" class="form-control" type="password"
+                                    <input id="adminpasswordLogin" class="form-control" type="password"
                                         placeholder="Password" name="password" required>
-                                    <button id="loginBtn" class="btn btn-default btn-login" type="submit">Login</button>
+                                    <button id="adminloginBtn" class="btn btn-default btn-login" type="submit">Login</button>
                                 </form>
                             </div>
                         </div>
@@ -289,8 +289,10 @@
                     <a class="btn btn-link" href="about.html">Sobre nós</a>
                     <a class="btn btn-link" href="contact.html">Contacto</a>
                     <a class="btn btn-link" href="service.html">As nossas Atividades</a>
-                    <a id="loginBtnFooter" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block" data-toggle="modal"
+                    <a id="loginBtnFooter" class="btn btn-primary py-6 px-lg-4 rounded-0" data-toggle="modal"
                 href="javascript:void(0)" onclick="openAdminLoginModal();">Login Admin<i class="fa fa-arrow-right ms-3"></i></a>
+                    <a id="logoutBtnFooter" class="btn btn-primary py-6 px-lg-4 rounded-0" data-toggle="modal"
+                    href="javascript:void(0)" onclick="closeAdminLogin();">Logout Admin<i class="fa fa-arrow-left ms-3"></i></a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Newsletter</h4>

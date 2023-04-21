@@ -179,6 +179,10 @@ h6,
     display: none;
   }
 
+#logoutBtnFooter {
+    display: none;
+}
+
 /*** Header ***/
 .carousel-caption {
     top: 0;
