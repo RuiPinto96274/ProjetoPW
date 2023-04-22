@@ -27,14 +27,14 @@ if (!localStorage.getItem('admin')) {
   localStorage.setItem('admin', JSON.stringify(admin));
 }
 
-// Check if the user is logged in and update the UI accordingly
+/*// Check if the user is logged in and update the UI accordingly
 if (localStorage.getItem('isAdminLoggedIn') === 'true') {
   $("#loginBtnFooter").hide();
   $("#logoutBtnFooter").show();
 } else {
   $("#logoutBtnFooter").hide();
   $("#loginBtnFooter").show();
-}
+}*/
 
 document.getElementById("adminloginUser").addEventListener("submit", function(event){
   // impede que a página recarregue quando o formulário é enviado
@@ -53,9 +53,10 @@ document.getElementById("adminloginUser").addEventListener("submit", function(ev
     document.getElementById("adminloginUser").reset();
 
     $('#adminLoginModal').modal('hide');
+    /*
     $("#loginBtnFooter").hide();
     $("#logoutBtnFooter").show();
-    localStorage.setItem('isAdminLoggedIn', 'true');
+    localStorage.setItem('isAdminLoggedIn', 'true');*/
   } else {
     // exibir mensagem de erro
     alert("Credenciais inválidas. Por favor, verifique seu e-mail e senha e tente novamente.");
@@ -64,12 +65,12 @@ document.getElementById("adminloginUser").addEventListener("submit", function(ev
     openAdminLoginModal();
   }
 });
-
+/*
 function closeAdminLogin(){
   $("#logoutBtnFooter").hide();
   $("#loginBtnFooter").show();
   localStorage.setItem('isAdminLoggedIn', 'false');
-}
+}*/
 
 $(document).ready(function () {
   // Fechar o modal quando o botão 'fechar' for clicado
