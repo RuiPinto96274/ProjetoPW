@@ -73,6 +73,15 @@ function openLoginModal(){
   
 }
 
+// Check if the user is logged in and update the UI accordingly
+if (localStorage.getItem('isUserLoggedIn') === 'true') {
+  $("#loginBtnNav").hide();
+  $("#logoutBtnNav").show();
+} else {
+  $("#logoutBtnNav").hide();
+  $("#loginBtnNav").show();
+}
+
 document.getElementById("loginUser").addEventListener("submit", function(event){
   // impede que a página recarregue quando o formulário é enviado
   event.preventDefault();
@@ -93,6 +102,7 @@ document.getElementById("loginUser").addEventListener("submit", function(event){
     $('#loginModal').modal('hide');
     $("#loginBtnNav").hide();
     $("#logoutBtnNav").show();
+    localStorage.setItem('isUserLoggedIn', 'true');
   } else {
     // exibir mensagem de erro
     alert("Credenciais inválidas. Por favor, verifique seu e-mail e senha e tente novamente.");
@@ -115,6 +125,7 @@ document.getElementById("loginUser").addEventListener("submit", function(event){
 function closeLogin(){
   $("#logoutBtnNav").hide();
   $("#loginBtnNav").show();
+  localStorage.setItem('isUserLoggedIn', 'false');
 }
 
 $(document).ready(function () {

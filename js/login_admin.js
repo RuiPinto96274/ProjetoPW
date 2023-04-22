@@ -27,6 +27,15 @@ if (!localStorage.getItem('admin')) {
   localStorage.setItem('admin', JSON.stringify(admin));
 }
 
+// Check if the user is logged in and update the UI accordingly
+if (localStorage.getItem('isAdminLoggedIn') === 'true') {
+  $("#loginBtnFooter").hide();
+  $("#logoutBtnFooter").show();
+} else {
+  $("#logoutBtnFooter").hide();
+  $("#loginBtnFooter").show();
+}
+
 document.getElementById("adminloginUser").addEventListener("submit", function(event){
   // impede que a página recarregue quando o formulário é enviado
   event.preventDefault();
@@ -36,12 +45,8 @@ document.getElementById("adminloginUser").addEventListener("submit", function(ev
   let password = $("#adminpasswordLogin").val();
   // verificar credenciais do admin e autenticá-lo
   let admin = JSON.parse(localStorage.getItem('admin'));
-  console.log(email);
-  console.log(admin.password);
-  console.log(admin.email);
-  console.log(admin.password);
-  if (admin && admin.email === email && admin.password === password) {
 
+  if (admin && admin.email === email && admin.password === password) {
     // exibir mensagem de sucesso
     alert("Login bem sucedido!");
     // limpa o formulário
@@ -50,6 +55,7 @@ document.getElementById("adminloginUser").addEventListener("submit", function(ev
     $('#adminLoginModal').modal('hide');
     $("#loginBtnFooter").hide();
     $("#logoutBtnFooter").show();
+    localStorage.setItem('isAdminLoggedIn', 'true');
   } else {
     // exibir mensagem de erro
     alert("Credenciais inválidas. Por favor, verifique seu e-mail e senha e tente novamente.");
@@ -62,6 +68,7 @@ document.getElementById("adminloginUser").addEventListener("submit", function(ev
 function closeAdminLogin(){
   $("#logoutBtnFooter").hide();
   $("#loginBtnFooter").show();
+  localStorage.setItem('isAdminLoggedIn', 'false');
 }
 
 $(document).ready(function () {
