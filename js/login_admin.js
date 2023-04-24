@@ -19,7 +19,7 @@ function openAdminLoginModal(){
 
 let admin = {
   email: "admin@admin.com",
-  password: "1234"
+  password: "Admin1*"
 };
 
 // Cria o admin se ele ainda não existe
