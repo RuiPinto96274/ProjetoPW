@@ -11,7 +11,7 @@ form.addEventListener('submit', function(event) {
   const data = document.getElementById('data').value;
   const horas = document.getElementById('horas').value;
 
-  const inscricao = {
+  const pedido = {
     nome: nome,
     telefone: telefone,
     tipoAtividade: tipoAtividade,
@@ -24,12 +24,12 @@ form.addEventListener('submit', function(event) {
   // Verifica se já há alguma inscrição guardada no Local Storage. 
   // Se houver, adiciona a nova inscrição ao final do array. 
   // Se não houver, ele cria um novo array apenas com a nova inscrição.
-  let inscricoes = JSON.parse(localStorage.getItem('inscricoes')) || [];
+  let pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
 
   // Adicionar a nova inscrição ao array
-  inscricoes.push(inscricao);
+  pedidos.push(pedido);
   
-  localStorage.setItem('inscricoes', JSON.stringify(inscricoes));
+  localStorage.setItem('pedidos', JSON.stringify(pedidos));
   
   alert('Inscrição realizada com sucesso!');
 });
