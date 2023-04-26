@@ -102,24 +102,38 @@
                             aria-labelledby="list-dados-list">
                             <div class="tab-pane show active" id="list-dados" role="tabpanel"
                             aria-labelledby="list-dados-list">
-                            <p class="fs-5 fw-bold text-primary">Dados Pessoais</p>
-                            <h1 class="display-5 mb-5">Visualize os seus dados!</h1>
-                            <p class="mb-4">Caso pretenda alterar os seus dados pode fazê-lo.</p>
-                                <form action="/" class="was-validated">
-                                    <div class="mb-3">
-                                        <label for="name" class="form-label">Nome</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Nome do Utilizador" required>
-                                        <div class="valid-feedback">Válido.</div>
-                                        <div class="invalid-feedback">Por favor preencha este campo.</div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="email" class="form-label">E-mail</label>
-                                        <input type="email" class="form-control" id="email" placeholder="email@exemplo.com" required>
-                                        <div class="valid-feedback">Válido.</div>
-                                        <div class="invalid-feedback">Por favor preencha este campo.</div>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Guardar</button>
-                                </form>
+                                <p class="fs-5 fw-bold text-primary">Dados Pessoais</p>
+                                <h1 class="display-5 mb-5">Visualize os seus dados!</h1>
+                                <p class="mb-4">Caso pretenda alterar os seus dados pode fazê-lo.</p>
+                                    <form id="alterar_perfil" class="was-validated">
+                                        <div class="mb-3">
+                                            <label for="name" class="form-label">Username</label>
+                                            <input type="text" class="form-control" id="username_perfil" placeholder="Username do Utilizador" disabled>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="name" class="form-label">Nome</label>
+                                            <input type="text" class="form-control" id="nome_perfil" placeholder="Nome do Utilizador" required>
+                                            <div class="valid-feedback">Válido.</div>
+                                            <div class="invalid-feedback">Por favor preencha este campo.</div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">E-mail</label>
+                                            <input type="email" class="form-control" id="email_perfil" placeholder="email@exemplo.com" required>
+                                            <div class="valid-feedback">Válido.</div>
+                                            <div class="invalid-feedback">Por favor preencha este campo.</div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="password" class="form-label">Password</label>
+                                            <div class="input-group">
+                                              <input type="password" class="form-control" id="passe_perfil" placeholder="**********" required>
+                                              <button class="btn btn-outline-secondary" type="button" id="showPasswordBtn">Mostrar senha</button>
+                                            </div>
+                                            <div class="valid-feedback">Válido.</div>
+                                            <div class="invalid-feedback">Por favor preencha este campo.</div>
+                                          </div>
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button id="cancelar_perfil" class="btn btn-danger">Cancelar</button>
+                                    </form>
                             </div>
                         </div>
                         <div class="tab-pane" id="list-inscricao" role="tabpanel"

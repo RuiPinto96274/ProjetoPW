@@ -1,3 +1,4 @@
+const users = JSON.parse(localStorage.getItem('users'))|| [];
 
 function showRegisterForm(){
   $('.loginBox').fadeOut('fast',function(){
@@ -36,13 +37,16 @@ document.getElementById("createUser").addEventListener("submit", function(event)
     password: password
   };
 
+  // Adiciona o novo user à lista de users
+  users.push(user);
+
   // Valida se os campos estão preenchidos corretamente
   if (username == '' || nome == '' || email == '' || password == '' || passwordConfirmation == '') {
     $('.error').addClass('alert alert-danger').html('Por favor preencha todos os campos.');
   } else if (password != passwordConfirmation) {
     $('.error').addClass('alert alert-danger').html('As senhas não correspondem.');
   } else {
-  localStorage.setItem('user', JSON.stringify(user));
+  localStorage.setItem('users', JSON.stringify(users));
   }
 
   alert("Registo bem sucedido! Por favor, faça login.");
@@ -70,13 +74,20 @@ function openLoginModal(){
   setTimeout(function(){
       $('#loginModal').modal('show');    
   }, 230);
-  
 }
 
 // Check if the user is logged in and update the UI accordingly
 if (localStorage.getItem('isUserLoggedIn') === 'true') {
   $("#loginBtnNav").hide();
   $("#logoutBtnNav").show();
+  //preencher dados do perfil
+  // percorre o array de usuários
+  for (let i = 0; i < users.length; i++) {
+    const user = users[i];
+  document.getElementById("username_perfil").value=user.username;
+  document.getElementById("nome_perfil").value=user.nome;
+  document.getElementById("email_perfil").value=user.email;
+  document.getElementById("passe_perfil").value=user.password;}
 } else {
   $("#logoutBtnNav").hide();
   $("#loginBtnNav").show();
@@ -86,37 +97,37 @@ document.getElementById("loginUser").addEventListener("submit", function(event){
   // impede que a página recarregue quando o formulário é enviado
   event.preventDefault();
 
-  var users = [];
   // obter os dados do formulário
   var email = $("#emailLogin").val();
   var password = $("#passwordLogin").val();
+  // percorre o array de usuários
+  for (let i = 0; i < users.length; i++) {
+    const user = users[i];
+    // verificar credenciais do usuário e autenticá-lo
+    if (user && user.email === email && user.password === password) {
+      // exibir mensagem de sucesso
+      alert("Login bem sucedido!");
+      // limpa o formulário
+      document.getElementById("loginUser").reset();
 
-  // verificar credenciais do usuário e autenticá-lo
-  var user = JSON.parse(localStorage.getItem('user'));
-  if (user && user.email === email && user.password === password) {
-    // exibir mensagem de sucesso
-    alert("Login bem sucedido!");
-    // limpa o formulário
-    document.getElementById("loginUser").reset();
-
-    $('#loginModal').modal('hide');
-    $("#loginBtnNav").hide();
-    $("#logoutBtnNav").show();
-    localStorage.setItem('isUserLoggedIn', 'true');
-  } else {
-    // exibir mensagem de erro
+      $('#loginModal').modal('hide');
+      $("#loginBtnNav").hide();
+      $("#logoutBtnNav").show();
+      localStorage.setItem('isUserLoggedIn', 'true');
+      //preencher dados do perfil
+      document.getElementById("username_perfil").value=user.username;
+      document.getElementById("nome_perfil").value=user.nome;
+      document.getElementById("email_perfil").value=user.email;
+      document.getElementById("passe_perfil").value=user.password;
+    }else{
+      // exibir mensagem de erro
     alert("Credenciais inválidas. Por favor, verifique seu e-mail e senha e tente novamente.");
     // limpa o formulário
     document.getElementById("loginUser").reset();
     openLoginModal();
-  }
-
-  // adicionar o usuário ao array
-  var user = {
-    email: email,
-    password: password
-  };
-  users.push(user);
+    }
+  } 
+    
   // após o login bem sucedido
   // fechar o modal
   $("#loginModal").modal("hide");
@@ -125,8 +136,67 @@ document.getElementById("loginUser").addEventListener("submit", function(event){
 function closeLogin(){
   $("#logoutBtnNav").hide();
   $("#loginBtnNav").show();
+
+  for (let i = 0; i < users.length; i++) {
+    const user = users[i];
+
+    document.getElementById("username_perfil").value="";
+    document.getElementById("nome_perfil").value="";
+    document.getElementById("email_perfil").value="";
+    document.getElementById("passe_perfil").value="";
+    }
+   
   localStorage.setItem('isUserLoggedIn', 'false');
 }
+
+document.getElementById("alterar_perfil").addEventListener("submit", function(event){
+  event.preventDefault();
+  
+  // Obter o username do profissional a ser alterado
+  let username = document.getElementById('username_perfil').value;
+  
+  // Procurar pelo profissional com o username correspondente
+  let index = users.findIndex(function (u) {
+    return u.username === username;
+  });
+
+  // Verificar se o username foi encontrado
+  if (index === -1) {
+    alert('Não foi encontrado nenhum profissional com o username especificado.');
+    return;
+  }
+  // realizar ação de guardar dados aqui
+  let nome= document.getElementById("nome_perfil").value;
+  let email= document.getElementById("email_perfil").value;
+  let password= document.getElementById("passe_perfil").value;
+
+  // Verificar se todos os campos foram preenchidos
+  if (username == "" || nome == "" || email == "" || password == "" ) {
+    alert("Por favor, preencha todos os campos antes de atualizar os dados.");
+    return;
+  }else{
+    users[index].nome=nome;
+    users[index].email=email;
+    users[index].password=password;
+
+    localStorage.setItem('users', JSON.stringify(users));
+    alert("Dados guardados com sucesso!");
+  }
+});
+
+  // adicionar evento ao botão "Cancelar"
+  document.getElementById("cancelar_perfil").addEventListener("click", function(event){
+   event.preventDefault();
+   for (let i = 0; i < users.length; i++) {
+    const user = users[i];
+    if (localStorage.getItem('isUserLoggedIn') === 'true') {
+    document.getElementById("username_perfil").value=user.username;
+    document.getElementById("nome_perfil").value=user.nome;
+    document.getElementById("email_perfil").value=user.email;
+    document.getElementById("passe_perfil").value=user.password;
+    }
+   }
+  });
 
 $(document).ready(function () {
   // Fechar o modal quando o botão 'fechar' for clicado
@@ -137,6 +207,19 @@ $(document).ready(function () {
   // Limpar os campos do formulário quando o modal for fechado
   $("#loginModal").on("hidden.bs.modal", function () {
     $("#loginUser")[0].reset();
+  });
+
+  //Ver password no perfil que se encontra escondida
+  $("#showPasswordBtn").click(function() {
+    var passwordInput = $("#passe_perfil");
+    var passwordFieldType = passwordInput.attr("type");
+    if (passwordFieldType === "password") {
+      passwordInput.attr("type", "text");
+      $(this).text("Esconder senha");
+    } else {
+      passwordInput.attr("type", "password");
+      $(this).text("Mostrar senha");
+    }
   });
 });
 
