@@ -20,6 +20,7 @@ form.addEventListener('submit', function(event) {
     numParticipantes: numParticipantes,
     data: data,
     horas: horas,
+    sala: '', // sala não atribuída de início
     estado: 'pendente' // inicializa o estado como 'pendente'
   };
 
@@ -35,16 +36,3 @@ form.addEventListener('submit', function(event) {
   
   alert('Inscrição realizada com sucesso!');
 });
-
-/* A implementar
-Receber a resposta do backoffice na forma de um objeto "resposta" que inclui o ID do pedido e o novo estado. 
-Percorrer o array de pedidos armazenados no localStorage, encontrar o pedido correspondente pelo ID e atualizar seu estado da seguinte forma:
-
-for (let i = 0; i < pedidos.length; i++) {
-  if (pedidos[i].id === resposta.id) {
-    pedidos[i].estado = resposta.estado;
-    break;
-  }
-}
-
-localStorage.setItem('pedidos', JSON.stringify(pedidos));*/

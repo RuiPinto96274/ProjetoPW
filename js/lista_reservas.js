@@ -1,5 +1,5 @@
 // Sample data retrieved from the database
-const data = [
+/*const data = [
   {
     type: 'Workshop Costura Livre',
     date: '04/05/2023',
@@ -28,7 +28,8 @@ const data = [
     price: 100,
     status: 'cancelada'
   }
-];
+];*/
+let data = JSON.parse(localStorage.getItem('pedidos')) || [];
 
 // Get the accordion element
 const accordion = document.getElementById('accordion');
@@ -46,26 +47,26 @@ data.forEach((item, index) => {
   accordionHeader.className = 'accordion-header';
   accordionHeader.innerHTML = `
     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-${index}" aria-expanded="false" aria-controls="collapse-${index}">
-      ${item.type}
+      ${item.tipoAtividade}
     </button>
   `;
   // Determine the appropriate status label
-  switch (item.status) {
-    case 'confirmada':
-      statusLabel = '<span class="badge rounded-pill bg-success status-badge">Confirmada</span>';
+  switch (item.estado) {
+    case 'confirmado':
+      statusLabel = '<span class="badge rounded-pill bg-success status-badge">Confirmado</span>';
       break;
     case 'pendente':
       statusLabel = '<span class="badge rounded-pill bg-warning text-dark status-badge">Pendente</span>';
       break;
-    case 'cancelada':
-      statusLabel = '<span class="badge rounded-pill bg-danger status-badge">Cancelada</span>';
+    case 'cancelado':
+      statusLabel = '<span class="badge rounded-pill bg-danger status-badge">Cancelado</span>';
       break;
   }
 
   // Update the accordion header with the status label
   accordionHeader.innerHTML = `
   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-${index}" aria-expanded="false" aria-controls="collapse-${index}">
-    ${item.type}
+    Workshop ${item.tipoAtividade} ${item.nivelAtividade} 
   </button>
   `;
 
@@ -79,13 +80,13 @@ data.forEach((item, index) => {
  // Create the content of the accordion body
 let content = `
 <div class="accordion-body d-flex flex-column">
-  <p>Dia: ${item.date} Hora: ${item.time}</p>
-  <p>Contacto: ${item.contact}</p>
-  <p>Grupo de ${item.groupSize} elementos</p>
-  <p>Preço Total: ${item.price} €</p>
+  <p>Dia: ${item.data} Hora: ${item.horas}</p>
+  <p>Contacto: ${item.telefone}</p>
+  <p>Grupo de ${item.numParticipantes} elementos</p>
+  <p>Preço Total: ${item.preco} €</p>
 `;
 
-if (item.status === 'confirmada') {
+if (item.estado === 'confirmado') {
   content += `
     <p>Sala: ${item.sala}</p>
     <div class="d-flex justify-content-between">
