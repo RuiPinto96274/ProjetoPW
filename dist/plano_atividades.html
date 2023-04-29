@@ -83,7 +83,17 @@
                                 <span>Plano de Atividades</span>
                             </a>
                         </li>
-
+                    </ul>
+                    <br> <br> <br>
+                    <ul class="menu">
+                        <a href="perfil_dist.html" class='sidebar-link'>
+                            <i class="bi bi-gear-fill"></i>
+                            <span>Definições de Conta</span>
+                        </a> 
+                        <a href="#" class='sidebar-link'>
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span>Logout</span>
+                        </a>
                     </ul>
                 </div>
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
@@ -283,12 +293,12 @@
                                                     <i class="bx bx-x d-block d-sm-none"></i>
                                                     <span class="d-none d-sm-block">Voltar</span>
                                                 </button>
-                                                <button type="button" class="btn btn-primary ml-1"
+                                                <button id="rejeitar_pedido" type="button" class="btn btn-primary ml-1"
                                                     data-bs-dismiss="modal">
                                                     <i class="bx bx-check d-block d-sm-none"></i>
                                                     <span class="d-none d-sm-block">Rejeitado</span>
                                                 </button>
-                                                <button type="button" class="btn btn-primary ml-1"
+                                                <button id="aceitar_pedido" type="button" class="btn btn-primary ml-1"
                                                     data-bs-dismiss="modal">
                                                     <i class="bx bx-check d-block d-sm-none"></i>
                                                     <span class="d-none d-sm-block">Aceite</span>
@@ -362,9 +372,9 @@
         <script src='assets/fullcalendar/packages/interaction/main.js'></script>
         <script src='assets/fullcalendar/packages/daygrid/main.js'></script>
         <script src='assets/fullcalendar/packages/core/locales/pt.js'></script>
-
         <script src='assets/js/calendar.js'></script>
-        <script src='assets/js/lista_atividades.js'></script>
+        <script src='assets/js/jquery-3.3.1.min.js'></script>
+        <script src='assets/js/plano_atividades.js'></script>
 </body>
 
 </html>

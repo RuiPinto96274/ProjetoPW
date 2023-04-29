@@ -79,7 +79,17 @@
                                 <span>Plano de Atividades</span>
                             </a>
                         </li>
-
+                    </ul>
+                    <br> <br> <br>
+                    <ul class="menu">
+                        <a href="perfil_dist.html" class='sidebar-link'>
+                            <i class="bi bi-gear-fill"></i>
+                            <span>Definições de Conta</span>
+                        </a> 
+                        <a href="#" class='sidebar-link'>
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span>Logout</span>
+                        </a>
                     </ul>
                 </div>
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
@@ -109,8 +119,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-9">
-                                                <h6 class="text-muted font-semibold">Clientes satisfeito</h6>
-                                                <h6 class="font-extrabold mb-0">254</h6>
+                                                <h6 class="text-muted font-semibold">Clientes satisfeitos</h6>
+                                                <h6 class="font-extrabold mb-0" id="indicador1">254</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -127,7 +137,7 @@
                                             </div>
                                             <div class="col-md-9">
                                                 <h6 class="text-muted font-semibold">Profissionais</h6>
-                                                <h6 class="font-extrabold mb-0">5</h6>
+                                                <h6 class="font-extrabold mb-0" id="indicador2"></h6>
                                             </div>
                                         </div>
                                     </div>
@@ -144,7 +154,7 @@
                                             </div>
                                             <div class="col-md-9">
                                                 <h6 class="text-muted font-semibold">Atividades realizadas</h6>
-                                                <h6 class="font-extrabold mb-0">154</h6>
+                                                <h6 class="font-extrabold mb-0" id="indicador3">154</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -185,19 +195,6 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-3">
-                        <!--<div class="card">
-                            <div class="card-body py-4 px-5">
-                                <div class="d-flex align-items-center">
-                                    <div class="avatar avatar-xl">
-                                        <img src="assets/images/faces/1.jpg" alt="Face 1">
-                                    </div>
-                                    <div class="ms-3 name">
-                                        <h5 class="font-bold">John Duck</h5>
-                                        <h6 class="text-muted mb-0">@johnducky</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>-->
                         <div class="card">
                             <div class="card-header">
                                 <h4>Atividades para hoje</h4>
@@ -263,8 +260,8 @@
     <script src="assets/vendors/dayjs/dayjs.min.js"></script>         <!--Acho que não é preciso-->
     <!--<script src="assets/js/pages/ui-apexchart.js"></script>-->    <!--Não é preciso-->
     <script src="assets/js/pages/dashboard.js"></script>
+    <script src="assets/js/dashboard_dados.js"></script>
     <script src="assets/js/main.js"></script>
-    <script src="js/login_admin.js"></script>
 </body>
 
 </html>

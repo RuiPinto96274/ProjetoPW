@@ -75,7 +75,17 @@
                                 <span>Plano de Atividades</span>
                             </a>
                         </li>
-
+                    </ul>
+                    <br> <br> <br>
+                    <ul class="menu">
+                        <a href="perfil_dist.html" class='sidebar-link'>
+                            <i class="bi bi-gear-fill"></i>
+                            <span>Definições de Conta</span>
+                        </a> 
+                        <a href="#" class='sidebar-link'>
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span>Logout</span>
+                        </a>
                     </ul>
                 </div>
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
@@ -115,29 +125,29 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="basicInput">Nome</label>
-                                        <input type="text" class="form-control" id="basicInput"
+                                        <input type="text" class="form-control" id="nome"
                                             placeholder="Insira o nome">
                                     </div>
                                     <label for="basicInput">Nível</label>
                                     <fieldset class="form-group">
-                                        <select class="form-select" id="basicSelect">
+                                        <select class="form-select" id="nivel">
                                             <option>Livre</option>
                                             <option>Principiante</option>
                                         </select>
                                     </fieldset>
                                     <br>
-                                    <a href="#" id="top-center" class="btn btn-primary">Inserir</a>
-                                    <a href="#" id="top-right" class="btn btn-primary">Alterar</a>
+                                    <a href="#" id="top-center-add" class="btn btn-primary">Inserir</a>
+                                    <a href="#" id="top-center-update" class="btn btn-primary">Alterar</a>
                                     <a href="#" id="top-right" class="btn btn-primary">Remover</a>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="basicInput">ID</label>
-                                        <input type="text" class="form-control" id="basicInput"
+                                        <input type="text" class="form-control" id="id"
                                             placeholder="Insira o ID">
                                     </div>
                                     <label for="basicInput">Preço por pessoa</label>
-                                    <input type="text" class="form-control" id="basicInput" placeholder="Insira o preço">
+                                    <input type="text" class="form-control" id="preco_pessoa" placeholder="Insira o preço">
                                 </div>
                             </div>
                         </div>
@@ -167,40 +177,12 @@
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>Atividade</th>
+                                                    <th>Nível</th>
                                                     <th>Preço</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td class="text-bold-500">Costura</td>
-                                                    <td>26€/pessoa</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td class="text-bold-500">Crochê</td>
-                                                    <td>25€/pessoa</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td class="text-bold-500">Pintura</td>
-                                                    <td>25€/pessoa</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td class="text-bold-500">Cerâmica</td>
-                                                    <td>30€/pessoa</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>5</td>
-                                                    <td class="text-bold-500">Escultura</td>
-                                                    <td>30€/pessoa</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>5</td>
-                                                    <td class="text-bold-500">Bordado</td>
-                                                    <td>20€/pessoa</td>
-                                                </tr>
+                                            <tbody id="table-body">
+                                               <!-- dados inseridos automaticamente de acordo com o que estiver armazenado -->
                                             </tbody>
                                         </table>
                                     </div>
@@ -222,6 +204,8 @@
     </div>
     <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/js/lista_atividades.js"></script>
 
     <script src="assets/js/main.js"></script>
 </body>

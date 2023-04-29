@@ -80,13 +80,15 @@
                     </ul>
                     <br> <br> <br>
                     <ul class="menu">
-                    <a href="perfil_dist.html" class='sidebar-link'>
-                        <i class="bi bi-gear-fill"></i>
-                    </a> 
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-box-arrow-right"></i>
-                    </a>
-                </ul>
+                        <a href="perfil_dist.html" class='sidebar-link'>
+                            <i class="bi bi-gear-fill"></i>
+                            <span>Definições de Conta</span>
+                        </a> 
+                        <a href="#" class='sidebar-link'>
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span>Logout</span>
+                        </a>
+                    </ul>
                 </div>
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
                 
@@ -127,29 +129,29 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="basicInput">Número da sala</label>
-                                        <input type="text" class="form-control" id="basicInput"
+                                        <input type="text" class="form-control" id="numSala"
                                             placeholder="Insira nº da sala">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="basicInput">Edificio</label>
-                                        <input type="text" class="form-control" id="basicInput"
+                                        <input type="text" class="form-control" id="edificio"
                                             placeholder="Insira o edificio">
                                     </div>
                                     <br>
                                     <a href="#" id="top-center" class="btn btn-primary">Inserir</a>
-                                    <a href="#" id="top-right" class="btn btn-primary">Alterar</a>
-                                    <a href="#" id="top-right" class="btn btn-primary">Remover</a>
+                                    <a href="#" id="top-right-update" class="btn btn-primary">Alterar</a>
+                                    <a href="#" id="top-right-remove" class="btn btn-primary">Remover</a>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="basicInput">ID</label>
-                                        <input type="text" class="form-control" id="basicInput"
+                                        <input type="text" class="form-control" id="id"
                                             placeholder="Insira o ID">
                                     </div>
                                     <label for="basicInput">Capacidade máxima de pessoas</label>
                                     <fieldset class="form-group">
-                                        <select class="form-select" id="basicSelect">
+                                        <select class="form-select" id="capacidade">
                                             <option>6</option>
                                             <option>7</option>
                                             <option>8</option>
@@ -196,7 +198,7 @@
                                                     <th>Capacidade</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody id="table-body">
                                                 <!-- dados inseridos automaticamente de acordo com o que estiver armazenado -->
 
                                             </tbody>

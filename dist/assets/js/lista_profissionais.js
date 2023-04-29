@@ -1,6 +1,7 @@
 const tabela = document.getElementById("table-body");
 const profissionais = JSON.parse(localStorage.getItem('profissionais')) || [];
 const linhas = tabela.querySelectorAll('tbody tr');
+let linhaSelecionada = null;
 
 window.addEventListener('load', function() {
     atualizarTabela();
@@ -27,7 +28,7 @@ function atualizarTabela(){
     
     profissionais.forEach(function(profissional) {
         const newRow = tabela.insertRow();
-
+        
         inserirCelula(newRow, profissional.id);
         inserirCelula(newRow, profissional.nome);
         inserirCelula(newRow, profissional.morada);
@@ -38,15 +39,41 @@ function atualizarTabela(){
         inserirCelula(newRow, profissional.preco+ '€/h');
 
         newRow.addEventListener('click', function() {
-            // adicione aqui o código que será executado quando a linha for clicada
-            // Preenche os campos do formulário com os valores do profissional selecionado
-            document.getElementById('id').value = profissional.id;
-            document.getElementById('nome').value = profissional.nome;
-            document.getElementById('morada').value = profissional.morada;
-            document.getElementById('email').value = profissional.email;
-            document.getElementById('palavra-passe').value = profissional.palavraPasse;
-            document.getElementById('contacto').value = profissional.contacto;
-            document.getElementById('preco').value = profissional.preco;
+            if (linhaSelecionada === newRow) {
+                // Desseleciona a linha atual
+                newRow.style.backgroundColor = '';
+                newRow.style.color = '';
+                // Limpa os campos do formulário
+                document.getElementById('id').value = '';
+                document.getElementById('nome').value = '';
+                document.getElementById('morada').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('palavra-passe').value = '';
+                document.getElementById('contacto').value = '';
+                document.getElementById('preco').value = '';
+                // Define a linha selecionada como nula
+                linhaSelecionada = null;
+            } else {
+                if (linhaSelecionada !== null) {
+                    // Remove a seleção da linha anteriormente selecionada
+                    linhaSelecionada.style.backgroundColor = '';
+                    linhaSelecionada.style.color = '';
+                }
+                // Define a cor de fundo da linha atual como a cor de seleção
+                newRow.style.backgroundColor = '#223843';
+                newRow.style.color = '#FFFFFF';
+                // Armazena a nova linha selecionada na variável de estado
+                linhaSelecionada = newRow;
+
+                // Preenche os campos do formulário com os valores do profissional selecionado
+                document.getElementById('id').value = profissional.id;
+                document.getElementById('nome').value = profissional.nome;
+                document.getElementById('morada').value = profissional.morada;
+                document.getElementById('email').value = profissional.email;
+                document.getElementById('palavra-passe').value = profissional.palavraPasse;
+                document.getElementById('contacto').value = profissional.contacto;
+                document.getElementById('preco').value = profissional.preco;
+            }
         });
     });
 }

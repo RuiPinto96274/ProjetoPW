@@ -1,198 +1,202 @@
-// Sample data retrieved from the database
-const data = [
-    {
-      type: 'Workshop Costura Livre',
-      date: '04/05/2023',
-      time: '10:00',
-      contact: 961269447,
-      name: 'Maria Pires',
-      groupSize: 6
-    },
-    {
-      type: 'Workshop Cerâmica Iniciante',
-      date: '04/06/2023',
-      time: '14:00',
-      contact: 935147788,
-      name: 'João Pereira',
-      groupSize: 8
-    },
-    {
-      type: 'Workshop Bordado Livre',
-      date: '04/07/2023',
-      time: '16:00',
-      contact: 914588126,
-      name: 'Rute Gonçalves',
-      groupSize: 5
-    }
-  ];
 
-  // Get the list group element
-  const listGroup = document.querySelector('#lista_pedidos');
+const tabela = document.getElementById("table-body");
+const atividades = JSON.parse(localStorage.getItem('atividades')) || [];
+const linhas = tabela.querySelectorAll('tbody tr');
+let linhaSelecionada = null;
 
-  // Iterate over the data array and create a new list item for each item
-  data.forEach(item => {
-    // Create a new list item
-    const listItem = document.createElement('a');
-    listItem.className = 'list-group-item list-group-item-action';
-    listItem.setAttribute('data-bs-toggle', 'modal');
-    listItem.setAttribute('data-bs-target', '#primary');
+window.addEventListener('load', function() {
+    atualizarTabela();
+});
 
-    // Create the content of the list item
-    const content = `
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">${item.type}</h5>
-      </div>
-      <p class="mb-1">Dia: ${item.date} Hora: ${item.time}</p>
-      <p class="mb-1">Contacto: ${item.contact}</p>
-      <small>Grupo de ${item.groupSize} elementos</small>
-    `;
+function limparFormulario(){
+    document.getElementById("id").value = "";
+    document.getElementById("nome").value = "";
+    document.getElementById("nivel").value = "";
+    document.getElementById("preco_pessoa").value = "";
+}
 
-    // Set the content of the list item
-    listItem.innerHTML = content;
+function atualizarTabela(){
+  // Limpa os dados da tabela antes de atualizar
+  tabela.innerHTML = '';
+      
+  function inserirCelula(linha, valor) {
+      const celula = linha.insertCell();
+      celula.innerHTML = valor;
+  }
+  
+  atividades.forEach(function(atividade) {
+      const newRow = tabela.insertRow();
+      
+      inserirCelula(newRow, atividade.id);
+      inserirCelula(newRow, atividade.nome);
+      inserirCelula(newRow, atividade.nivel);
+      inserirCelula(newRow, atividade.preco_pessoa);
 
-    // Add the new list item to the list group
-    listGroup.appendChild(listItem);
+      newRow.addEventListener('click', function() {
+          if (linhaSelecionada === newRow) {
+              // Desseleciona a linha atual
+              newRow.style.backgroundColor = '';
+              newRow.style.color = '';
+              // Limpa os campos do formulário
+              document.getElementById('id').value = '';
+              document.getElementById('nome').value = '';
+              document.getElementById('nivel').value = '';
+              document.getElementById('preco_pessoa').value = '';
+              // Define a linha selecionada como nula
+              linhaSelecionada = null;
+          } else {
+              if (linhaSelecionada !== null) {
+                  // Remove a seleção da linha anteriormente selecionada
+                  linhaSelecionada.style.backgroundColor = '';
+                  linhaSelecionada.style.color = '';
+              }
+              // Define a cor de fundo da linha atual como a cor de seleção
+              newRow.style.backgroundColor = '#223843';
+              newRow.style.color = '#FFFFFF';
+              // Armazena a nova linha selecionada na variável de estado
+              linhaSelecionada = newRow;
+
+              // Preenche os campos do formulário com os valores da atividade selecionado
+              document.getElementById('id').value = atividade.id;
+              document.getElementById('nome').value = atividade.nome;
+              document.getElementById('nivel').value = atividade.nivel;
+              document.getElementById('preco_pessoa').value = atividade.preco_pessoa;
+          }
+      });
+  });
+}
+
+document.getElementById("top-center-add").addEventListener("click", function() {
+  // Obtém os valores dos campos do formulário
+  let id = document.getElementById('id').value;
+  let nome = document.getElementById('nome').value;
+  let preco_pessoa = document.getElementById('preco_pessoa').value;
+  let selectElement = document.getElementById('nivel');
+  let selectedOptions = Array.from(selectElement.selectedOptions);
+  let nivel = selectedOptions.map(option => option.value);
+  console.log(nivel);
+  let precoRegex = /^\d+(\.\d{1,2})?$/;
+
+  
+  // Verifica se o ID já existe na lista de atividades
+  for (let i = 0; i < atividades.length; i++) {
+      if (atividades[i].id === id) {
+          alert("Já existe uma atividade com o ID inserido. Por favor, insira um ID diferente.");
+          return;
+      }
+  }
+
+  if (id == "" || nome == "" || nivel == "" || nivel.length === 0) {
+      alert("Por favor, preencha todos os campos antes de inserir os dados.");
+      return;
+  }else if (!precoRegex.test(preco_pessoa)) {
+      alert("Por favor, insira um preço válido (exemplo: 9 ou 9.50).");
+      return;
+  }else{
+      // Cria um objeto com os dados do profissional
+  let atividade = {
+      id: id,
+      nome: nome,
+      nivel: nivel,
+      preco_pessoa: preco_pessoa
+  };
+
+  // Adiciona a nova atividade à lista de atividades
+  atividades.push(atividade);
+
+  // Armazena a lista atualizada de profissionais em local storage
+  localStorage.setItem('atividades', JSON.stringify(atividades));
+
+  // limpar os campos de entrada após a inserção
+  limparFormulario();
+
+  // Exibir uma mensagem de sucesso
+  alert('Atividade adicionada com sucesso!');
+  atualizarTabela();
+  }
+});
+
+
+document.getElementById("top-center-update").addEventListener("click", function() {
+  // Obter o ID do profissional a ser alterado
+  let id = document.getElementById('id').value;
+
+
+  // Procurar pelo profissional com o ID correspondente
+  let index = atividades.findIndex(function (p) {
+    return p.id === id;
   });
 
-// Handle click events on list items
-listGroup.addEventListener('click', event => {
-    const listItem = event.target.closest('.list-group-item');
-    if (listItem) {
-      // Get the index of the clicked item
-      const index = Array.from(listGroup.children).indexOf(listItem);
-  
-      // Get the data of the selected item
-      const selectedItem = data[index];
-  
-      // Set the content of the modal with the selected item's data
-      const modalTitle = document.querySelector('#primary .modal-title');
-      modalTitle.textContent = selectedItem.type;
-  
-      const modalBody = document.querySelector('#primary .modal-body');
-      modalBody.innerHTML = `
-        <p>Dia: ${selectedItem.date}  ${selectedItem.time}</p>
-        <p>Contacto: ${selectedItem.contact}</p>
-        <p>Nome:  ${selectedItem.name}</p>
-        <p>Grupo de ${selectedItem.groupSize} elementos</p>
-      `;
-  
-      // Open the modal
-      const modal = new bootstrap.Modal(document.querySelector('#primary'));
-      modal.show();
-    }
-  });
-  
-  // Get the modal element
-const modal = document.querySelector('#primary');
-
-// Add an event listener to the modal that will remove the backdrop when the modal is closed
-modal.addEventListener('hidden.bs.modal', () => {
-  const backdrop = document.querySelector('.modal-backdrop');
-  if (backdrop) {
-    backdrop.remove();
+  // Verificar se o ID foi encontrado
+  if (index === -1) {
+    alert('Não foi encontrado nenhuma atividade com o ID especificado.');
+    return;
   }
-});
   
+  // Obter os novos dados a partir do formulário
+  let nome = document.getElementById('nome').value;
+  let preco_pessoa = document.getElementById('preco_pessoa').value;
+  let selectElement = document.getElementById('nivel');
+  let selectedOptions = Array.from(selectElement.selectedOptions);
+  let nivel = selectedOptions.map(option => option.value);
+  console.log(nivel);
+  let precoRegex = /^\d+(\.\d{1,2})?$/;
 
 
-// Dados com as atividades já marcadas
-const dados_atividades = [
-  {
-    type: 'Workshop Bordado Livre',
-    date: '12/04/2023',
-    time: '10:30',
-    contact: 961269447,
-    room: 1,
-    groupSize: 6
-  },
-  {
-    type: 'Workshop Bordado Iniciante',
-    date: '12/04/2023',
-    time: '14:30',
-    contact: 914588126,
-    room:1,
-    groupSize: 7
-  },
-  {
-    type: 'Workshop Escultura Iniciante',
-    date: '12/04/2023',
-    time: '15:00',
-    contact: 968918126,
-    room:4,
-    groupSize: 5
-  },
-  {
-    type: 'Workshop Cerâmica Livre',
-    date: '12/04/2023',
-    time: '15:30',
-    contact: 935147788,
-    room:5,
-    groupSize: 8
-  }
-];
+  // Verificar se todos os campos foram preenchidos
+  if (id == "" || nome == "" || preco_pessoa == "" || nivel.length === 0) {
+      alert("Por favor, preencha todos os campos antes de atualizar os dados.");
+      return;
+ }else if (!precoRegex.test(preco_pessoa)) {
+      alert("Por favor, insira um preço válido (exemplo: 9 ou 9.50).");
+      return;
+  }else{
+  // Atualizar os dados da atividade
+  atividades[index].nome = nome;
+  atividades[index].preco_pessoa = preco_pessoa;
+  atividades[index].nivel = nivel;
 
-// Get the list group element
-const listAtividades = document.querySelector('#atividades-diarias');
+  // Armazenar os dados atualizados no local storage
+  localStorage.setItem('atividades', JSON.stringify(atividades));
 
- // Iterate over the data array and create a new list item for each item
- dados_atividades.forEach(item => {
-  // Create a new list item
-  const listItem = document.createElement('a');
-  listItem.className = 'list-group-item list-group-item-action';
-  listItem.setAttribute('data-bs-toggle', 'modal');
-  listItem.setAttribute('data-bs-target', '#atividade');
-  // Create the content of the list item
-  const content = `
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">${item.type}</h5>
-    </div>
-    <p class="mb-1">Dia: ${item.date} Hora: ${item.time}</p>
-    <p class="mb-1">Contacto: ${item.contact}</p>
-    <p class="mb-1">Sala: ${item.room}</p>
-    <small>Grupo de ${item.groupSize} elementos</small>
-  `;
+  // Limpar o formulário
+  limparFormulario();
 
-  // Set the content of the list item
-  listItem.innerHTML = content;
-
-  // Add the new list item to the list group
-  listAtividades.appendChild(listItem);
-});
-
-// Handle click events on list items
-listAtividades.addEventListener('click', event => {
-  const listItem = event.target.closest('a');
-  if (listItem) {
-    // Get the index of the clicked item
-    const index = Array.from(listAtividades.children).indexOf(listItem);
-
-    // Get the data of the selected item
-    const selectedItem = dados_atividades[index];
-
-    // Set the content of the modal with the selected item's data
-    const modalTitle = document.querySelector('#atividade .modal-title');
-    modalTitle.textContent = selectedItem.type;
-
-    const modalBody = document.querySelector('#atividade .modal-body');
-     modalBody.innerHTML = `
-        <p>Dia: ${selectedItem.date}  ${selectedItem.time}</p>
-        <p>Contacto: ${selectedItem.contact}</p>
-        <p>Sala: ${selectedItem.room}</p>
-        <p>Grupo de ${selectedItem.groupSize} elementos</p>
-      `;
-    // Open the modal
-    const modal = new bootstrap.Modal(document.querySelector('#atividade'));
-    modal.show();
+  // Exibir uma mensagem de sucesso
+  alert('Atividade alterada com sucesso!');
+  atualizarTabela();
   }
 });
 
-// Get the modal element
-const modal_atividade = document.querySelector('#atividade');
 
-// Add an event listener to the modal that will remove the backdrop when the modal is closed
-modal_atividade.addEventListener('hidden.bs.modal', () => {
-  const backdrop = document.querySelector('.modal-backdrop');
-  if (backdrop) {
-    backdrop.remove();
-  }
+document.getElementById("top-right").addEventListener("click", function() {
+   // Obter o ID da atividade a ser removida
+   let id = document.getElementById('id').value;
+ 
+   // Procurar pelo profissional com o ID correspondente
+   let index = atividades.findIndex(function (p) {
+     return p.id === id;
+   });
+ 
+   // Verificar se o ID foi encontrado
+   if (index === -1) {
+     alert('Não foi encontrado nenhuma atividade com o ID especificado.');
+     return;
+   }
+   
+   // Remover a atividade encontrada
+    atividades.splice(index, 1);
+  
+   // Armazenar a lista atualizada de atividades no local storage
+   localStorage.setItem('atividades', JSON.stringify(atividades));
+   
+   // Limpar o campo de entrada do ID
+   document.getElementById('id').value = '';
+   // limpar os campos de entrada após a inserção
+   limparFormulario();
+   
+   // Exibir uma mensagem de sucesso
+   alert('Atividade removida com sucesso!');
+   // Atualizar a tabela com a lista atualizada de profissionais
+   atualizarTabela();
 });
