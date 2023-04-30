@@ -1,4 +1,21 @@
 const form = document.getElementById('form_inscricao');
+const lista_atividades = JSON.parse(localStorage.getItem('atividades')) || [];
+
+
+// opções de atividades que podem ser selecionadas
+const selectAtividades = document.getElementById('atividade_escolhida');
+for (let i = 0; i < lista_atividades.length; i++) {
+  const nome_atividade = lista_atividades[i];
+
+  // Configurar o valor e o texto de cada opção do select com as informações do profissional.
+  const option = document.createElement('option');
+  option.value = nome_atividade.id;
+  option.text =  nome_atividade.nome + " "+ nome_atividade.nivel;
+
+  //Adicionar cada opção criada ao elemento select usando o método appendChild.
+  selectAtividades.appendChild(option);
+}
+
 
 form.addEventListener('submit', function(event) {
   event.preventDefault();

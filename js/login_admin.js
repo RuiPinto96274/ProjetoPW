@@ -1,3 +1,6 @@
+// variável global para armazenar o tipo de usuário autenticado
+let tipoAdmin = null;
+
 function showAdminLoginForm(){
   $('#adminLoginModal .registerBox').fadeOut('fast',function(){
       $('.loginBox').fadeIn('fast');
@@ -36,22 +39,47 @@ document.getElementById("adminloginUser").addEventListener("submit", function(ev
   let password = $("#adminpasswordLogin").val();
   // verificar credenciais do admin e autenticá-lo
   let admin = JSON.parse(localStorage.getItem('admin'));
+  let profissionais = JSON.parse(localStorage.getItem('profissionais')) || [];
 
   if (admin && admin.email === email && admin.password === password) {
     // exibir mensagem de sucesso
-    alert("Login bem sucedido!");
+    alert("Login bem sucedido como Admin!");
     // limpa o formulário
     document.getElementById("adminloginUser").reset();
 
     $('#adminLoginModal').modal('hide');
 
     window.location.href = "dist/index_dist.html";
-  } else {
-    // exibir mensagem de erro
-    alert("Credenciais inválidas. Por favor, verifique seu e-mail e senha e tente novamente.");
-    // limpa o formulário
-    document.getElementById("adminloginUser").reset();
-    openAdminLoginModal();
+    tipoAdmin="admin";
+    localStorage.setItem('tipoAdmin', tipoAdmin);
+  }else{
+      // verificar as credenciais dos profissionais
+      let isProfissional = false;
+
+      for(let i = 0; i < profissionais.length; i++){
+        if(profissionais[i].email === email && profissionais[i].password === password){
+          isProfissional = true;
+          break;
+        }
+      }
+      if(isProfissional){
+        // exibir mensagem de sucesso
+        alert("Login bem sucedido como profissional!");
+        // limpa o formulário
+        document.getElementById("adminloginUser").reset();
+
+        $('#adminLoginModal').modal('hide');
+
+        window.location.href = "dist/index_dist.html";
+        tipoAdmin="profissional";
+        localStorage.setItem('tipoAdmin', tipoAdmin);
+      }else{
+        // exibir mensagem de erro
+        alert("Credenciais inválidas. Por favor, verifique seu e-mail e senha e tente novamente.");
+        // limpa o formulário
+        document.getElementById("adminloginUser").reset();
+        openAdminLoginModal();
+      }
   }
 });
 

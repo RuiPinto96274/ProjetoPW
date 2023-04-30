@@ -48,7 +48,7 @@ document.getElementById("createUser").addEventListener("submit", function(event)
     $('.error').addClass('alert alert-danger').html('As senhas não correspondem.');
   } else {
   localStorage.setItem('users', JSON.stringify(users));
-  localStorage.setItem('currentUser', JSON.stringify(user));
+  
   }
 
   alert("Registo bem sucedido! Por favor, faça login.");
@@ -118,6 +118,7 @@ document.getElementById("loginUser").addEventListener("submit", function(event){
 
       localStorage.setItem('isUserLoggedIn', 'true');
       isAuthenticated = true; // definir como autenticado
+      localStorage.setItem('currentUser', JSON.stringify(user));
       location.reload();
       break; // interromper o loop
     }
@@ -136,6 +137,9 @@ document.getElementById("loginUser").addEventListener("submit", function(event){
 });
 
 function closeLogin(){
+  // remove o usuário atual
+  localStorage.removeItem('currentUser');
+
   $("#logoutBtnNav").hide();
   $("#loginBtnNav").show();
 
@@ -145,6 +149,7 @@ function closeLogin(){
   document.getElementById("passe_perfil").value="";
  
   localStorage.setItem('isUserLoggedIn', 'false');
+
   location.reload();
 }
 
