@@ -118,6 +118,7 @@ document.getElementById("loginUser").addEventListener("submit", function(event){
 
       localStorage.setItem('isUserLoggedIn', 'true');
       isAuthenticated = true; // definir como autenticado
+      location.reload();
       break; // interromper o loop
     }
   } 
@@ -144,6 +145,7 @@ function closeLogin(){
   document.getElementById("passe_perfil").value="";
  
   localStorage.setItem('isUserLoggedIn', 'false');
+  location.reload();
 }
 
 if (localStorage.getItem('isUserLoggedIn') === 'true') {
