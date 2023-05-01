@@ -14,7 +14,9 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">  
+    <link
+        href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap"
+        rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -37,7 +39,8 @@
 
 <body>
     <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
     </div>
     <!-- Spinner End -->
@@ -52,21 +55,24 @@
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="index.html" class="nav-item nav-link">Início</a>
                 <a href="about.html" class="nav-item nav-link">Sobre nós</a>
-                <a href="service.html" class="nav-item nav-link">Atividades</a> 
+                <a href="service.html" class="nav-item nav-link">Atividades</a>
                 <a href="project.html" class="nav-item nav-link">Testemunhos</a>
                 <a href="contact.html" class="nav-item nav-link">Contacto</a>
-                <a href="perfil.html" class="nav-item nav-link active"> <span class="fas fa-user me-1"></span> Perfil</a>
-                 <!--implementar botão logout depois de fazer a script de inicio de sessão-->
-                <a id="logoutBtnNav" class="btn btn-primary py-4 px-lg-4 rounded-0" href="javascript:void(0)" onclick="closeLogin();">Logout<i class="fa fa-arrow-right ms-3"></i></a>
+                <a href="perfil.html" class="nav-item nav-link active"> <span class="fas fa-user me-1"></span>
+                    Perfil</a>
+                <!--implementar botão logout depois de fazer a script de inicio de sessão-->
+                <a id="logoutBtnNav" class="btn btn-primary py-4 px-lg-4 rounded-0" href="javascript:void(0)"
+                    onclick="closeLogin();">Logout<i class="fa fa-arrow-right ms-3"></i></a>
                 <a id="loginBtnNav" class="btn btn-primary py-4 px-lg-4 rounded-0" data-toggle="modal"
-                    href="javascript:void(0)" onclick="openLoginModal();">Login<i class="fa fa-arrow-right ms-3"></i></a>
+                    href="javascript:void(0)" onclick="openLoginModal();">Login<i
+                        class="fa fa-arrow-right ms-3"></i></a>
             </div>
         </div>
     </nav>
     <!-- Navbar End -->
 
-     <!-- Page Header Start -->
-     <div class="container-fluid page-header py-5 mb-5 wow fadeIn inscricao" data-wow-delay="0.1s">
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header py-5 mb-5 wow fadeIn inscricao" data-wow-delay="0.1s">
         <div class="container text-center py-5">
             <h1 class="display-3 text-white mb-4 animated slideInDown">Perfil</h1>
             <nav aria-label="breadcrumb animated slideInDown">
@@ -85,14 +91,11 @@
             <div class="row">
                 <div class="col-sm-12 col-md-4">
                     <div class="list-group" role="tablist">
-                        <a class="list-group-item list-group-item-action active"
-                            id="list-dados-list" data-bs-toggle="list" href="#list-dados"
-                            role="tab">Dados Pessoais</a>
-                        <a class="list-group-item list-group-item-action"
-                            id="list-profile-list" data-bs-toggle="list"
+                        <a class="list-group-item list-group-item-action active" id="list-dados-list"
+                            data-bs-toggle="list" href="#list-dados" role="tab">Dados Pessoais</a>
+                        <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list"
                             href="#list-inscricao" role="tab">Inscrição</a>
-                        <a class="list-group-item list-group-item-action"
-                            id="list-messages-list" data-bs-toggle="list"
+                        <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list"
                             href="#list-reservas" role="tab">Reservas</a>
                     </div>
                 </div>
@@ -101,67 +104,79 @@
                         <div class="tab-pane show active" id="list-dados" role="tabpanel"
                             aria-labelledby="list-dados-list">
                             <div class="tab-pane show active" id="list-dados" role="tabpanel"
-                            aria-labelledby="list-dados-list">
+                                aria-labelledby="list-dados-list">
                                 <p class="fs-5 fw-bold text-primary">Dados Pessoais</p>
                                 <h1 class="display-5 mb-5">Visualize os seus dados!</h1>
                                 <p class="mb-4">Caso pretenda alterar os seus dados pode fazê-lo.</p>
-                                    <form id="alterar_perfil" class="was-validated">
-                                        <div class="mb-3">
-                                            <label for="name" class="form-label">Username</label>
-                                            <input type="text" class="form-control" id="username_perfil" placeholder="Username do Utilizador" disabled>
+                                <form id="alterar_perfil" class="was-validated">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Username</label>
+                                        <input type="text" class="form-control" id="username_perfil"
+                                            placeholder="Username do Utilizador" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Nome</label>
+                                        <input type="text" class="form-control" id="nome_perfil"
+                                            placeholder="Nome do Utilizador" required>
+                                        <div class="valid-feedback">Válido.</div>
+                                        <div class="invalid-feedback">Por favor preencha este campo.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">E-mail</label>
+                                        <input type="email" class="form-control" id="email_perfil"
+                                            placeholder="email@exemplo.com" required>
+                                        <div class="valid-feedback">Válido.</div>
+                                        <div class="invalid-feedback">Por favor preencha este campo.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="password" class="form-label">Password</label>
+                                        <div class="input-group">
+                                            <input type="password" class="form-control" id="passe_perfil"
+                                                placeholder="**********" required>
+                                            <button class="btn btn-outline-secondary" type="button"
+                                                id="showPasswordBtn">Mostrar senha</button>
                                         </div>
-                                        <div class="mb-3">
-                                            <label for="name" class="form-label">Nome</label>
-                                            <input type="text" class="form-control" id="nome_perfil" placeholder="Nome do Utilizador" required>
-                                            <div class="valid-feedback">Válido.</div>
-                                            <div class="invalid-feedback">Por favor preencha este campo.</div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="email" class="form-label">E-mail</label>
-                                            <input type="email" class="form-control" id="email_perfil" placeholder="email@exemplo.com" required>
-                                            <div class="valid-feedback">Válido.</div>
-                                            <div class="invalid-feedback">Por favor preencha este campo.</div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="password" class="form-label">Password</label>
-                                            <div class="input-group">
-                                              <input type="password" class="form-control" id="passe_perfil" placeholder="**********" required>
-                                              <button class="btn btn-outline-secondary" type="button" id="showPasswordBtn">Mostrar senha</button>
-                                            </div>
-                                            <div class="valid-feedback">Válido.</div>
-                                            <div class="invalid-feedback">Por favor preencha este campo.</div>
-                                          </div>
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
-                                        <button id="cancelar_perfil" class="btn btn-danger">Cancelar</button>
-                                    </form>
+                                        <div class="valid-feedback">Válido.</div>
+                                        <div class="invalid-feedback">Por favor preencha este campo.</div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                    <button id="cancelar_perfil" class="btn btn-danger">Cancelar</button>
+                                </form>
                             </div>
                         </div>
-                        <div class="tab-pane" id="list-inscricao" role="tabpanel"
-                            aria-labelledby="list-inscricao-list">
-                                <p class="fs-5 fw-bold text-primary">Inscrição</p>
-                                <h1 class="display-5 mb-5">Não perca tempo e inscreva-se já!</h1>
-                                <p class="mb-4">Preencha o formulário de inscrição abaixo, para efetuar reserva.</p>
-                                <form id="form_inscricao" accept-charset="UTF-8" class="was-validated">
-                                    <div class="mb-3">
-                                        <label for="nome" class="form-label">Nome</label>
-                                        <input type="text" class="form-control" id="nome" placeholder="Nome Completo" required>
-                                        <div class="valid-feedback">Válido.</div>
-                                        <div class="invalid-feedback">Por favor preencha este campo.</div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="telefone" class="form-label">Telefone</label>
-                                        <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Insira o número de telefone" pattern="[0-9]{9}" required>
-                                        <small class="form-text text-muted">Insira um número de telefone válido com 9 dígitos (apenas números).</small>
-                                        <div class="valid-feedback">Válido.</div>
-                                        <div class="invalid-feedback">Por favor preencha este campo.</div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="tipo_atividade" class="form-label">Atividade</label>
-                                        <select class="form-select" id="atividade_escolhida" name="atividade_escolhida" required>
-                                            <!--preenchido de acordo com as atividades possiveis-->
-                                        </select>
-                                    </div>
-                                   <!-- <div class="mb-3">
+                        <div class="tab-pane" id="list-inscricao" role="tabpanel" aria-labelledby="list-inscricao-list">
+                            <p class="fs-5 fw-bold text-primary">Inscrição</p>
+                            <h1 class="display-5 mb-5">Não perca tempo e inscreva-se já!</h1>
+                            <p class="mb-4">Preencha o formulário de inscrição abaixo, para efetuar reserva.</p>
+                            <form id="form_inscricao" accept-charset="UTF-8" class="was-validated">
+                                <div class="mb-3">
+                                    <label for="nome" class="form-label">Nome</label>
+                                    <input type="text" class="form-control" id="nome" placeholder="Nome Completo"
+                                        required>
+                                    <div class="valid-feedback">Válido.</div>
+                                    <div class="invalid-feedback">Por favor preencha este campo.</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="telefone" class="form-label">Telefone</label>
+                                    <input type="tel" class="form-control" id="telefone" name="telefone"
+                                        placeholder="Insira o número de telefone" pattern="[0-9]{9}" required>
+                                    <small class="form-text text-muted">Insira um número de telefone válido com 9
+                                        dígitos (apenas números).</small>
+                                    <div class="valid-feedback">Válido.</div>
+                                    <div class="invalid-feedback">Por favor preencha este campo.</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="tipo_atividade" class="form-label">Atividade</label>
+                                    <select class="form-select" id="atividade_escolhida" name="atividade_escolhida"
+                                        required>
+                                        <option value="">Selecione a atividade</option>
+                                        <!--preenchido de acordo com as atividades possiveis-->
+                                    </select>
+                                </div><label for="nome" class="form-label">Nº participantes</label>
+                                <input type="text" class="form-control" id="num_participantes" placeholder="Número de Participantes" required>
+                                <div class="valid-feedback">Válido.</div>
+                                <div class="invalid-feedback">Por favor preencha este campo.</div>
+                                <!-- <div class="mb-3">
                                         <label for="tipo_atividade" class="form-label">Tipo de atividade</label>
                                         <select class="form-select" id="tipo_atividade" name="tipo_atividade" required>
                                             <option value="">Selecione o tipo de atividade</option>
@@ -181,69 +196,70 @@
                                             <option value="Livre">Livre</option>
                                         </select>
                                     </div>-->
-                                    <div class="mb-3">
+                                <!--<div class="mb-3">
                                         <label for="num_participantes" class="form-label">Número de participantes</label>
                                         <select class="form-select" id="num_participantes" name="num_participantes" required>
                                             <option value="">Selecione o número de participantes</option>
                                         </select>
                                         <small class="form-text text-muted" id="limite_grupo">Limite de pessoas por grupo: -</small>
                                         <small class="form-text text-muted" id="minimo_maximo_participantes">Número mínimo e máximo de participantes por grupo: -</small>
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label for="data">Data</label>
-                                        <input type="date" class="form-control" id="data" required>
-                                        <div class="valid-feedback">Válido.</div>
-                                        <div class="invalid-feedback">Por favor preencha este campo.</div>
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label for="data">Horas</label>
-                                        <input type="time" class="form-control" id="horas" required>
-                                        <div class="valid-feedback">Válido.</div>
-                                        <div class="invalid-feedback">Por favor preencha este campo.</div>
-                                    </div>
-                                    <button id="inscricaoBtn" class="btn btn-primary py-3 px-4" type="submit">Inscrever</button>
-                                </form>
-                                <script>
-                                    document.getElementById('tipo_atividade').addEventListener('change', function() {
-                                        var limite = this.options[this.selectedIndex].dataset.limite;
-                                        var minimo = this.options[this.selectedIndex].dataset.minimo;
-                                        var maximo = this.options[this.selectedIndex].dataset.maximo;
+                                    </div>-->
+                                <div class="form-group mb-3">
+                                    <label for="data">Data</label>
+                                    <input type="date" class="form-control" id="data" required>
+                                    <div class="valid-feedback">Válido.</div>
+                                    <div class="invalid-feedback">Por favor preencha este campo.</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="data">Horas</label>
+                                    <input type="time" class="form-control" id="horas" required>
+                                    <div class="valid-feedback">Válido.</div>
+                                    <div class="invalid-feedback">Por favor preencha este campo.</div>
+                                </div>
+                                <button id="inscricaoBtn" class="btn btn-primary py-3 px-4"
+                                    type="submit">Inscrever</button>
+                            </form>
+                           <!-- <script>
+                                document.getElementById('tipo_atividade').addEventListener('change', function () {
+                                    var limite = this.options[this.selectedIndex].dataset.limite;
+                                    var minimo = this.options[this.selectedIndex].dataset.minimo;
+                                    var maximo = this.options[this.selectedIndex].dataset.maximo;
 
-                                        if (this.value === "Pintura") {
-                                            minimo = 5;
-                                            maximo = 10;
-                                        }
-                                        
-                                        document.getElementById('limite_grupo').innerHTML = 'Limite de pessoas por grupo: ' + (limite ? limite : "-");
-                                        document.getElementById('minimo_maximo_participantes').innerHTML = 'Número mínimo e máximo de participantes por grupo: ' + (minimo ? minimo : "-") + ' a ' + (maximo ? maximo : "-");
-                                
-                                        var select = document.getElementById('num_participantes');
-                                        select.innerHTML = '<option value="">Selecione o número de participantes</option>';
-                                
-                                        for (var i = (minimo ? minimo : 1); i <= (maximo ? maximo : 10); i++) {
-                                            var option = document.createElement('option');
-                                            option.value = i;
-                                            option.text = i;
-                                            select.add(option);
-                                        }
-                                    });
-                                </script>                    
-                                <script>
-                                    // Adiciona a validação do campo de telefone
-                                    var telefoneInput = document.getElementById('telefone');
-                                    telefoneInput.addEventListener('input', function() {
-                                        telefoneInput.setCustomValidity('');
-                                        if (!telefoneInput.checkValidity()) {
-                                            telefoneInput.setCustomValidity('Por favor insira um número de telefone válido (9 dígitos numéricos).');
-                                        }
-                                    });
-                                </script>                   
+                                    if (this.value === "Pintura") {
+                                        minimo = 5;
+                                        maximo = 10;
+                                    }
+
+                                    document.getElementById('limite_grupo').innerHTML = 'Limite de pessoas por grupo: ' + (limite ? limite : "-");
+                                    document.getElementById('minimo_maximo_participantes').innerHTML = 'Número mínimo e máximo de participantes por grupo: ' + (minimo ? minimo : "-") + ' a ' + (maximo ? maximo : "-");
+
+                                    var select = document.getElementById('num_participantes');
+                                    select.innerHTML = '<option value="">Selecione o número de participantes</option>';
+
+                                    for (var i = (minimo ? minimo : 1); i <= (maximo ? maximo : 10); i++) {
+                                        var option = document.createElement('option');
+                                        option.value = i;
+                                        option.text = i;
+                                        select.add(option);
+                                    }
+                                });
+                            </script>-->
+                            <script>
+                                // Adiciona a validação do campo de telefone
+                                var telefoneInput = document.getElementById('telefone');
+                                telefoneInput.addEventListener('input', function () {
+                                    telefoneInput.setCustomValidity('');
+                                    if (!telefoneInput.checkValidity()) {
+                                        telefoneInput.setCustomValidity('Por favor insira um número de telefone válido (9 dígitos numéricos).');
+                                    }
+                                });
+                            </script>
                         </div>
-                        <div class="tab-pane" id="list-reservas" role="tabpanel"
-                            aria-labelledby="list-reservas-list">
+                        <div class="tab-pane" id="list-reservas" role="tabpanel" aria-labelledby="list-reservas-list">
                             <p class="fs-5 fw-bold text-primary">Reservas</p>
                             <h1 class="display-5 mb-5">Visualização do estado das Reservas</h1>
-                            <p class="mb-4">Na tabela abaixo pode verificar se o seu pedido de reserva está pendente, confirmado ou cancelado.</p>
+                            <p class="mb-4">Na tabela abaixo pode verificar se o seu pedido de reserva está pendente,
+                                confirmado ou cancelado.</p>
                             <div id="accordion"></div>
                         </div>
                     </div>
@@ -291,7 +307,7 @@
                     </div>
                     <div class="box">
                         <div class="content registerBox" style="display:none;">
-                            <div class="form"> 
+                            <div class="form">
                                 <!-- Form for account registration -->
                                 <form id="createUser" method="POST" accept-charset="UTF-8">
                                     <input id="usernameNew" class="form-control" type="text" placeholder="Username"
@@ -354,7 +370,8 @@
                                         name="email" required>
                                     <input id="adminpasswordLogin" class="form-control" type="password"
                                         placeholder="Password" name="password" required>
-                                    <button id="adminloginBtn" class="btn btn-default btn-login" type="submit">Login</button>
+                                    <button id="adminloginBtn" class="btn btn-default btn-login"
+                                        type="submit">Login</button>
                                 </form>
                             </div>
                         </div>
@@ -363,7 +380,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Footer Start -->
     <div class="container-fluid text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
@@ -374,10 +391,14 @@
                     <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+351 939 026 282</p>
                     <p class="mb-2"><i class="fa fa-envelope me-3"></i>artandcrafts.workshops@gmail.com</p>
                     <div class="d-flex pt-2">
-                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="https://twitter.com/home"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="https://www.linkedin.com/feed/"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2"
+                            href="https://twitter.com/home"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2"
+                            href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2"
+                            href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2"
+                            href="https://www.linkedin.com/feed/"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3-2 col-md-6">
@@ -387,7 +408,7 @@
                     <a class="btn btn-link" href="info_costura.html">Costura</a>
                     <a class="btn btn-link" href="info_croche.html">Crochê</a>
                     <a class="btn btn-link" href="info_escultura.html">Escultura</a>
-                    <a class="btn btn-link" href="info_pintura.html">Pintura</a> 
+                    <a class="btn btn-link" href="info_pintura.html">Pintura</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Links de Acesso</h4>
@@ -395,14 +416,16 @@
                     <a class="btn btn-link" href="contact.html">Contacto</a>
                     <a class="btn btn-link" href="service.html">As nossas Atividades</a>
                     <a id="loginBtnFooter" class="btn btn-primary py-6 px-lg-4 rounded-0" data-toggle="modal"
-                href="javascript:void(0)" onclick="openAdminLoginModal();">Login Admin<i class="fa fa-arrow-right ms-3"></i></a>
+                        href="javascript:void(0)" onclick="openAdminLoginModal();">Login Admin<i
+                            class="fa fa-arrow-right ms-3"></i></a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Newsletter</h4>
                     <p>Inscreva-se na nossa Newsletter para estar a par de tudo!</p>
                     <div class="position-relative w-100">
                         <input class="form-control border-light w-100 py-3 ps-4 pe-5" type="text" placeholder="Email">
-                        <button id="bottom-center" type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                        <button id="bottom-center" type="button"
+                            class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
                     </div>
                 </div>
             </div>
@@ -424,7 +447,8 @@
 
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i
+            class="bi bi-arrow-up"></i></a>
 
 
     <!-- JavaScript Libraries -->

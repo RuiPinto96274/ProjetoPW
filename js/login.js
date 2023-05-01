@@ -48,7 +48,6 @@ document.getElementById("createUser").addEventListener("submit", function(event)
     $('.error').addClass('alert alert-danger').html('As senhas não correspondem.');
   } else {
   localStorage.setItem('users', JSON.stringify(users));
-  
   }
 
   alert("Registo bem sucedido! Por favor, faça login.");
@@ -83,10 +82,18 @@ if (localStorage.getItem('isUserLoggedIn') === 'true') {
   $("#loginBtnNav").hide();
   $("#logoutBtnNav").show();
   //preencher dados do perfil do user que fez login
-  document.getElementById("username_perfil").value=currentUser.username;
-  document.getElementById("nome_perfil").value=currentUser.nome;
-  document.getElementById("email_perfil").value=currentUser.email;
-  document.getElementById("passe_perfil").value=currentUser.password;
+  if (document.getElementById("username_perfil")) {
+    document.getElementById("username_perfil").value=currentUser.username;
+  }
+  if (document.getElementById("nome_perfil")) {
+    document.getElementById("nome_perfil").value=currentUser.nome;
+  }
+  if (document.getElementById("email_perfil")) {
+    document.getElementById("email_perfil").value=currentUser.email;
+  }
+  if (document.getElementById("passe_perfil")) {
+    document.getElementById("passe_perfil").value=currentUser.password;
+  }
 } else {
   $("#logoutBtnNav").hide();
   $("#loginBtnNav").show();
@@ -154,58 +161,63 @@ function closeLogin(){
 }
 
 if (localStorage.getItem('isUserLoggedIn') === 'true') {
-  document.getElementById("alterar_perfil").addEventListener("submit", function(event){
-    event.preventDefault();
-    
-    // Obter o username do profissional a ser alterado
-    let username = document.getElementById('username_perfil').value;
-    
-    // Procurar pelo profissional com o username correspondente
-    let index = users.findIndex(function (u) {
-      return u.username === username;
+  if(document.getElementById("alterar_perfil")){
+    document.getElementById("alterar_perfil").addEventListener("submit", function(event){
+      event.preventDefault();
+      
+      // Obter o username do profissional a ser alterado
+      let username = document.getElementById('username_perfil').value;
+      
+      // Procurar pelo profissional com o username correspondente
+      let index = users.findIndex(function (u) {
+        return u.username === username;
+      });
+
+      // Verificar se o username foi encontrado
+      if (index === -1) {
+        alert('Não foi encontrado nenhum profissional com o username especificado.');
+        return;
+      }
+      // realizar ação de guardar dados aqui
+      let nome= document.getElementById("nome_perfil").value;
+      let email= document.getElementById("email_perfil").value;
+      let password= document.getElementById("passe_perfil").value;
+
+      // Verificar se todos os campos foram preenchidos
+      if (username == "" || nome == "" || email == "" || password == "" ) {
+        alert("Por favor, preencha todos os campos antes de atualizar os dados.");
+        return;
+      }else{
+        users[index].nome=nome;
+        users[index].email=email;
+        users[index].password=password;
+
+        localStorage.setItem('users', JSON.stringify(users));
+        localStorage.setItem('currentUser', JSON.stringify(users[index]));
+        alert("Dados guardados com sucesso!");
+      }
     });
-
-    // Verificar se o username foi encontrado
-    if (index === -1) {
-      alert('Não foi encontrado nenhum profissional com o username especificado.');
-      return;
-    }
-    // realizar ação de guardar dados aqui
-    let nome= document.getElementById("nome_perfil").value;
-    let email= document.getElementById("email_perfil").value;
-    let password= document.getElementById("passe_perfil").value;
-
-    // Verificar se todos os campos foram preenchidos
-    if (username == "" || nome == "" || email == "" || password == "" ) {
-      alert("Por favor, preencha todos os campos antes de atualizar os dados.");
-      return;
-    }else{
-      users[index].nome=nome;
-      users[index].email=email;
-      users[index].password=password;
-
-      localStorage.setItem('users', JSON.stringify(users));
-      localStorage.setItem('currentUser', JSON.stringify(users[index]));
-      alert("Dados guardados com sucesso!");
-    }
-  });
+  }
 }
 
 if (localStorage.getItem('isUserLoggedIn') === 'true') {
-  // adicionar evento ao botão "Cancelar"
-  document.getElementById("cancelar_perfil").addEventListener("click", function(event){
-   event.preventDefault();
-   for (let i = 0; i < users.length; i++) {
-    const user = users[i];
-    if (localStorage.getItem('isUserLoggedIn') === 'true') {
-    document.getElementById("username_perfil").value=user.username;
-    document.getElementById("nome_perfil").value=user.nome;
-    document.getElementById("email_perfil").value=user.email;
-    document.getElementById("passe_perfil").value=user.password;
-    }
-   }
-  });
+  if(document.getElementById("cancelar_perfil")){
+    // adicionar evento ao botão "Cancelar"
+    document.getElementById("cancelar_perfil").addEventListener("click", function(event){
+      event.preventDefault();
+      for (let i = 0; i < users.length; i++) {
+        const user = users[i];
+        if (localStorage.getItem('isUserLoggedIn') === 'true') {
+        document.getElementById("username_perfil").value=user.username;
+        document.getElementById("nome_perfil").value=user.nome;
+        document.getElementById("email_perfil").value=user.email;
+        document.getElementById("passe_perfil").value=user.password;
+        }
+      }
+    });
+  }
 }
+
 $(document).ready(function () {
   // Fechar o modal quando o botão 'fechar' for clicado
   $(".modal-header button").click(function () {

@@ -1,6 +1,3 @@
-// variável global para armazenar o tipo de usuário autenticado
-let tipoAdmin = null;
-
 function showAdminLoginForm(){
   $('#adminLoginModal .registerBox').fadeOut('fast',function(){
       $('.loginBox').fadeIn('fast');
@@ -50,14 +47,13 @@ document.getElementById("adminloginUser").addEventListener("submit", function(ev
     $('#adminLoginModal').modal('hide');
 
     window.location.href = "dist/index_dist.html";
-    tipoAdmin="admin";
-    localStorage.setItem('tipoAdmin', tipoAdmin);
+    localStorage.setItem('tipoAdmin', 'admin');
   }else{
       // verificar as credenciais dos profissionais
       let isProfissional = false;
 
       for(let i = 0; i < profissionais.length; i++){
-        if(profissionais[i].email === email && profissionais[i].password === password){
+        if(profissionais[i].email === email && profissionais[i].palavraPasse === password){
           isProfissional = true;
           break;
         }
@@ -71,8 +67,7 @@ document.getElementById("adminloginUser").addEventListener("submit", function(ev
         $('#adminLoginModal').modal('hide');
 
         window.location.href = "dist/index_dist.html";
-        tipoAdmin="profissional";
-        localStorage.setItem('tipoAdmin', tipoAdmin);
+        localStorage.setItem('tipoAdmin', 'profissional');
       }else{
         // exibir mensagem de erro
         alert("Credenciais inválidas. Por favor, verifique seu e-mail e senha e tente novamente.");
