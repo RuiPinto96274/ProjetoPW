@@ -22,24 +22,20 @@ if (localStorage.getItem('isUserLoggedIn') === 'true'){
 
   form.addEventListener('submit', function(event) {
     event.preventDefault();
-    
+    const username = loggedUser.username;
     const nome = document.getElementById('nome').value;
-    const telefone = document.getElementById('telefone').value;
+    const contacto = document.getElementById('telefone').value;
     const id_atividade = document.getElementById('atividade_escolhida').value;
-    /*
-    const tipoAtividade = document.getElementById('tipo_atividade').value;
-    const nivelAtividade = document.getElementById('nivel_atividade').value;*/
     const numParticipantes = document.getElementById('num_participantes').value;
     const data = document.getElementById('data').value;
     const horas = document.getElementById('horas').value;
 
     const pedido = {
       id_pedido: Date.now(), // retorna o número de milissegundos desde 1º de janeiro de 1970 00:00:00 UTC. Como esse número é exclusivo para cada milissegundo, é improvável que haja conflitos entre IDs.
+      username: username,
       nome: nome,
-      telefone: telefone,
+      contacto: contacto,
       id_atividade: id_atividade,
-    /* tipoAtividade: tipoAtividade,
-      nivelAtividade: nivelAtividade,*/
       numParticipantes: numParticipantes,
       data: data,
       horas: horas,
@@ -57,5 +53,6 @@ if (localStorage.getItem('isUserLoggedIn') === 'true'){
     localStorage.setItem('pedidos', JSON.stringify(pedidos));
     
     alert('Inscrição realizada com sucesso!');
+    location.reload();
   });
 }

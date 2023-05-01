@@ -15,7 +15,7 @@ function updateAccordion() {
   accordion.innerHTML = '';
     // Iterate over the data array and create a new accordion item for each item
     data.forEach((item, index) => {
-      if((item.nome === loggedInUser.nome)){
+      if((item.username === loggedInUser.username)){
         // Initialize statusLabel with an empty string
         let statusLabel = '';
         // Create a new accordion item
@@ -68,13 +68,19 @@ function updateAccordion() {
         accordionBody.setAttribute('aria-labelledby', `heading-${index}`);
         accordionBody.setAttribute('data-bs-parent', '#accordion');
 
+        let precoTotal=0;
+        for (let i = 0; i < atividades.length; i++) {
+          if(atividades[i].id === item.id_atividade){
+            precoTotal= parseInt(atividades[i].preco_pessoa) * item.numParticipantes;
+          }
+        }
         // Create the content of the accordion body
         let content = `
         <div class="accordion-body d-flex flex-column">
           <p>Dia: ${item.data} Hora: ${item.horas}</p>
-          <p>Contacto: ${item.telefone}</p>
+          <p>Contacto: ${item.contacto}</p>
           <p>Grupo de ${item.numParticipantes} elementos</p>
-          <p>Preço Total: ${item.preco} €</p>
+          <p>Preço Total: ${precoTotal} €</p>
         `;
 
         if (item.estado === 'confirmado') {

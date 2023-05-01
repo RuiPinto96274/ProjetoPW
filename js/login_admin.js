@@ -1,3 +1,7 @@
+let currentAdmin=JSON.parse(localStorage.getItem('currentAdmin')) || {};
+let admin = JSON.parse(localStorage.getItem('admin')) || {};
+let profissionais = JSON.parse(localStorage.getItem('profissionais')) || [];
+
 function showAdminLoginForm(){
   $('#adminLoginModal .registerBox').fadeOut('fast',function(){
       $('.loginBox').fadeIn('fast');
@@ -17,7 +21,7 @@ function openAdminLoginModal(){
   }, 230);
 }
 
-let admin = {
+ admin = {
   email: "admin@admin.com",
   password: "Admin1*"
 };
@@ -34,10 +38,9 @@ document.getElementById("adminloginUser").addEventListener("submit", function(ev
   // obter os dados do formulário
   let email = $("#adminemailLogin").val();
   let password = $("#adminpasswordLogin").val();
+  let autenticado = false;
+  
   // verificar credenciais do admin e autenticá-lo
-  let admin = JSON.parse(localStorage.getItem('admin'));
-  let profissionais = JSON.parse(localStorage.getItem('profissionais')) || [];
-
   if (admin && admin.email === email && admin.password === password) {
     // exibir mensagem de sucesso
     alert("Login bem sucedido como Admin!");
@@ -47,34 +50,36 @@ document.getElementById("adminloginUser").addEventListener("submit", function(ev
     $('#adminLoginModal').modal('hide');
 
     window.location.href = "dist/index_dist.html";
-    localStorage.setItem('tipoAdmin', 'admin');
-  }else{
-      // verificar as credenciais dos profissionais
-      let isProfissional = false;
+    admin.role = "admin";
+    localStorage.setItem('currentAdmin', JSON.stringify(admin));
+    autenticado = true;
+  }
 
-      for(let i = 0; i < profissionais.length; i++){
-        if(profissionais[i].email === email && profissionais[i].palavraPasse === password){
-          isProfissional = true;
-          break;
-        }
-      }
-      if(isProfissional){
-        // exibir mensagem de sucesso
-        alert("Login bem sucedido como profissional!");
-        // limpa o formulário
-        document.getElementById("adminloginUser").reset();
+  // verificar credenciais dos profissionais e autenticá-los
+  for(let i = 0; i < profissionais.length; i++){
+    const profissional = profissionais[i];
+    if(profissional.email === email && profissional.palavraPasse === password){
+      // exibir mensagem de sucesso
+      alert("Login bem sucedido como profissional!");
+      // limpa o formulário
+      document.getElementById("adminloginUser").reset();
 
-        $('#adminLoginModal').modal('hide');
+      $('#adminLoginModal').modal('hide');
 
-        window.location.href = "dist/index_dist.html";
-        localStorage.setItem('tipoAdmin', 'profissional');
-      }else{
-        // exibir mensagem de erro
-        alert("Credenciais inválidas. Por favor, verifique seu e-mail e senha e tente novamente.");
-        // limpa o formulário
-        document.getElementById("adminloginUser").reset();
-        openAdminLoginModal();
-      }
+      window.location.href = "dist/index_dist.html";
+      profissional.role = "profissional";
+      localStorage.setItem('currentAdmin', JSON.stringify(profissional));
+      autenticado = true;
+      break;
+    }
+  }
+
+  // exibir mensagem de erro, se as credenciais não forem autenticadas
+  if (!autenticado) {
+    alert("Credenciais inválidas. Por favor, verifique seu e-mail e senha e tente novamente.");
+    // limpa o formulário
+    document.getElementById("adminloginUser").reset();
+    openAdminLoginModal();
   }
 });
 
