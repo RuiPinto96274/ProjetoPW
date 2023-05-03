@@ -135,6 +135,14 @@
                                             <option>Principiante</option>
                                         </select>
                                     </fieldset>
+                                    <div class="form-group">
+                                        <label for="basicInput">Duração</label>
+                                        <input type="text" class="form-control" id="duracao"
+                                            placeholder="Insira a duração em horas: 1 ou 1.5 (hora e meia) ">
+                                    </div>
+                                    <label for="basicInput">Preço por pessoa</label>
+                                    <input type="text" class="form-control" id="preco_pessoa" placeholder="Insira o preço">
+                                    
                                     <br>
                                     <a href="#" id="top-center-add" class="btn btn-primary">Inserir</a>
                                     <a href="#" id="top-center-update" class="btn btn-primary">Alterar</a>
@@ -146,8 +154,16 @@
                                         <input type="text" class="form-control" id="id"
                                             placeholder="Insira o ID">
                                     </div>
-                                    <label for="basicInput">Preço por pessoa</label>
-                                    <input type="text" class="form-control" id="preco_pessoa" placeholder="Insira o preço">
+                                    <div class="form-group">
+                                        <label for="basicInput">Nº máximo de participantes</label>
+                                        <input type="text" class="form-control" id="max_cap"
+                                            placeholder="Insira o nº máximo de participantes">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="basicInput">Nº mínimo de participantes</label>
+                                        <input type="text" class="form-control" id="min_cap"
+                                            placeholder="Insira o nº mínimo de participantes">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -179,6 +195,9 @@
                                                     <th>Atividade</th>
                                                     <th>Nível</th>
                                                     <th>Preço</th>
+                                                    <th>Nº máximo</th>
+                                                    <th>Nº mínimo</th>
+                                                    <th>Duração (h)</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="table-body">

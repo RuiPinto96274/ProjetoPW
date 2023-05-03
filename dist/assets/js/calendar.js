@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   
   //atividades confirmadas do localStorage
-  var atividades = JSON.parse(localStorage.getItem('dados_atividades')) || [];
+  var atividades = JSON.parse(localStorage.getItem('reservas')) || [];
 
   // iterar por cada atividade e adicionar ao calendário
   atividades.forEach(function (atividade) {

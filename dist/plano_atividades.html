@@ -148,7 +148,9 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="content">
-                                                <div id='atividades-diarias' class="list-group"></div>
+                                                <div id='atividades-diarias' class="list-group">
+                                                    <!--passar codigo js para aqui e aplicar vue.js-->
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -169,8 +171,8 @@
                                     </div>
 
                                 </div>
-                                <!-- Button trigger for basic modal -->
-                                <a href="#" id="top-center" class="btn btn-primary" data-bs-toggle="modal"
+                                <!-- Butão trigger para registo de atividade -->
+                                <a href="#" id="registar_atividade" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#default">Registar Atividade</a>
 
                                 <!--Modal de Registo-->
@@ -188,66 +190,55 @@
                                             <div class="modal-body">
                                                 <div class="form-group">
                                                     <label for="basicInput">Nº de participantes</label>
-                                                    <input type="text" class="form-control" id="basicInput"
+                                                    <input type="text" class="form-control" id="num_part_registo"
                                                         placeholder="Insira um número">
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="basicInput">Nome do representante</label>
-                                                    <input type="text" class="form-control" id="basicInput"
+                                                    <input type="text" class="form-control" id="nome_registo"
                                                         placeholder="Insira o nome do representante">
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="basicInput">Contacto telefónico do representante</label>
-                                                    <input type="text" class="form-control" id="basicInput"
+                                                    <input type="text" class="form-control" id="tlm_registo"
                                                         placeholder="Insira o contacto do representante">
                                                 </div>
 
                                                 <label for="basicInput">Local</label>
                                                 <fieldset class="form-group">
-                                                    <select class="form-select" id="basicSelect">
-                                                        <option>Sala 1</option>
-                                                        <option>Sala 2</option>
-                                                        <option>Sala 3</option>
-                                                        <option>Sala 4</option>
-                                                        <option>Sala 5</option>
-                                                        <option>Sala 6</option>
+                                                    <select class="form-select" id="local_registo">
+                                                         <!--opçoes aparecem conforme os dados no local storage-->
                                                     </select>
                                                 </fieldset>
                                                 <div class="form-group">
                                                     <label for="data">Data</label>
-                                                    <input type="date" class="form-control" id="data">
+                                                    <input type="date" class="form-control" id="data_registo">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="data">Horas</label>
-                                                    <input type="time" class="form-control" id="data">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="basicInput">Custo total</label>
-                                                    <input type="text" class="form-control" id="basicInput"
-                                                        placeholder="Insira o custo total">
+                                                    <input type="time" class="form-control" id="hora_registo">
                                                 </div>
                                                 <label for="basicInput">Atividade</label>
                                                 <fieldset class="form-group">
-                                                    <select class="form-select" id="basicSelect">
-                                                        <option>Bordado principiante</option>
-                                                        <option>Costura principiante</option>
-                                                        <option>Crochê principiante</option>
-                                                        <option>Cerâmica principiante</option>
-                                                        <option>Escultura principiante</option>
-                                                        <option>Pintura principiante</option>
-                                                        <option>Crochê livre</option>
-                                                        <option>Cerâmica livre</option>
-                                                        <option>Escultura livre</option>
-                                                        <option>Pintura livre</option>
+                                                    <select class="form-select" id="atividade_registo">
+                                                       <!--opçoes aparecem conforme os dados no local storage-->
                                                     </select>
                                                 </fieldset>
                                                 <div class="form-group">
-                                                    <label for="basicInput">Gestor da atividade</label>
-                                                    <input type="text" class="form-control" id="basicInput"
-                                                        placeholder="Insira o gestor">
+                                                    <label for="basicInput">Custo total (€)</label>
+                                                    <input type="text" class="form-control" id="custo_registo"
+                                                        placeholder="Insira o custo total">
                                                 </div>
+                
+                                                    <label for="basicInput">Gestor da atividade</label>
+                                                    <fieldset class="form-group" id="opcoes_gestor">
+                                                        <select class="form-select" id="gestor_registo">
+                                                           <!--opçoes aparecem conforme os dados no local storage-->
+                                                        </select>
+                                                    </fieldset>
+                                                
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn" data-bs-dismiss="modal">
@@ -299,7 +290,8 @@
                                                     <span class="d-none d-sm-block">Rejeitado</span>
                                                 </button>
                                                 <button id="aceitar_pedido" type="button" class="btn btn-primary ml-1"
-                                                    data-bs-dismiss="modal">
+                                                    data-bs-dismiss="modal" data-bs-toggle="modal"
+                                                    data-bs-target="#default">
                                                     <i class="bx bx-check d-block d-sm-none"></i>
                                                     <span class="d-none d-sm-block">Aceite</span>
                                                 </button>
@@ -323,7 +315,7 @@
                                                     <i data-feather="x"></i>
                                                 </button>
                                             </div>
-                                            <div class="modal-body">
+                                            <div class="modal-body" id="modal-body">
 
                                             </div>
                                             <div class="modal-footer">
@@ -335,7 +327,7 @@
                                                 <button type="button" class="btn btn-primary ml-1"
                                                     data-bs-dismiss="modal">
                                                     <i class="bx bx-check d-block d-sm-none"></i>
-                                                    <span class="d-none d-sm-block">Cancelar Workshop</span>
+                                                    <span class="d-none d-sm-block" id="cancelar_workshop">Cancelar Workshop</span>
                                                 </button>
                                                 
                                             </div>
