@@ -24,14 +24,14 @@ document.getElementById("createUser").addEventListener("submit", function(event)
   event.preventDefault();
 
   // obter os valores do formulário
-  var username = $("#usernameNew").val();
-  var nome = $("#nomeNew").val();
-  var email = $("#emailNew").val();
-  var password = $("#passwordNew").val();
-  var passwordConfirmation = $("#password_confirmationNew").val();
+  let username = $("#usernameNew").val();
+  let nome = $("#nomeNew").val();
+  let email = $("#emailNew").val();
+  let password = $("#passwordNew").val();
+  let passwordConfirmation = $("#password_confirmationNew").val();
 
   // armazenar os valores no localStorage
-  var user = {
+  let user = {
     username: username,
     nome: nome,
     email: email,
@@ -81,19 +81,6 @@ function openLoginModal(){
 if (localStorage.getItem('isUserLoggedIn') === 'true') {
   $("#loginBtnNav").hide();
   $("#logoutBtnNav").show();
-  //preencher dados do perfil do user que fez login
-  if (document.getElementById("username_perfil")) {
-    document.getElementById("username_perfil").value=currentUser.username;
-  }
-  if (document.getElementById("nome_perfil")) {
-    document.getElementById("nome_perfil").value=currentUser.nome;
-  }
-  if (document.getElementById("email_perfil")) {
-    document.getElementById("email_perfil").value=currentUser.email;
-  }
-  if (document.getElementById("passe_perfil")) {
-    document.getElementById("passe_perfil").value=currentUser.password;
-  }
 } else {
   $("#logoutBtnNav").hide();
   $("#loginBtnNav").show();
@@ -104,10 +91,10 @@ document.getElementById("loginUser").addEventListener("submit", function(event){
   event.preventDefault();
 
   // obter os dados do formulário
-  var email = $("#emailLogin").val();
-  var password = $("#passwordLogin").val();
+  let email = $("#emailLogin").val();
+  let password = $("#passwordLogin").val();
 
-  var isAuthenticated = false; // variável para indicar se o usuário foi autenticado com sucesso
+  let isAuthenticated = false; // variável para indicar se o usuário foi autenticado com sucesso
 
   // percorre o array de usuários
   for (let i = 0; i < users.length; i++) {
@@ -144,7 +131,7 @@ document.getElementById("loginUser").addEventListener("submit", function(event){
 });
 
 function closeLogin(){
-  // remove o usuário atual
+  // remove o user atual
   localStorage.removeItem('currentUser');
 
   $("#logoutBtnNav").hide();
@@ -231,8 +218,8 @@ $(document).ready(function () {
 
   //Ver password no perfil que se encontra escondida
   $("#showPasswordBtn").click(function() {
-    var passwordInput = $("#passe_perfil");
-    var passwordFieldType = passwordInput.attr("type");
+    let passwordInput = $("#passe_perfil");
+    let passwordFieldType = passwordInput.attr("type");
     if (passwordFieldType === "password") {
       passwordInput.attr("type", "text");
       $(this).text("Esconder senha");
