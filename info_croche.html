@@ -33,6 +33,9 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <!-- Vue.js-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
 <body>
@@ -82,8 +85,8 @@
             <h1 class="display-3 text-white mb-4 animated slideInDown">Crochê</h1>
             <nav aria-label="breadcrumb animated slideInDown">
                 <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item"><a href="#">Início</a></li>
-                    <li class="breadcrumb-item"><a href="#">Atividades</a></li>
+                    <li class="breadcrumb-item"><a href="index.html">Início</a></li>
+                    <li class="breadcrumb-item"><a href="service.html">Atividades</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Crochê</li>
                 </ol>
             </nav>
@@ -210,14 +213,52 @@
                     <p>Os nossos workshops são ministrados por profissionais, que vão ensinar tudo o que precisas de saber para criar peças lindas e surpreendentes. Desde os pontos básicos até técnicas mais avançadas, ficarás surpreendido com a variedade de possibilidades que o crochê pode oferecer.</p>
                     <p>Durante o workshop, terás acesso a todos os materiais necessários para criar a tua peça, desde o fio até às agulhas e no fim podes levar a tua criação para casa.</p>
                     <br>
-                    <i class="bi bi-clock"></i><span> Duração 3 horas</span><br><br>
-                    <i class="bi bi-people"></i> <span> Entre 5 a 9 pessoas por workshop</span><br><br>
-                    <i class="bi bi-cash"></i> <span> Custo por pessoa: 25€</span><br><br>
-
-                    <br><br>
-                    <a class="btn btn-primary py-3 px-4" href="inscricao.html">Inscrição</a>
-                   
+                    <div class="row" id="sobre_croche">
+                        <div class="col-md-6">
+                            <h1 class="fs-5 fw-bold text-primary">Principiante</h1>
+                            <i class="bi bi-clock"></i><span> Duração de {{duracaoPrincipiante}} horas</span><br><br>
+                            <i class="bi bi-people"></i> <span> Entre {{capMinPrincipiante}} a {{capMaxPrincipiante}} pessoas por workshop</span><br><br>
+                            <i class="bi bi-cash"></i> <span> Custo por pessoa: {{custoPrincipiante}}€</span><br><br>
+                            <a class="btn btn-primary py-3 px-4" href="inscricao.html">Inscrição</a>
+                        </div>
+                        <div class="col-md-6">
+                            <h1 class="fs-5 fw-bold text-primary">Livre</h1>
+                            <i class="bi bi-clock"></i><span> Duração de {{duracaoLivre}} horas</span><br><br>
+                            <i class="bi bi-people"></i> <span> Entre {{capMinLivre}} a {{capMaxLivre}} pessoas por workshop</span><br><br>
+                            <i class="bi bi-cash"></i> <span> Custo por pessoa: {{custoLivre}}€</span><br><br>
+                        </div>
+                    </div>
                 </div>
+                <script>
+                    const atividades = JSON.parse(localStorage.getItem('atividades'));
+                    const croches = atividades.filter(atividade => atividade.nome === 'Crochê');
+                    let principiante = null;
+                    let livre = null;
+                    croches.forEach(croche => {
+                    const nivel = croche.nivel;
+                    nivel.forEach(nivelItem => {
+                        if (nivelItem.includes('Principiante')) {
+                            principiante = croche;
+                        }
+                        if (nivelItem.includes('Livre')) {
+                            livre = croche;
+                        }
+                    });
+                });
+                const app = new Vue({
+                    el: '#sobre_croche',
+                    data:{
+                        duracaoPrincipiante: principiante ? principiante.duracao : null,
+                        capMinPrincipiante: principiante ? principiante.min_cap : null,
+                        capMaxPrincipiante: principiante ? principiante.max_cap : null,
+                        custoPrincipiante: principiante ? principiante.preco_pessoa : null,
+                        duracaoLivre: livre ? livre.duracao : null,
+                        capMinLivre: livre ? livre.min_cap : null,
+                        capMaxLivre: livre ? livre.max_cap : null,
+                        custoLivre: livre ? livre.preco_pessoa : null
+                    }
+                });
+                </script>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                     <br>
                     <br>

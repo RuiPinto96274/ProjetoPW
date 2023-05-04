@@ -35,6 +35,9 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <!-- Vue.js-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
 <body>
@@ -87,8 +90,8 @@
             <h1 class="display-3 text-white mb-4 animated slideInDown">Escultura</h1>
             <nav aria-label="breadcrumb animated slideInDown">
                 <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item"><a href="#">Início</a></li>
-                    <li class="breadcrumb-item"><a href="#">Atividades</a></li>
+                    <li class="breadcrumb-item"><a href="index.html">Início</a></li>
+                    <li class="breadcrumb-item"><a href="service.html">Atividades</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Escultura</li>
                 </ol>
             </nav>
@@ -221,12 +224,52 @@
                         desde as ferramentas até aos materiais de modelagem. No fim, poderás levar a tua criação para
                         casa e exibi-la com orgulho!</p>
                     <br>
-                    <i class="bi bi-clock"></i><span> Duração de 3 horas</span><br><br>
-                    <i class="bi bi-people"></i> <span> Entre 3 a 6 pessoas por workshop</span><br><br>
-                    <i class="bi bi-cash"></i> <span> Custo por pessoa: 30€</span><br><br>
-                    <a class="btn btn-primary py-3 px-4" href="inscricao.html">Inscrição</a>
-
+                    <div class="row" id="sobre_escultura">
+                        <div class="col-md-6">
+                            <h1 class="fs-5 fw-bold text-primary">Principiante</h1>
+                            <i class="bi bi-clock"></i><span> Duração de {{duracaoPrincipiante}} horas</span><br><br>
+                            <i class="bi bi-people"></i> <span> Entre {{capMinPrincipiante}} a {{capMaxPrincipiante}} pessoas por workshop</span><br><br>
+                            <i class="bi bi-cash"></i> <span> Custo por pessoa: {{custoPrincipiante}}€</span><br><br>
+                            <a class="btn btn-primary py-3 px-4" href="inscricao.html">Inscrição</a>
+                        </div>
+                        <div class="col-md-6">
+                            <h1 class="fs-5 fw-bold text-primary">Livre</h1>
+                            <i class="bi bi-clock"></i><span> Duração de {{duracaoLivre}} horas</span><br><br>
+                            <i class="bi bi-people"></i> <span> Entre {{capMinLivre}} a {{capMaxLivre}} pessoas por workshop</span><br><br>
+                            <i class="bi bi-cash"></i> <span> Custo por pessoa: {{custoLivre}}€</span><br><br>
+                        </div>
+                    </div>
                 </div>
+                <script>
+                    const atividades = JSON.parse(localStorage.getItem('atividades'));
+                    const esculturas = atividades.filter(atividade => atividade.nome === 'Escultura');
+                    let principiante = null;
+                    let livre = null;
+                    esculturas.forEach(escultura => {
+                    const nivel = escultura.nivel;
+                    nivel.forEach(nivelItem => {
+                        if (nivelItem.includes('Principiante')) {
+                            principiante = escultura;
+                        }
+                        if (nivelItem.includes('Livre')) {
+                            livre = escultura;
+                        }
+                    });
+                });
+                const app = new Vue({
+                    el: '#sobre_escultura',
+                    data:{
+                        duracaoPrincipiante: principiante ? principiante.duracao : null,
+                        capMinPrincipiante: principiante ? principiante.min_cap : null,
+                        capMaxPrincipiante: principiante ? principiante.max_cap : null,
+                        custoPrincipiante: principiante ? principiante.preco_pessoa : null,
+                        duracaoLivre: livre ? livre.duracao : null,
+                        capMinLivre: livre ? livre.min_cap : null,
+                        capMaxLivre: livre ? livre.max_cap : null,
+                        custoLivre: livre ? livre.preco_pessoa : null
+                    }
+                });
+                </script>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                     <br>
                     <br>
