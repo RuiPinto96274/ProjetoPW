@@ -163,7 +163,6 @@
                             },
                             computed: {
                                 opcoesNumParticipantes() {
-                                    console.log(this.numParticipantes);
                                     const minCap = this.minCap();
                                     const maxCap = this.maxCap();
                                     return Array.from({ length: maxCap - minCap + 1 }, (_, i) => i + minCap);
