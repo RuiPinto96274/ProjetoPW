@@ -1,6 +1,6 @@
-const form = document.getElementById('form_inscricao');
-const lista_atividades = JSON.parse(localStorage.getItem('atividades')) || [];
-const loggedUser=JSON.parse(localStorage.getItem('currentUser')) || {};
+let form = document.getElementById('form_inscricao');
+let lista_atividades = JSON.parse(localStorage.getItem('atividades')) || [];
+let loggedUser=JSON.parse(localStorage.getItem('currentUser')) || {};
 
 if (localStorage.getItem('isUserLoggedIn') === 'true'){
 
@@ -8,15 +8,15 @@ if (localStorage.getItem('isUserLoggedIn') === 'true'){
 
   form.addEventListener('submit', function(event) {
     event.preventDefault();
-    const username = loggedUser.username;
-    const nome = document.getElementById('nome').value;
-    const contacto = document.getElementById('telefone').value;
-    const id_atividade = document.getElementById('atividade_escolhida').value;
-    const numParticipantes = document.getElementById('num_participantes').value;
-    const data = document.getElementById('data').value;
-    const horas = document.getElementById('horas').value;
+    let username = loggedUser.username;
+    let nome = document.getElementById('nome').value;
+    let contacto = document.getElementById('telefone').value;
+    let id_atividade = document.getElementById('atividade_escolhida').value;
+    let numParticipantes = document.getElementById('num_participantes').value;
+    let data = document.getElementById('data').value;
+    let horas = document.getElementById('horas').value;
 
-    const pedido = {
+    let pedido = {
       id_pedido: Date.now(), // retorna o número de milissegundos desde 1º de janeiro de 1970 00:00:00 UTC. Como esse número é exclusivo para cada milissegundo, é improvável que haja conflitos entre IDs.
       username: username,
       nome: nome,
@@ -37,8 +37,18 @@ if (localStorage.getItem('isUserLoggedIn') === 'true'){
     pedidos.push(pedido);
     
     localStorage.setItem('pedidos', JSON.stringify(pedidos));
-    
-    alert('Inscrição realizada com sucesso!');
+
+    Toastify({
+      text: 'Inscrição realizada com sucesso!',
+      duration: 1000, // duração da mensagem de exibição em ms
+      close: true,
+      gravity: 'top', // posição da mensagem na tela
+      position: 'center',
+      backgroundColor: '#223843'
+  }).showToast();
+  
+  setTimeout(() => {
     location.reload();
+  }, 1000);
   });
 }

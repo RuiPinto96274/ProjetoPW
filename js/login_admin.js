@@ -43,13 +43,23 @@ document.getElementById("adminloginUser").addEventListener("submit", function(ev
   // verificar credenciais do admin e autenticá-lo
   if (admin && admin.email === email && admin.password === password) {
     // exibir mensagem de sucesso
-    alert("Login bem sucedido como Admin!");
+    Toastify({
+      text: 'Login bem sucedido como Admin!',
+      duration: 1000, // duração da mensagem de exibição em ms
+      close: true,
+      gravity: 'top', // posição da mensagem na tela
+      position: 'center',
+      backgroundColor: '#223843'
+    }).showToast();
     // limpa o formulário
     document.getElementById("adminloginUser").reset();
 
     $('#adminLoginModal').modal('hide');
 
-    window.location.href = "dist/index_dist.html";
+    // aguarda 1 segundo antes de redirecionar para outra página
+    setTimeout(() => {
+      window.location.href = "dist/index_dist.html";
+    }, 1000);
     admin.role = "admin";
     localStorage.setItem('currentAdmin', JSON.stringify(admin));
     autenticado = true;
@@ -60,23 +70,40 @@ document.getElementById("adminloginUser").addEventListener("submit", function(ev
     const profissional = profissionais[i];
     if(profissional.email === email && profissional.palavraPasse === password){
       // exibir mensagem de sucesso
-      alert("Login bem sucedido como profissional!");
+      Toastify({
+        text: 'Login bem sucedido como profissional!',
+        duration: 1000, // duração da mensagem de exibição em ms
+        close: true,
+        gravity: 'top', // posição da mensagem na tela
+        position: 'center',
+        backgroundColor: '#223843'
+      }).showToast();
       // limpa o formulário
       document.getElementById("adminloginUser").reset();
 
       $('#adminLoginModal').modal('hide');
 
-      window.location.href = "dist/index_dist.html";
+      // aguarda 1 segundo antes de redirecionar para outra página
+      setTimeout(() => {
+        window.location.href = "dist/index_dist.html";
+      }, 1000);
       profissional.role = "profissional";
       localStorage.setItem('currentAdmin', JSON.stringify(profissional));
       autenticado = true;
-      break;
+      return;
     }
   }
 
   // exibir mensagem de erro, se as credenciais não forem autenticadas
   if (!autenticado) {
-    alert("Credenciais inválidas. Por favor, verifique seu e-mail e senha e tente novamente.");
+    Toastify({
+      text: 'Credenciais inválidas. Por favor, verifique seu e-mail e senha e tente novamente.',
+      duration: 1000, // duração da mensagem de exibição em ms
+      close: true,
+      gravity: 'top', // posição da mensagem na tela
+      position: 'center',
+      backgroundColor: '#8B0000'
+  }).showToast();
     // limpa o formulário
     document.getElementById("adminloginUser").reset();
     openAdminLoginModal();

@@ -50,7 +50,14 @@ document.getElementById("createUser").addEventListener("submit", function(event)
   localStorage.setItem('users', JSON.stringify(users));
   }
 
-  alert("Registo bem sucedido! Por favor, faça login.");
+  Toastify({
+    text: 'Registo bem sucedido! Por favor, faça login.',
+    duration: 2500, // duração da mensagem de exibição em ms
+    close: true,
+    gravity: 'top', // posição da mensagem na tela
+    position: 'center',
+    backgroundColor: '#223843'
+}).showToast();
 
   // limpa o formulário
   document.getElementById("createUser").reset();
@@ -93,16 +100,21 @@ document.getElementById("loginUser").addEventListener("submit", function(event){
   // obter os dados do formulário
   let email = $("#emailLogin").val();
   let password = $("#passwordLogin").val();
-
-  let isAuthenticated = false; // variável para indicar se o usuário foi autenticado com sucesso
-
+  
   // percorre o array de usuários
   for (let i = 0; i < users.length; i++) {
     const user = users[i];
     // verificar credenciais do usuário e autenticá-lo
     if (user && user.email === email && user.password === password) {
       // exibir mensagem de sucesso
-      alert("Login bem sucedido!");
+      Toastify({
+        text: 'Login bem sucedido!',
+        duration: 2500, // duração da mensagem de exibição em ms
+        close: true,
+        gravity: 'top', // posição da mensagem na tela
+        position: 'center',
+        backgroundColor: '#223843'
+      }).showToast();
       // limpa o formulário
       document.getElementById("loginUser").reset();
 
@@ -111,16 +123,25 @@ document.getElementById("loginUser").addEventListener("submit", function(event){
       $("#logoutBtnNav").show();
 
       localStorage.setItem('isUserLoggedIn', 'true');
-      isAuthenticated = true; // definir como autenticado
       localStorage.setItem('currentUser', JSON.stringify(user));
-      location.reload();
-      break; // interromper o loop
+      
+      setTimeout(function(){
+        location.reload();
+      }, 500); 
+      return;
     }
   } 
 
-  if (!isAuthenticated) {
+  if (localStorage.getItem('isUserLoggedIn') === 'false') {
     // exibir mensagem de erro
-    alert("Credenciais inválidas. Por favor, verifique seu e-mail e senha e tente novamente.");
+    Toastify({
+      text: 'Credenciais inválidas. Por favor, verifique seu e-mail e senha e tente novamente.',
+      duration: 2500, // duração da mensagem de exibição em ms
+      close: true,
+      gravity: 'top', // posição da mensagem na tela
+      position: 'center',
+      backgroundColor: '#8B0000'
+  }).showToast();
     // limpa o formulário
     document.getElementById("loginUser").reset();
     openLoginModal();
@@ -133,76 +154,15 @@ document.getElementById("loginUser").addEventListener("submit", function(event){
 function closeLogin(){
   // remove o user atual
   localStorage.removeItem('currentUser');
-
-  $("#logoutBtnNav").hide();
-  $("#loginBtnNav").show();
-
+  
+  if (localStorage.getItem('isUserLoggedIn') === 'false') {
   document.getElementById("username_perfil").value="";
   document.getElementById("nome_perfil").value="";
   document.getElementById("email_perfil").value="";
   document.getElementById("passe_perfil").value="";
- 
+  }
   localStorage.setItem('isUserLoggedIn', 'false');
-
   location.reload();
-}
-
-if (localStorage.getItem('isUserLoggedIn') === 'true') {
-  if(document.getElementById("alterar_perfil")){
-    document.getElementById("alterar_perfil").addEventListener("submit", function(event){
-      event.preventDefault();
-      
-      // Obter o username do profissional a ser alterado
-      let username = document.getElementById('username_perfil').value;
-      
-      // Procurar pelo profissional com o username correspondente
-      let index = users.findIndex(function (u) {
-        return u.username === username;
-      });
-
-      // Verificar se o username foi encontrado
-      if (index === -1) {
-        alert('Não foi encontrado nenhum profissional com o username especificado.');
-        return;
-      }
-      // realizar ação de guardar dados aqui
-      let nome= document.getElementById("nome_perfil").value;
-      let email= document.getElementById("email_perfil").value;
-      let password= document.getElementById("passe_perfil").value;
-
-      // Verificar se todos os campos foram preenchidos
-      if (username == "" || nome == "" || email == "" || password == "" ) {
-        alert("Por favor, preencha todos os campos antes de atualizar os dados.");
-        return;
-      }else{
-        users[index].nome=nome;
-        users[index].email=email;
-        users[index].password=password;
-
-        localStorage.setItem('users', JSON.stringify(users));
-        localStorage.setItem('currentUser', JSON.stringify(users[index]));
-        alert("Dados guardados com sucesso!");
-      }
-    });
-  }
-}
-
-if (localStorage.getItem('isUserLoggedIn') === 'true') {
-  if(document.getElementById("cancelar_perfil")){
-    // adicionar evento ao botão "Cancelar"
-    document.getElementById("cancelar_perfil").addEventListener("click", function(event){
-      event.preventDefault();
-      for (let i = 0; i < users.length; i++) {
-        const user = users[i];
-        if (localStorage.getItem('isUserLoggedIn') === 'true') {
-        document.getElementById("username_perfil").value=user.username;
-        document.getElementById("nome_perfil").value=user.nome;
-        document.getElementById("email_perfil").value=user.email;
-        document.getElementById("passe_perfil").value=user.password;
-        }
-      }
-    });
-  }
 }
 
 $(document).ready(function () {
@@ -214,18 +174,5 @@ $(document).ready(function () {
   // Limpar os campos do formulário quando o modal for fechado
   $("#loginModal").on("hidden.bs.modal", function () {
     $("#loginUser")[0].reset();
-  });
-
-  //Ver password no perfil que se encontra escondida
-  $("#showPasswordBtn").click(function() {
-    let passwordInput = $("#passe_perfil");
-    let passwordFieldType = passwordInput.attr("type");
-    if (passwordFieldType === "password") {
-      passwordInput.attr("type", "text");
-      $(this).text("Esconder senha");
-    } else {
-      passwordInput.attr("type", "password");
-      $(this).text("Mostrar senha");
-    }
   });
 });

@@ -109,23 +109,23 @@
                                 <p class="fs-5 fw-bold text-primary">Dados Pessoais</p>
                                 <h1 class="display-5 mb-5">Visualize os seus dados!</h1>
                                 <p class="mb-4">Caso pretenda alterar os seus dados pode fazê-lo.</p>
-                                <form id="alterar_perfil" v-show="isUserLoggedIn" class="was-validated">
+                                <form id="alterar_perfil" v-show="isUserLoggedIn" @submit.prevent="handleSubmit" class="was-validated">
                                     <div class="mb-3">
                                         <label for="name" class="form-label">Username</label>
                                         <input type="text" class="form-control" id="username_perfil"
-                                            placeholder="Username do Utilizador":value="user.username" disabled>
+                                            placeholder="Username do Utilizador":value="user.username" ref="username_perfil" disabled>
                                     </div>
                                     <div class="mb-3">
                                         <label for="name" class="form-label">Nome</label>
                                         <input type="text" class="form-control" id="nome_perfil"
-                                            placeholder="Nome do Utilizador" :value="user.nome" required>
+                                            placeholder="Nome do Utilizador" :value="user.nome" ref="nome_perfil" required>
                                         <div class="valid-feedback">Válido.</div>
                                         <div class="invalid-feedback">Por favor preencha este campo.</div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="email" class="form-label">E-mail</label>
                                         <input type="email" class="form-control" id="email_perfil"
-                                            placeholder="email@exemplo.com":value="user.email" required>
+                                            placeholder="email@exemplo.com":value="user.email" ref="email_perfil"required>
                                         <div class="valid-feedback">Válido.</div>
                                         <div class="invalid-feedback">Por favor preencha este campo.</div>
                                     </div>
@@ -133,22 +133,75 @@
                                         <label for="password" class="form-label">Password</label>
                                         <div class="input-group">
                                             <input type="password" class="form-control" id="passe_perfil"
-                                                placeholder="**********":value="user.password" required>
-                                            <button class="btn btn-outline-secondary" type="button"
-                                                id="showPasswordBtn">Mostrar senha</button>
+                                                placeholder="**********":value="user.password" ref="passe_perfil" required>
+                                                <button class="btn btn-outline-secondary" type="button" @click.prevent="showPassword">{{ showPasswordBtnText }}</button>
                                         </div>
                                         <div class="valid-feedback">Válido.</div>
                                         <div class="invalid-feedback">Por favor preencha este campo.</div>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Guardar</button>
-                                    <button id="cancelar_perfil" class="btn btn-danger">Cancelar</button>
+                                    <button id="cancelar_perfil" class="btn btn-danger" @click.prevent="cancelar">Cancelar</button>
                                 </form>
                                 <script>
                                     const app1 = new Vue({
                                     el: '#alterar_perfil',
                                     data: {
                                         isUserLoggedIn: JSON.parse(localStorage.getItem('isUserLoggedIn')) || false,
-                                        user: JSON.parse(localStorage.getItem('currentUser')) || {}
+                                        user: JSON.parse(localStorage.getItem('currentUser')) || {},
+                                        users: JSON.parse(localStorage.getItem('users'))|| []
+                                    },
+                                    computed: {
+                                        showPasswordBtnText() {
+                                        return this.isPasswordVisible ? "Esconder senha" : "Mostrar senha";
+                                        }
+                                    },
+                                    methods: {
+                                        cancelar() {
+                                            if (this.isUserLoggedIn) {
+                                                this.$refs.username_perfil.value = this.user.username;
+                                                this.$refs.nome_perfil.value = this.user.nome;
+                                                this.$refs.email_perfil.value = this.user.email;
+                                                this.$refs.passe_perfil.value = this.user.password;
+                                            }
+                                        },
+                                        handleSubmit() {
+                                            // Verificar se o username foi encontrado
+                                            const index = this.users.findIndex(user => user.username === this.user.username);
+                                            if (index === -1) {
+                                                alert('Não foi encontrado nenhum profissional com o username especificado.');
+                                                return;
+                                            }
+                                            
+                                            // Atualizar os dados do usuário
+                                            this.users[index].nome = this.$refs.nome_perfil.value;
+                                            this.users[index].email = this.$refs.email_perfil.value;
+                                            this.users[index].password = this.$refs.passe_perfil.value;
+
+                                            // Guardar os dados atualizados no localStorage
+                                            localStorage.setItem('users', JSON.stringify(this.users));
+                                            localStorage.setItem('currentUser', JSON.stringify(this.users[index]));
+
+                                            Toastify({
+                                                text: 'Dados guardados com sucesso!',
+                                                duration: 1000, // duração da mensagem de exibição em ms
+                                                close: true,
+                                                gravity: 'top', // posição da mensagem na tela
+                                                position: 'center',
+                                                backgroundColor: '#223843',
+                                                stopOnFocus: true
+                                            }).showToast();
+                                        },
+                                        showPassword(){
+                                            let passwordInput = this.$refs.passe_perfil;
+                                            let passwordFieldType = passwordInput.type;
+                                            if (passwordFieldType === "password") {
+                                                passwordInput.type = "text";
+                                                this.isPasswordVisible = true;
+                                            } else {
+                                                passwordInput.type = "password";
+                                                this.isPasswordVisible = false;
+                                            }
+                                        }
                                     }
                                 });
                                 </script>
@@ -261,8 +314,6 @@
             </div>
         </div>
     </div>
-
-
     <!--Perfil End-->
 
     <!-- Modal Login/Register Cliente -->
