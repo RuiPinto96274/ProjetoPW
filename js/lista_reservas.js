@@ -147,8 +147,18 @@ function updateAccordion() {
        accordionBody.setAttribute('data-bs-parent', '#accordion');
 
        let data = new Date(item.dia_hora);
-       let hora_reserva=data.toLocaleTimeString();
-       let dia_reserva= data.getFullYear() + '-'+ (data.getMonth()+1) + '-' + data.getDate();
+       let year = data.getFullYear();
+       let month = data.getMonth() + 1;
+       let day = data.getDate();
+       let dia_reserva = year + '-' + (month < 10 ? '0' + month : month) + '-' + day;
+
+       let hora_reserva = '';
+       if (data.getMinutes() <= 9) {
+        hora_reserva = (data.getHours() - 1) + ':' + '0'+data.getMinutes();
+       } else {
+        hora_reserva = (data.getHours() - 1) + ':' + data.getMinutes();
+       }
+       
        // Create the content of the accordion body
        let content = `
        <div class="accordion-body d-flex flex-column">
