@@ -232,7 +232,7 @@
                                     <label for="tipo_atividade" class="form-label">Atividade</label>
                                     <select class="form-select" id="atividade_escolhida" name="atividade_escolhida"
                                         v-model="atividadeSelecionada" required>
-                                    <option v-if="atividadeSelecionada !== null"value="" disabled>Selecione a atividade</option>
+                                    <option v-if="atividadeSelecionada !== null" value="" disabled>Selecione a atividade</option>
                                     <option v-if="atividadeSelecionada === null" value="" disabled>Não há atividades disponíveis</option>
                                     <option v-for="atividade in atividades" :value="atividade.id">{{ atividade.nome }} - {{ atividade.nivel.join(', ') }}</option>
                                     </select>
