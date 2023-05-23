@@ -232,8 +232,7 @@
                                     <label for="tipo_atividade" class="form-label">Atividade</label>
                                     <select class="form-select" id="atividade_escolhida" name="atividade_escolhida"
                                         v-model="atividadeSelecionada" required>
-                                    <option v-if="atividadeSelecionada !== null" value="" disabled>Selecione a atividade</option>
-                                    <option v-if="atividadeSelecionada === null" value="" disabled>Não há atividades disponíveis</option>
+                                    <option value="">Selecione a atividade</option>
                                     <option v-for="atividade in atividades" :value="atividade.id">{{ atividade.nome }} - {{ atividade.nivel.join(', ') }}</option>
                                     </select>
                                 </div>
@@ -265,23 +264,21 @@
                                     el: '#form_inscricao',
                                     data: {
                                         atividades: JSON.parse(localStorage.getItem('atividades')),
-                                        atividadeSelecionada: null,
+                                        atividadeSelecionada: '',
                                         numParticipantes: '',
                                         isUserLoggedIn: JSON.parse(localStorage.getItem('isUserLoggedIn')) || false
                                     },
                                     methods: {
                                         getAtividade() {
-                                            if(this.atividadeSelecionada !== null)
-                                            {return this.atividades.find(a => a.id === this.atividadeSelecionada);} 
-                                            else {return null;}
+                                            return this.atividades.find(a => a.id === this.atividadeSelecionada);
                                         },
                                         minCap() {
                                             const atividade = this.getAtividade();
-                                            return atividade && atividade.min_cap ? parseInt(atividade.min_cap) : 0;
+                                            return atividade ? parseInt(atividade.min_cap) : 0;
                                         },
                                         maxCap() {
                                             const atividade = this.getAtividade();
-                                            return atividade && atividade.max_cap ? parseInt(atividade.max_cap) : 0;
+                                            return atividade ? parseInt(atividade.max_cap) : 0;
                                         },
                                     },
                                     computed: {
