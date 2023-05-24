@@ -176,3 +176,25 @@ $(document).ready(function () {
     $("#loginUser")[0].reset();
   });
 });
+
+
+window.onload = function () {
+  google.accounts.id.initialize({
+    client_id: '169483353160-5hnmttirq3jellm7iapjatjdtmnl51gq.apps.googleusercontent.com',
+    callback: handleGoogleResponse
+  });
+  google.accounts.id.prompt();
+};
+
+
+function handleGoogleResponse(response) {
+  if (response.credential) {
+    let idToken = response.credential.response.id_token;
+    let accessToken = response.credential.response.access_token;
+    // Send the ID token to your server for verification
+    
+    // Store the ID token and access token in localStorage
+    localStorage.setItem('googleToken', idToken);
+    localStorage.setItem('googleAccessToken', accessToken);
+  }
+}

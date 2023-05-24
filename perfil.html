@@ -332,7 +332,7 @@
                                     <a href="#" class="google-button">
                                         <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
                                             alt="Google Logo" class="google-button-icon">
-                                        <span class="google-button-text">Sign in with Google</span>
+                                        <span class="google-button-text" id="googlebtn">Sign in with Google</span>
                                     </a>
                                     <div class="or">
                                         <span class="ougrey">ou</span>
@@ -399,11 +399,11 @@
                         <div class="content">
                             <div class="social">
                                 <div id="googleSignin">
-                                    <a href="#" class="google-button">
+                                    <button id="google-login" class="google-button">
                                         <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
                                             alt="Google Logo" class="google-button-icon">
                                         <span class="google-button-text">Sign in with Google</span>
-                                    </a>
+                                    </button>
                                     <div class="or">
                                         <span class="ougrey">ou</span>
                                     </div>
@@ -509,6 +509,7 @@
     <script src="lib/lightbox/js/lightbox.min.js"></script>
 
     <!-- Template Javascript -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="js/main.js"></script>
     <script src="js/login.js"></script>
     <script src="js/login_admin.js"></script>
