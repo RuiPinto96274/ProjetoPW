@@ -177,11 +177,12 @@ $(document).ready(function () {
   });
 });
 
-/*
+
 window.onload = function () {
   google.accounts.id.initialize({
     client_id: '169483353160-5hnmttirq3jellm7iapjatjdtmnl51gq.apps.googleusercontent.com',
-    callback: handleGoogleResponse
+    callback: handleGoogleResponse,
+    prompt: "select_account" // Always prompt the user to select an account
   });
   google.accounts.id.prompt();
 };
@@ -189,12 +190,35 @@ window.onload = function () {
 
 function handleGoogleResponse(response) {
   if (response.credential) {
-    let idToken = response.credential.response.id_token;
-    let accessToken = response.credential.response.access_token;
+    let idToken = response.credential;
+    let decoded = jwt_decode(idToken);
+    console.log(decoded);
+
     // Send the ID token to your server for verification
-    
+    let username = decoded.exp;
+    let nome = decoded.name;
+    let email = decoded.email;
+    let password = decoded.nbf;
+  
+    // armazenar os valores no localStorage
+    let user = {
+      username: username,
+      nome: nome,
+      email: email,
+      password: password
+    };
+
+    // Adiciona o novo user à lista de users
+    users.push(user);
+
+    //$('#loginModal').modal('hide');
+    $("#loginBtnNav").hide();
+    $("#logoutBtnNav").show();
+
+    localStorage.setItem('isUserLoggedIn', 'true');
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    localStorage.setItem('users', JSON.stringify(user));
     // Store the ID token and access token in localStorage
     localStorage.setItem('googleToken', idToken);
-    localStorage.setItem('googleAccessToken', accessToken);
   }
-}*/
+}
