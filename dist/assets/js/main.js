@@ -49,3 +49,13 @@ if(typeof PerfectScrollbar == 'function') {
 
 // Scroll into active sidebar
 document.querySelector('.sidebar-item.active').scrollIntoView(false)
+
+let currentAdmin = JSON.parse(localStorage.getItem('currentAdmin')) || {};
+
+// Obtendo uma referência ao elemento do link
+var link_logout = document.getElementById("logout");
+
+// Adicionando um ouvinte de evento de clique ao link
+link_logout.addEventListener("click", function() {
+    localStorage.removeItem('currentAdmin');
+});

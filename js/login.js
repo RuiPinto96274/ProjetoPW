@@ -177,7 +177,7 @@ $(document).ready(function () {
   });
 });
 
-
+/*
 window.onload = function () {
   google.accounts.id.initialize({
     client_id: '169483353160-5hnmttirq3jellm7iapjatjdtmnl51gq.apps.googleusercontent.com',
@@ -197,4 +197,4 @@ function handleGoogleResponse(response) {
     localStorage.setItem('googleToken', idToken);
     localStorage.setItem('googleAccessToken', accessToken);
   }
-}
+}*/
