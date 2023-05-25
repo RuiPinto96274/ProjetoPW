@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Salas</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+
+    <link rel="stylesheet" href="assets/vendors/toastify/toastify.css">
+
+    <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="shortcut icon" href="assets/images/logo/favicon.png" type="image/x-icon">
+
+    <!-- Vue.js-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active">
+                <div class="sidebar-header">
+                    <div class="d-flex justify-content-between">
+                        <div class="logo">
+                            <a href="index_dist.html"><img src="assets/images/logo/logotipo.png" alt="Logo" srcset=""></a>
+                        </div>
+                        <div class="toggler">
+                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-menu">
+                    <ul class="menu">
+                        <li class="sidebar-title">Menu</li>
+
+                        <li class="sidebar-item  ">
+                            <a href="index_dist.html" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item ">
+                            <a href="gestao_profissionais.html" class='sidebar-link'>
+                                <i class="bi bi-people-fill"></i>
+                                <span>Gestão de Profissionais</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a href="gestao_salas.html" class='sidebar-link'>
+                                <i class="bi bi-door-open-fill"></i>
+                                <span>Gestão de Salas</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a href="gestao_material.html" class='sidebar-link'>
+                                <i class="bi bi-palette2"></i>
+                                <span>Gestão de Material</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a href="gestao_atividades.html" class='sidebar-link'>
+                                <i class="bi bi-collection-fill"></i>
+                                <span>Gestão de Atividades</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a href="plano_atividades.html" class='sidebar-link'>
+                                <i class="bi bi-calendar-event"></i>
+                                <span>Plano de Atividades</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <br> <br> <br>
+                    <ul class="menu">
+                    <li class="sidebar-item active">    
+                    <a href="perfil_dist.html" class='sidebar-link'>
+                        <i class="bi bi-gear-fill"></i>
+                        <span>Definições de Conta</span>
+                    </a> 
+                    </li>
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Logout</span>
+                    </a>
+                </ul>
+                </div>
+                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+                
+            </div>
+
+        </div>
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+            <div class="page-heading">
+                <div class="page-title">
+                    <div class="row">
+                        <div class="col-12 col-md-6 order-md-1 order-last">
+                            <h3>Definições de conta</h3>
+                            <br>
+                        </div>
+                        <div class="col-12 col-md-6 order-md-2 order-first">
+                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index_dist.html">Dashboard</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Definições de conta</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <section class="section">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Conta</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-8" id="dados_vue">
+                                    <div class="form-group">
+                                        <label for="nomeP">Nome</label>
+                                        <input type="text" class="form-control" id="nomeP" v-model="nomeAdmin" ref="nomeP" :disabled="currentAdmin.role === 'admin'">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="emailP">Email</label>
+                                        <input type="text" class="form-control" id="emailP" :value="currentAdmin.email" ref="emailP">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="password">Palavra-passe</label>
+                                        <div class="input-group">
+                                        <input type="password" class="form-control" id="passwordP" placeholder="**********" :value="getPasswordValue()" ref="passwordP">
+                                        <button class="btn btn-outline-secondary" type="button" @click.prevent="showPassword">{{ showPasswordBtnText }}</button>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <a href="#" id="alterar_admin" @click="alterarDados" class="btn btn-primary">Alterar</a>
+                                    <a href="#" id="cancelar_admin" @click="preencherDados" class="btn btn-primary">Cancelar</a>
+                                </div>
+                                <script>
+                                        const app1 = new Vue({
+                                        el: '#dados_vue',
+                                        data: {
+                                            profissionais: JSON.parse(localStorage.getItem('profissionais')) || [],
+                                            currentAdmin: JSON.parse(localStorage.getItem('currentAdmin')) || {},
+                                            nomeAdmin: '',
+                                            isPasswordVisible: false
+                                        },
+                                        computed: {
+                                            showPasswordBtnText() {
+                                            return this.isPasswordVisible ? "Esconder senha" : "Mostrar senha";
+                                            }
+                                        },
+                                        methods: {
+                                            preencherDados() {
+                                                if (this.currentAdmin.role==="profissional") {
+                                                    this.nomeAdmin = this.currentAdmin.nome;
+                                                    this.$refs.emailP.value = this.currentAdmin.email;
+                                                    this.$refs.passwordP.value = this.getPasswordValue();
+                                                }else if(this.currentAdmin.role==="admin"){
+                                                    this.nomeAdmin = "Admin";
+                                                    this.$refs.emailP.value = this.currentAdmin.email;
+                                                    this.$refs.passwordP.value = this.getPasswordValue();
+                                                }
+                                            },
+                                            getPasswordValue() {
+                                            if (this.currentAdmin.role === "profissional") {
+                                                return this.currentAdmin.palavraPasse;
+                                            } else if (this.currentAdmin.role === "admin") {
+                                                return this.currentAdmin.password;
+                                            }
+                                            },
+                                            alterarDados() {
+                                                if (this.currentAdmin.role=="profissional") {
+                                                    // Verificar se o id foi encontrado
+                                                    const index = this.profissionais.findIndex(profissional => profissional.id === this.currentAdmin.id);
+                                                    if (index === -1) {
+                                                        alert('Não foi encontrado nenhum profissional com o id especificado.');
+                                                        return;
+                                                    }
+
+                                                    if (this.$refs.nomeP.value === "" || this.$refs.emailP.value === "" || this.$refs.passwordP.value=== "") {
+                                                    alert("Por favor, preencha todos os campos.");
+                                                    return;
+                                                    }
+
+                                                    // Atualizar os dados do profissional no array profissionais e no currentAdmin
+                                                    this.profissionais[index].nome = this.$refs.nomeP.value;
+                                                    this.profissionais[index].email = this.$refs.emailP.value;
+                                                    this.profissionais[index].palavraPasse = this.$refs.passwordP.value;
+                                                    this.currentAdmin.nome = this.$refs.nomeP.value;
+                                                    this.currentAdmin.email = this.$refs.emailP.value;
+                                                    this.currentAdmin.palavraPasse = this.$refs.passwordP.value;
+
+                                                    localStorage.setItem('profissionais', JSON.stringify(this.profissionais));
+                                                    localStorage.setItem('currentAdmin', JSON.stringify(this.currentAdmin));
+                                                }else if(this.currentAdmin.role=="admin"){
+                                                    // Atualizar os dados do admin
+                                                    // Atribuir "Admin" ao campo nomeP
+                                                    this.nomeAdmin = "Admin";
+                                                    this.$refs.nomeP.value=this.nomeAdmin;
+                                                    this.currentAdmin.email = this.$refs.emailP.value;
+                                                    this.currentAdmin.password = this.$refs.passwordP.value;
+                                                    localStorage.setItem('currentAdmin', JSON.stringify(this.currentAdmin)); 
+                                                }
+
+                                                Toastify({
+                                                    text: 'Dados alterados com sucesso!',
+                                                    duration: 1000, // duração da mensagem de exibição em ms
+                                                    close: true,
+                                                    gravity: 'top', // posição da mensagem na tela
+                                                    position: 'center',
+                                                    backgroundColor: '#223843',
+                                                    stopOnFocus: true
+                                                }).showToast();
+                                            },
+                                            showPassword(){
+                                                let passwordInput = document.getElementById('passwordP');
+                                                let passwordFieldType = passwordInput.type;
+                                                if (passwordFieldType === "password") {
+                                                    passwordInput.type = "text";
+                                                    this.isPasswordVisible = true;
+                                                } else {
+                                                    passwordInput.type = "password";
+                                                    this.isPasswordVisible = false;
+                                                }
+                                            }
+                                            },
+                                            mounted() {
+                                                this.preencherDados();
+                                            }
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                </section>   
+            </div>
+
+            <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-start">
+                        <p>2023 &copy; Activities4All</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendors/toastify/toastify.js"></script>
+    <script src="assets/js/extensions/toastify.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
