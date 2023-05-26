@@ -177,15 +177,16 @@ $(document).ready(function () {
   });
 });
 
-
-window.onload = function () {
-  google.accounts.id.initialize({
-    client_id: '169483353160-5hnmttirq3jellm7iapjatjdtmnl51gq.apps.googleusercontent.com',
-    callback: handleGoogleResponse,
-    prompt: "select_account" // Always prompt the user to select an account
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById("googlebtn").addEventListener("click",function(){
+    google.accounts.id.initialize({
+      client_id: '169483353160-5hnmttirq3jellm7iapjatjdtmnl51gq.apps.googleusercontent.com',
+      callback: handleGoogleResponse,
+      prompt: "select_account" // Always prompt the user to select an account
+    });
+    google.accounts.id.prompt();
   });
-  google.accounts.id.prompt();
-};
+});
 
 
 function handleGoogleResponse(response) {
@@ -208,16 +209,27 @@ function handleGoogleResponse(response) {
       password: password
     };
 
-    // Adiciona o novo user à lista de users
+    let existe_user=false;
+    for (let i = 0; i < users.length; i++) {
+      // verificar credenciais do usuário e autenticá-lo
+      if ( users[i].email === email) {
+        user.username=users[i].username;
+        user.password=users[i].password;
+        existe_user=true;
+      }
+    }
+    if(existe_user==false){
+      // Adiciona o novo user à lista de users
     users.push(user);
-
-    //$('#loginModal').modal('hide');
+    }
+    location.reload();
+    $('#loginModal').modal('hide');
     $("#loginBtnNav").hide();
     $("#logoutBtnNav").show();
 
     localStorage.setItem('isUserLoggedIn', 'true');
     localStorage.setItem('currentUser', JSON.stringify(user));
-    localStorage.setItem('users', JSON.stringify(user));
+    localStorage.setItem('users', JSON.stringify(users));
     // Store the ID token and access token in localStorage
     localStorage.setItem('googleToken', idToken);
   }
