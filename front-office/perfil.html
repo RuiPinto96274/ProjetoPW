@@ -211,54 +211,53 @@
                             <p class="fs-5 fw-bold text-primary">Inscrição</p>
                             <h1 class="display-5 mb-5">Não perca tempo e inscreva-se já!</h1>
                             <p class="mb-4">Preencha o formulário de inscrição abaixo, para efetuar reserva.</p>
-                            <form id="form_inscricao" v-show="isUserLoggedIn" accept-charset="UTF-8" class="was-validated">
-                                <div class="mb-3">
-                                    <label for="nome" class="form-label">Nome</label>
-                                    <input type="text" class="form-control" id="nome" placeholder="Nome Completo"
-                                        required>
-                                    <div class="valid-feedback">Válido.</div>
-                                    <div class="invalid-feedback">Por favor preencha este campo.</div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="telefone" class="form-label">Telefone</label>
-                                    <input type="tel" class="form-control" id="telefone" name="telefone"
-                                        placeholder="Insira o número de telefone" pattern="[0-9]{9}" required>
-                                    <small class="form-text text-muted">Insira um número de telefone válido com 9
-                                        dígitos (apenas números).</small>
-                                    <div class="valid-feedback">Válido.</div>
-                                    <div class="invalid-feedback">Por favor preencha este campo.</div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="tipo_atividade" class="form-label">Atividade</label>
-                                    <select class="form-select" id="atividade_escolhida" name="atividade_escolhida"
-                                        v-model="atividadeSelecionada" required>
-                                    <option value="">Selecione a atividade</option>
-                                    <option v-for="atividade in atividades" :value="atividade.id">{{ atividade.nome }} - {{ atividade.nivel.join(', ') }}</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="num_participantes" class="form-label">Nº Participantes</label>
-                                    <select class="form-select" id="num_participantes" name="num_participantes"
-                                        v-model="numParticipantes" required>
-                                    <option value="">Selecione nº de participantes</option>
-                                    <option v-for="opcao in opcoesNumParticipantes" :value="opcao">{{ opcao }}</option>
-                                    </select>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="data">Data</label>
-                                    <input type="date" class="form-control" id="data" required>
-                                    <div class="valid-feedback">Válido.</div>
-                                    <div class="invalid-feedback">Por favor preencha este campo.</div>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="data">Horas</label>
-                                    <input type="time" class="form-control" id="horas" required>
-                                    <div class="valid-feedback">Válido.</div>
-                                    <div class="invalid-feedback">Por favor preencha este campo.</div>
-                                </div>
-                                <button id="inscricaoBtn" class="btn btn-primary py-3 px-4"
-                                    type="submit">Inscrever</button>
-                            </form>
+                                <form id="form_inscricao" v-show="isUserLoggedIn" accept-charset="UTF-8" class="was-validated">
+                                    <div class="mb-3">
+                                        <label for="nome" class="form-label">Nome</label>
+                                        <input type="text" class="form-control" id="nome" placeholder="Nome Completo" required>
+                                        <div class="valid-feedback">Válido.</div>
+                                        <div class="invalid-feedback">Por favor preencha este campo.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="telefone" class="form-label">Telefone</label>
+                                        <input type="tel" class="form-control" id="telefone" name="telefone"
+                                            placeholder="Insira o número de telefone" pattern="[0-9]{9}" required>
+                                        <small class="form-text text-muted">Insira um número de telefone válido com 9
+                                            dígitos (apenas números).</small>
+                                        <div class="valid-feedback">Válido.</div>
+                                        <div class="invalid-feedback">Por favor preencha este campo.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="tipo_atividade" class="form-label">Atividade</label>
+                                        <select class="form-select" id="atividade_escolhida" name="atividade_escolhida"
+                                            v-model="atividadeSelecionada" required>
+                                        <option value="">Selecione a atividade</option>
+                                        <option v-for="atividade in atividades" :value="atividade.id">{{ atividade.nome }} - {{ atividade.nivel.join(', ') }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="num_participantes" class="form-label">Nº Participantes</label>
+                                        <select class="form-select" id="num_participantes" name="num_participantes"
+                                            v-model="numParticipantes" required>
+                                        <option value="">Selecione nº de participantes</option>
+                                        <option v-for="opcao in opcoesNumParticipantes" :value="opcao">{{ opcao }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="data">Data</label>
+                                        <input type="date" class="form-control" id="data" required>
+                                        <div class="valid-feedback">Válido.</div>
+                                        <div class="invalid-feedback">Por favor preencha este campo.</div>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="data">Horas</label>
+                                        <input type="time" class="form-control" id="horas" required>
+                                        <div class="valid-feedback">Válido.</div>
+                                        <div class="invalid-feedback">Por favor preencha este campo.</div>
+                                    </div>
+                                    <button id="inscricaoBtn" class="btn btn-primary py-3 px-4"
+                                        type="submit">Inscrever</button>
+                                </form>
                             <script>
                                 const app2 = new Vue({
                                     el: '#form_inscricao',
@@ -283,7 +282,6 @@
                                     },
                                     computed: {
                                         opcoesNumParticipantes() {
-                                            console.log(this.numParticipantes);
                                             const minCap = this.minCap();
                                             const maxCap = this.maxCap();
                                             return Array.from({ length: maxCap - minCap + 1 }, (_, i) => i + minCap);
