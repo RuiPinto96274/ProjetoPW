@@ -289,16 +289,6 @@
                                     },
                                 });
                             </script>
-                            <script>
-                                // Adiciona a validação do campo de telefone
-                                var telefoneInput = document.getElementById('telefone');
-                                telefoneInput.addEventListener('input', function () {
-                                    telefoneInput.setCustomValidity('');
-                                    if (!telefoneInput.checkValidity()) {
-                                        telefoneInput.setCustomValidity('Por favor insira um número de telefone válido (9 dígitos numéricos).');
-                                    }
-                                });
-                            </script>
                         </div>
                         <div class="tab-pane" id="list-reservas" role="tabpanel" aria-labelledby="list-reservas-list">
                             <p class="fs-5 fw-bold text-primary">Reservas</p>
@@ -352,7 +342,7 @@
                         <div class="content registerBox" style="display:none;">
                             <div class="form">
                                 <!-- Form for account registration -->
-                                <form id="createUser" method="POST" accept-charset="UTF-8">
+                                <form id="createUser" accept-charset="UTF-8">
                                     <input id="usernameNew" class="form-control" type="text" placeholder="Username"
                                         name="usernameNew" required minlength="4">
                                     <input id="nomeNew" class="form-control" type="text" placeholder="Nome" name="nome"
@@ -396,7 +386,7 @@
                     <div class="box">
                         <div class="content">
                             <div class="form loginBox">
-                                <form id="adminloginUser" method="POST" accept-charset="UTF-8">
+                                <form id="adminloginUser" accept-charset="UTF-8">
                                     <input id="adminemailLogin" class="form-control" type="email" placeholder="Email"
                                         name="email" required>
                                     <input id="adminpasswordLogin" class="form-control" type="password"
