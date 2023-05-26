@@ -104,7 +104,7 @@
                         <div class="content registerBox" style="display:none;">
                             <div class="form"> 
                                 <!-- Form for account registration -->
-                                <form id="createUser" method="POST" accept-charset="UTF-8">
+                                <form id="createUser" accept-charset="UTF-8">
                                     <input id="usernameNew" class="form-control" type="text" placeholder="Username"
                                         name="usernameNew" required minlength="4">
                                     <input id="nomeNew" class="form-control" type="text" placeholder="Nome" name="nome"
@@ -301,20 +301,20 @@
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.1s">
-                    <h1 class="display-4 text-white" data-toggle="counter-up">420</h1>
+                    <h1 class="display-4 text-white" data-toggle="counter-up" id="indicador1"> </h1>
                     <span class="fs-5 fw-semi-bold text-light">Clientes Satisfeitos</span>
                 </div>
                 <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.3s">
-                    <h1 class="display-4 text-white" data-toggle="counter-up">60</h1>
+                    <h1 class="display-4 text-white" data-toggle="counter-up" id="indicador3"> </h1>
                     <span class="fs-5 fw-semi-bold text-light">Atividades Realizadas</span>
                 </div>
                 <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.5s">
-                    <h1 class="display-4 text-white" data-toggle="counter-up">6</h1>
+                    <h1 class="display-4 text-white" data-toggle="counter-up" id="indicador2"> </h1>
                     <span class="fs-5 fw-semi-bold text-light">Profissionais</span>
                 </div>
                 <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.7s">
-                    <h1 class="display-4 text-white" data-toggle="counter-up">3</h1>
-                    <span class="fs-5 fw-semi-bold text-light">Duração(h) Média Workshops</span>
+                    <h1 class="display-4 text-white" data-toggle="counter-up" id="indicador4"></h1>
+                    <span class="fs-5 fw-semi-bold text-light">Horas de Workshops</span>
                 </div>
             </div>
         </div>
@@ -536,44 +536,45 @@
             </div>
         </div>
     </div>
-        <!-- Footer End -->
+    <!-- Footer End -->
 
 
-        <!-- Copyright Start -->
-        <div class="container-fluid copyright py-4">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" href="#">Art&Crafts</a>, All Right Reserved.
-                    </div>
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="border-bottom" href="#">Art&Crafts</a>, All Right Reserved.
                 </div>
             </div>
         </div>
-        <!-- Copyright End -->
+    </div>
+    <!-- Copyright End -->
 
 
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i
-                class="bi bi-arrow-up"></i></a>
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i
+            class="bi bi-arrow-up"></i></a>
 
 
-        <!-- JavaScript Libraries -->
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/wow/wow.min.js"></script>
-        <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="lib/counterup/counterup.min.js"></script>
-        <script src="lib/parallax/parallax.min.js"></script>
-        <script src="lib/isotope/isotope.pkgd.min.js"></script>
-        <script src="lib/lightbox/js/lightbox.min.js"></script>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/parallax/parallax.min.js"></script>
+    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
     <!-- Template Javascript -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="node_modules/jwt-decode/build/jwt-decode.js" async defer></script>
     <script src="js/main.js"></script>
     <script src="js/login.js"></script>
     <script src="js/login_admin.js"></script>
+    <script src="js/dados_indicadores.js"></script>
     <script src="js/toastify.js"></script>
     <script src="js/vendors/toastify.js"></script>
 </body>

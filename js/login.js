@@ -218,10 +218,12 @@ function handleGoogleResponse(response) {
         existe_user=true;
       }
     }
+
     if(existe_user==false){
       // Adiciona o novo user à lista de users
-    users.push(user);
+      users.push(user);
     }
+    
     location.reload();
     $('#loginModal').modal('hide');
     $("#loginBtnNav").hide();

@@ -50,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function () {
             description: hora_reserva + ' ' + nome_atividade + ' ' + nivel_atividade // add description to use in tooltip
           }
       };  
-      console.log(evento);
       calendar.addEvent(evento);
     }
   });

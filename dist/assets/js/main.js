@@ -53,9 +53,25 @@ document.querySelector('.sidebar-item.active').scrollIntoView(false)
 let currentAdmin = JSON.parse(localStorage.getItem('currentAdmin')) || {};
 
 // Obtendo uma referência ao elemento do link
-var link_logout = document.getElementById("logout");
+let link_logout = document.getElementById("logout");
 
 // Adicionando um ouvinte de evento de clique ao link
 link_logout.addEventListener("click", function() {
     localStorage.removeItem('currentAdmin');
 });
+
+
+if(currentAdmin.role === "profissional"){
+    let sidebarItems = document.querySelectorAll('.sidebar-item');
+
+    for (let i = 0; i < sidebarItems.length; i++) {
+        let sidebarItem = sidebarItems[i];
+        let sidebarText = sidebarItem.querySelector('span');
+  
+      if (sidebarText.textContent === 'Gestão de Atividades' ||
+          sidebarText.textContent === 'Gestão de Salas' ||
+          sidebarText.textContent === 'Gestão de Profissionais') {
+        sidebarItem.classList.add('d-none');
+      }
+    }
+}
