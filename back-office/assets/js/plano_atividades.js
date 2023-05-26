@@ -43,7 +43,6 @@ for (let i = 0; i < salas.length; i++) {
 function carregarFieldsetsMateriais() {
   // obter a atividade selecionada
   let id_atividadeSelecionada = document.getElementById('atividade_registo').value;
-  console.log(document.getElementById('atividade_registo').value);
 
   if (id_atividadeSelecionada !== '') {
     const atividadeSelecionada = lista_atividades.find(atividade => atividade.id === id_atividadeSelecionada);
@@ -78,14 +77,9 @@ function carregarFieldsetsMateriais() {
 // opções de profissionais que podem ser gestores de atividades
 function carregarFieldsetsProf() {
   // obter a atividade selecionada
-  console.log('chegou aqui');
   let id_atividadeSelecionada = document.getElementById('atividade_registo').value;
-  console.log(document.getElementById('atividade_registo').value);
   if (id_atividadeSelecionada !== '') {
-    console.log('chegou aqui 1');
-    console.log(document.getElementById('atividade_registo').value);
     const atividadeSelecionada = lista_atividades.find(atividade => atividade.id === id_atividadeSelecionada);
-    console.log(atividadeSelecionada);
     let atividade_nome = atividadeSelecionada.nome;
 
     const selectProfissionais = document.getElementById('gestor_registo');
@@ -96,7 +90,6 @@ function carregarFieldsetsProf() {
       let temCompetencia = false;
       for (let j = 0; j < profissional.competencias.length; j++) {
         const competencia = profissional.competencias[j];
-        console.log(competencia + '   ' + atividade_nome);
         if (competencia == atividade_nome) {
           temCompetencia = true;
           break;
@@ -380,7 +373,7 @@ function modificarCamposRegistar() {
 const botao_marcar_reservar = document.getElementById('registar_reserva');
 botao_marcar_reservar.addEventListener('click', registarReserva);
 
-function registarReserva(){
+function registarReserva() {
   let num_participantes = document.getElementById('num_part_registo').value;
   let data_registo = document.getElementById('data_registo').value;
   let nome_registo = document.getElementById('nome_registo').value;
@@ -436,7 +429,7 @@ function registarReserva(){
 
   //buscar lista de reservas da sala selecionada
   const sala_selecionada = salas.find(sala => sala.id === sala_registo);
-  let capacidade_sala=sala_selecionada.capacidade;
+  let capacidade_sala = sala_selecionada.capacidade;
   let lista_reservas_sala = sala_selecionada.ocupacao_salas;
   let indisponivel_sala = false; //fica V se ela estiver ocupada
 
@@ -466,8 +459,8 @@ function registarReserva(){
   } else if (!contactoRegex.test(tlm_registo)) {
     erroInput("Por favor, insira um número de contato válido (9 dígitos).");
     return;
-  }else if (num_participantes>capacidade_sala){
-    erroInput("A sala não tem capacidade para "+ num_participantes + " participantes, selecione outra");
+  } else if (num_participantes > capacidade_sala) {
+    erroInput("A sala não tem capacidade para " + num_participantes + " participantes, selecione outra");
     return;
   } else if (!precoRegex.test(custo_registo)) {
     erroInput("Por favor, insira um preço válido (exemplo: 9 ou 9.50).");
@@ -562,15 +555,17 @@ function registarReserva(){
 const botao_cancelar_reservar = document.getElementById('cancelar_workshop');
 botao_cancelar_reservar.addEventListener('click', cancelarWorkshop);
 
-function cancelarWorkshop(){
-   // Procurar pela reserva com o ID correspondente
-   let index = lista_reservas.findIndex(function (p) {
+function cancelarWorkshop() {
+  // Procurar pela reserva com o ID correspondente
+  let index = lista_reservas.findIndex(function (p) {
     return p.id_reserva === id_reserva_selecionada;
   });
 
   //REMOVER TBM DAS LISTAS DE PROFISSIONAIS E SALAS
   let id_sala = lista_reservas[index].id_sala;
   let id_profissional = lista_reservas[index].id_profissional;
+  let id_material = lista_reservas[index].id_material;
+  let num_participantes = parseInt(lista_reservas[index].num_participantes);
 
   //selecionar ID do profissional responsável pela atividade
   let index_prof = profissionais.findIndex(function (p) {
@@ -610,9 +605,17 @@ function cancelarWorkshop(){
   }
   // Remover a reserva da lista da sala encontrada
   salas[index_sala].ocupacao_salas.splice(index_lista_s, 1);
-  // Armazenar a lista atualizada de profissionais no local storage
+  // Armazenar a lista atualizada de salas no local storage
   localStorage.setItem('salas', JSON.stringify(salas));
 
+
+  //voltar a repor material que nao foi utilizado
+  let index_lista_m = lista_materiais.findIndex(function (p) {
+    return p.id === id_material;
+  });
+
+  lista_materiais[index_lista_m].quantidade += num_participantes;
+  localStorage.setItem('materiais', JSON.stringify(lista_materiais));
 
   // Verificar se o ID foi encontrado
   if (index === -1) {
