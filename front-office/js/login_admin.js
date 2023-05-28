@@ -58,7 +58,7 @@ document.getElementById("adminloginUser").addEventListener("submit", function(ev
 
     // aguarda 1 segundo antes de redirecionar para outra página
     setTimeout(() => {
-      window.location.href = "dist/index_dist.html";
+      window.location.href = "../back-office/index_dist.html";
     }, 1000);
     admin.role = "admin";
     localStorage.setItem('currentAdmin', JSON.stringify(admin));
@@ -85,7 +85,7 @@ document.getElementById("adminloginUser").addEventListener("submit", function(ev
 
       // aguarda 1 segundo antes de redirecionar para outra página
       setTimeout(() => {
-        window.location.href = "dist/index_dist.html";
+        window.location.href = "../back-office/index_dist.html";
       }, 1000);
       profissional.role = "profissional";
       localStorage.setItem('currentAdmin', JSON.stringify(profissional));
