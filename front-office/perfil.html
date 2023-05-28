@@ -61,7 +61,6 @@
                 <a href="contact.html" class="nav-item nav-link">Contacto</a>
                 <a href="perfil.html" class="nav-item nav-link active"> <span class="fas fa-user me-1"></span>
                     Perfil</a>
-                <!--implementar botão logout depois de fazer a script de inicio de sessão-->
                 <a id="logoutBtnNav" class="btn btn-primary py-4 px-lg-4 rounded-0" href="javascript:void(0)"
                     onclick="closeLogin();">Logout<i class="fa fa-arrow-right ms-3"></i></a>
                 <a id="loginBtnNav" class="btn btn-primary py-4 px-lg-4 rounded-0" data-toggle="modal"
@@ -111,26 +110,26 @@
                                 <p class="mb-4">Caso pretenda alterar os seus dados pode fazê-lo.</p>
                                 <form id="alterar_perfil" v-show="isUserLoggedIn" @submit.prevent="handleSubmit" class="was-validated">
                                     <div class="mb-3">
-                                        <label for="name" class="form-label">Username</label>
+                                        <label for="username_perfil" class="form-label">Username</label>
                                         <input type="text" class="form-control" id="username_perfil"
                                             placeholder="Username do Utilizador":value="user.username" ref="username_perfil" disabled>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="name" class="form-label">Nome</label>
+                                        <label for="nome_perfil" class="form-label">Nome</label>
                                         <input type="text" class="form-control" id="nome_perfil"
                                             placeholder="Nome do Utilizador" :value="user.nome" ref="nome_perfil" required>
                                         <div class="valid-feedback">Válido.</div>
                                         <div class="invalid-feedback">Por favor preencha este campo.</div>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="email" class="form-label">E-mail</label>
+                                        <label for="email_perfil" class="form-label">E-mail</label>
                                         <input type="email" class="form-control" id="email_perfil"
                                             placeholder="email@exemplo.com":value="user.email" ref="email_perfil"required>
                                         <div class="valid-feedback">Válido.</div>
                                         <div class="invalid-feedback">Por favor preencha este campo.</div>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="password" class="form-label">Password</label>
+                                        <label for="passe_perfil" class="form-label">Password</label>
                                         <div class="input-group">
                                             <input type="password" class="form-control" id="passe_perfil"
                                                 placeholder="**********":value="user.password" ref="passe_perfil" required>
@@ -144,66 +143,70 @@
                                 </form>
                                 <script>
                                     const app1 = new Vue({
-                                    el: '#alterar_perfil',
-                                    data: {
-                                        isUserLoggedIn: JSON.parse(localStorage.getItem('isUserLoggedIn')) || false,
-                                        user: JSON.parse(localStorage.getItem('currentUser')) || {},
-                                        users: JSON.parse(localStorage.getItem('users'))|| []
-                                    },
-                                    computed: {
-                                        showPasswordBtnText() {
-                                        return this.isPasswordVisible ? "Esconder senha" : "Mostrar senha";
-                                        }
-                                    },
-                                    methods: {
-                                        cancelar() {
-                                            if (this.isUserLoggedIn) {
-                                                this.$refs.username_perfil.value = this.user.username;
-                                                this.$refs.nome_perfil.value = this.user.nome;
-                                                this.$refs.email_perfil.value = this.user.email;
-                                                this.$refs.passe_perfil.value = this.user.password;
+                                        el: '#alterar_perfil',
+                                        data: {
+                                            isUserLoggedIn: JSON.parse(localStorage.getItem('isUserLoggedIn')) || false,
+                                            user: JSON.parse(localStorage.getItem('currentUser')) || {},
+                                            users: JSON.parse(localStorage.getItem('users'))|| []
+                                        },
+                                        computed: {
+                                            showPasswordBtnText() {
+                                            return this.isPasswordVisible ? "Esconder senha" : "Mostrar senha";
                                             }
                                         },
-                                        handleSubmit() {
-                                            // Verificar se o username foi encontrado
-                                            const index = this.users.findIndex(user => user.username === this.user.username);
-                                            if (index === -1) {
-                                                alert('Não foi encontrado nenhum profissional com o username especificado.');
-                                                return;
-                                            }
-                                            
-                                            // Atualizar os dados do usuário
-                                            this.users[index].nome = this.$refs.nome_perfil.value;
-                                            this.users[index].email = this.$refs.email_perfil.value;
-                                            this.users[index].password = this.$refs.passe_perfil.value;
+                                        methods: {
+                                            cancelar() {
+                                                if (this.isUserLoggedIn) {
+                                                    this.$refs.username_perfil.value = this.user.username;
+                                                    this.$refs.nome_perfil.value = this.user.nome;
+                                                    this.$refs.email_perfil.value = this.user.email;
+                                                    this.$refs.passe_perfil.value = this.user.password;
+                                                }
+                                            },
+                                            handleSubmit() {
+                                                // Verificar se o username foi encontrado
+                                                const index = this.users.findIndex(user => user.username === this.user.username);
+                                                if (index === -1) {
+                                                    alert('Não foi encontrado nenhum profissional com o username especificado.');
+                                                    return;
+                                                }
+                                                
+                                                // Atualizar os dados do usuário
+                                                this.users[index].nome = this.$refs.nome_perfil.value;
+                                                this.users[index].email = this.$refs.email_perfil.value;
+                                                this.users[index].password = this.$refs.passe_perfil.value;
 
-                                            // Guardar os dados atualizados no localStorage
-                                            localStorage.setItem('users', JSON.stringify(this.users));
-                                            localStorage.setItem('currentUser', JSON.stringify(this.users[index]));
+                                                // Guardar os dados atualizados no localStorage
+                                                localStorage.setItem('users', JSON.stringify(this.users));
+                                                localStorage.setItem('currentUser', JSON.stringify(this.users[index]));
 
-                                            Toastify({
-                                                text: 'Dados guardados com sucesso!',
-                                                duration: 1000, // duração da mensagem de exibição em ms
-                                                close: true,
-                                                gravity: 'top', // posição da mensagem na tela
-                                                position: 'center',
-                                                backgroundColor: '#223843',
-                                                stopOnFocus: true
-                                            }).showToast();
-                                        },
-                                        showPassword(){
-                                            let passwordInput = this.$refs.passe_perfil;
-                                            let passwordFieldType = passwordInput.type;
-                                            if (passwordFieldType === "password") {
-                                                passwordInput.type = "text";
-                                                this.isPasswordVisible = true;
-                                            } else {
-                                                passwordInput.type = "password";
-                                                this.isPasswordVisible = false;
+                                                Toastify({
+                                                    text: 'Dados guardados com sucesso!',
+                                                    duration: 1000, // duração da mensagem de exibição em ms
+                                                    close: true,
+                                                    gravity: 'top', // posição da mensagem na tela
+                                                    position: 'center',
+                                                    backgroundColor: '#223843',
+                                                    stopOnFocus: true
+                                                }).showToast();
+
+                                                setTimeout(function(){
+                                                    location.reload();
+                                                }, 1000);
+                                            },
+                                            showPassword(){
+                                                let passwordInput = this.$refs.passe_perfil;
+                                                let passwordFieldType = passwordInput.type;
+                                                if (passwordFieldType === "password") {
+                                                    passwordInput.type = "text";
+                                                    this.isPasswordVisible = true;
+                                                } else {
+                                                    passwordInput.type = "password";
+                                                    this.isPasswordVisible = false;
+                                                }
                                             }
                                         }
-                                    }
-                                });
+                                    });
                                 </script>
                             </div>
                         </div>
@@ -214,13 +217,13 @@
                                 <form id="form_inscricao" v-show="isUserLoggedIn" accept-charset="UTF-8" class="was-validated">
                                     <div class="mb-3">
                                         <label for="nome" class="form-label">Nome</label>
-                                        <input type="text" class="form-control" id="nome" placeholder="Nome Completo" required>
+                                        <input type="text" class="form-control" id="nome" v-model="nome" placeholder="Nome Completo" required>
                                         <div class="valid-feedback">Válido.</div>
                                         <div class="invalid-feedback">Por favor preencha este campo.</div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="telefone" class="form-label">Telefone</label>
-                                        <input type="tel" class="form-control" id="telefone" name="telefone"
+                                        <input type="tel" class="form-control" id="telefone" v-model="telefone" name="telefone"
                                             placeholder="Insira o número de telefone" pattern="[0-9]{9}" required>
                                         <small class="form-text text-muted">Insira um número de telefone válido com 9
                                             dígitos (apenas números).</small>
@@ -228,7 +231,7 @@
                                         <div class="invalid-feedback">Por favor preencha este campo.</div>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="tipo_atividade" class="form-label">Atividade</label>
+                                        <label for="atividade_escolhida" class="form-label">Atividade</label>
                                         <select class="form-select" id="atividade_escolhida" name="atividade_escolhida"
                                             v-model="atividadeSelecionada" required>
                                         <option value="">Selecione a atividade</option>
@@ -244,51 +247,20 @@
                                         </select>
                                     </div>
                                     <div class="form-group mb-3">
-                                        <label for="data">Data</label>
-                                        <input type="date" class="form-control" id="data" required>
+                                        <label for="dia">Data</label>
+                                        <input type="date" class="form-control" id="data" v-model="dia" required>
                                         <div class="valid-feedback">Válido.</div>
                                         <div class="invalid-feedback">Por favor preencha este campo.</div>
                                     </div>
                                     <div class="form-group mb-3">
-                                        <label for="data">Horas</label>
-                                        <input type="time" class="form-control" id="horas" required>
+                                        <label for="horas">Horas</label>
+                                        <input type="time" class="form-control" id="horas" v-model="horas" required>
                                         <div class="valid-feedback">Válido.</div>
                                         <div class="invalid-feedback">Por favor preencha este campo.</div>
                                     </div>
                                     <button id="inscricaoBtn" class="btn btn-primary py-3 px-4"
-                                        type="submit">Inscrever</button>
+                                        type="submit" @click.prevent="submitForm">Inscrever</button>
                                 </form>
-                            <script>
-                                const app2 = new Vue({
-                                    el: '#form_inscricao',
-                                    data: {
-                                        atividades: JSON.parse(localStorage.getItem('atividades')),
-                                        atividadeSelecionada: '',
-                                        numParticipantes: '',
-                                        isUserLoggedIn: JSON.parse(localStorage.getItem('isUserLoggedIn')) || false
-                                    },
-                                    methods: {
-                                        getAtividade() {
-                                            return this.atividades.find(a => a.id === this.atividadeSelecionada);
-                                        },
-                                        minCap() {
-                                            const atividade = this.getAtividade();
-                                            return atividade ? parseInt(atividade.min_cap) : 0;
-                                        },
-                                        maxCap() {
-                                            const atividade = this.getAtividade();
-                                            return atividade ? parseInt(atividade.max_cap) : 0;
-                                        },
-                                    },
-                                    computed: {
-                                        opcoesNumParticipantes() {
-                                            const minCap = this.minCap();
-                                            const maxCap = this.maxCap();
-                                            return Array.from({ length: maxCap - minCap + 1 }, (_, i) => i + minCap);
-                                        },
-                                    },
-                                });
-                            </script>
                         </div>
                         <div class="tab-pane" id="list-reservas" role="tabpanel" aria-labelledby="list-reservas-list">
                             <p class="fs-5 fw-bold text-primary">Reservas</p>
