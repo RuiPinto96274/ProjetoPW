@@ -319,6 +319,7 @@ listGroup.addEventListener('click', event => {
     listItem.parentNode.removeChild(listItem);
     // Atualize o localStorage com o array atualizado
     localStorage.setItem('pedidos', JSON.stringify(pedidos));
+    id_pedido_selecionado=0;
   });
 });
 
