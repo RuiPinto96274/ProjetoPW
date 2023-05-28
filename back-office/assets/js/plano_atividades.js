@@ -125,8 +125,10 @@ lista_reservas.forEach(reserva_selecionada => {
   const user_encontrado = lista_users.find(user => user.username === reserva_selecionada.username);
   let user_nome = user_encontrado.nome;
 
+  let data_hoje = Date.now();
   let data = new Date(reserva_selecionada.dia_hora);
-  let dia_reserva = data.toISOString().split('T')[0];
+  if(data>=data_hoje){
+    let dia_reserva = data.toISOString().split('T')[0];
   let hora_reserva = data.toISOString().split('T')[1].split('.')[0];
 
   reservaListItem.className = 'list-group-item list-group-item-action';
@@ -158,6 +160,8 @@ lista_reservas.forEach(reserva_selecionada => {
     const modal = new bootstrap.Modal(document.getElementById('atividade'));
     modal.show();
   });
+  }
+  
 });
 
 //Percorre cada item da lista de Pedidos Pendentes
