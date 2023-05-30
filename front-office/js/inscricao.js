@@ -73,7 +73,7 @@ const app2 = new Vue({
                   nome: nome,
                   contacto: contacto,
                   id_atividade: id_atividade,
-                  numParticipantes: numParticipantes,
+                  numParticipantes: String(numParticipantes),
                   data: data,
                   horas: horas,
                   estado: 'pendente' // inicializa o estado como 'pendente'
