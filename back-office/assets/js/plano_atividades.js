@@ -339,9 +339,6 @@ function removePedidosConfirmados() {
 // Chamar a função quando a página for carregada
 window.onload = removePedidosConfirmados;
 
-const botao_registar_atividade = document.getElementById('registar_atividade');
-botao_registar_atividade.addEventListener('click', limparCamposRegistar);
-
 function limparCamposRegistar() {
   //limpa os campos do modal de registar reserva de atividade
   document.getElementById('num_part_registo').value = "";

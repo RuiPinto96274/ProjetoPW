@@ -40,7 +40,7 @@ const app2 = new Vue({
               let contacto = this.telefone;
               let id_atividade = this.atividadeSelecionada;
               let numParticipantes = this.numParticipantes;
-              let data = this.data;
+              let data = this.dia;
               let horas = this.horas;
               
               if (this.nome === "" ||this.telefone === "" ||this.atividadeSelecionada === "" ||this.numParticipantes === "" ||this.dia === "" ||this.horas === "") {
