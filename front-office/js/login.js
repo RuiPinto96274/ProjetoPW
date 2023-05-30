@@ -184,7 +184,12 @@ document.addEventListener("DOMContentLoaded", function() {
       callback: handleGoogleResponse,
       prompt: "select_account" // Always prompt the user to select an account
     });
-    google.accounts.id.prompt();
+    google.accounts.id.prompt((notification) => {
+      if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+          document.cookie =  `g_state=;path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT`;
+          google.accounts.id.prompt()
+      }
+  });
   });
 });
 
