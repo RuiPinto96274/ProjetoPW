@@ -149,8 +149,8 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <a href="#" id="alterar_admin" @click="alterarDados" class="btn btn-primary">Alterar</a>
-                                    <a href="#" id="cancelar_admin" @click="preencherDados" class="btn btn-primary">Cancelar</a>
+                                    <a v-if="currentAdmin.role === 'profissional'" href="#" id="alterar_admin" @click="alterarDados" class="btn btn-primary">Alterar</a>
+                                    <a v-if="currentAdmin.role === 'profissional'" href="#" id="cancelar_admin" @click="preencherDados" class="btn btn-primary">Cancelar</a>
                                 </div>
                                 <script>
                                         const app1 = new Vue({

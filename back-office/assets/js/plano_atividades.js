@@ -376,7 +376,7 @@ const botao_marcar_reservar = document.getElementById('registar_reserva');
 botao_marcar_reservar.addEventListener('click', registarReserva);
 
 function registarReserva() {
-  let num_participantes = document.getElementById('num_part_registo').value;
+  let num_participantes = parseInt(document.getElementById('num_part_registo').value);
   let data_registo = document.getElementById('data_registo').value;
   let nome_registo = document.getElementById('nome_registo').value;
   let username_registo = document.getElementById('username_registo').value;
@@ -430,8 +430,8 @@ function registarReserva() {
   }
 
   //buscar lista de reservas da sala selecionada
-  const sala_selecionada = salas.find(sala => sala.id === sala_registo);
-  let capacidade_sala = sala_selecionada.capacidade;
+  let sala_selecionada = salas.find(sala => sala.id === sala_registo);
+  let capacidade_sala = parseInt(sala_selecionada.capacidade);
   let lista_reservas_sala = sala_selecionada.ocupacao_salas;
   let indisponivel_sala = false; //fica V se ela estiver ocupada
 
@@ -485,7 +485,7 @@ function registarReserva() {
       id_profissional: profissional_registo,
       id_material: material_registo,
       username: username_registo,
-      num_participantes: num_participantes
+      num_participantes: String(num_participantes)
     };
 
     //ir a profissional e sala acrescentar a reserva ao seu array de reservas individual

@@ -94,10 +94,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 } else {
                     // Cria um objeto com os dados do sala
                     let sala = {
-                        id: this.id,
-                        numSala: this.numSala,
-                        edificio: this.edificio,
-                        capacidade: this.capacidade,
+                        id: id,
+                        numSala: numSala,
+                        edificio: edificio,
+                        capacidade: capacidade,
                         ocupacao_salas: [] //[id_reserva, dia, hora_inicio, hora_fim]     //vai ser guardado todas as reservas que a sala tem
                     };
 
@@ -207,6 +207,5 @@ function erroInput(mensagem) {
         icon: "error",
         confirmButtonColor: '#d77a61',
         text: mensagem
-
     })
 }
