@@ -69,7 +69,7 @@ const app2 = new Vue({
 
               let pedido = {
                   id_pedido: Date.now(), // retorna o número de milissegundos desde 1º de janeiro de 1970 00:00:00 UTC. Como esse número é exclusivo para cada milissegundo, é improvável que haja conflitos entre IDs.
-                  username: username,
+                  username: String(username),
                   nome: nome,
                   contacto: contacto,
                   id_atividade: id_atividade,

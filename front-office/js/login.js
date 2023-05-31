@@ -208,7 +208,7 @@ function handleGoogleResponse(response) {
   
     // armazenar os valores no localStorage
     let user = {
-      username: username,
+      username: String(username),
       nome: nome,
       email: email,
       password: password
