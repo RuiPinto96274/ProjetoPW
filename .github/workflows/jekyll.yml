@@ -12,6 +12,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Copy back-office to docs
+        run: cp -R back-office docs/back-office
+
       - name: Copy front-office to docs
         run: cp -R front-office docs
 
@@ -23,7 +26,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: actions/deploy-pages@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
