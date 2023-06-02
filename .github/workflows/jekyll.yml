@@ -30,10 +30,10 @@ jobs:
         uses: actions/checkout@v3
       - name: Create docs folder
         run: mkdir docs
+      - name: Copy front-office to docs
+        run: cp -R front-office docs
       - name: Copy back-office to docs
         run: cp -R back-office docs/back-office
-      - name: Copy front-office to docs
-        run: cp -R front-office docs/front-office
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Build with Jekyll
