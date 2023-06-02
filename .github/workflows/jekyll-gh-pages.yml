@@ -33,11 +33,17 @@ jobs:
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
-          source: ./front-office
-          destination: ./_site
+          source: .
+          destination: ./docs
+      - name: Move back-office and front-office to docs
+        run: |
+          mv back-office docs/back-office
+          mv front-office docs/front-office
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-
+        uses: actions/upload-artifact@v1
+        with:
+          name: Jekyll Site
+          path: ./docs
   # Deployment job
   deploy:
     environment:
