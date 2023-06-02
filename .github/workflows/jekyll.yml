@@ -1,8 +1,9 @@
-name: Deploy Jekyll site to Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
 
 jobs:
   build:
@@ -11,11 +12,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Build with Jekyll
-        run: |
-          cd front-office
-          bundle install
-          bundle exec jekyll build --destination ../docs
+      - name: Copy front-office to docs
+        run: cp -R front-office docs
 
   deploy:
     needs: build
