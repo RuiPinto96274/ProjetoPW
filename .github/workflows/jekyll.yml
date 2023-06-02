@@ -12,6 +12,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Create docs folder
+        run: mkdir docs
+
       - name: Copy back-office to docs
         run: cp -R back-office docs/back-office
 
