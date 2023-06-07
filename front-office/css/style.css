@@ -476,7 +476,6 @@ h6,
     color: var(--light);
 }
 
-
 /*** Team ***/
 .team-item {
     position: relative;
@@ -531,7 +530,6 @@ h6,
 
 
 /*** Testimonial ***/
-
 .testimonial-carousel .owl-item img {
     width: 100px;
     height: 100px;

@@ -184,7 +184,7 @@
                     <p class="fs-5 fw-bold text-primary">Contacto</p>
                     <h1 class="display-5 mb-5">Se tiver alguma questão, por favor contacte-nos!</h1>
                     <p class="mb-4">Preencha o formulário abaixo e entraremos em contacto consigo o mais breve possível.</p>
-                    <form class="was-validated">
+                    <form id="enviar_email" class="was-validated">
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">
@@ -322,6 +322,13 @@
     <script src="js/login_admin.js"></script>
     <script src="js/toastify.js"></script>
     <script src="js/vendors/toastify.js"></script>
+    <script src="js/email.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+    (function(){
+        emailjs.init("_3gEfpRzeA0XwHHCs");
+    })();
+    </script>
 </body>
 
 </html>
