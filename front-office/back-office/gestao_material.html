@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestão de Profissionais</title>
+    <title>Gestão de Material</title>
 
     <!-- Include Choices CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"/>
+    <link rel="stylesheet" href="assets/vendors/choices.js/choices.min.css" />
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -21,7 +21,8 @@
     <link rel="stylesheet" href="assets/css/app.css">
     <link rel="shortcut icon" href="assets/images/logo/favicon.png" type="image/x-icon">
 
-    <!--teste-->
+     <!-- Vue.js-->
+     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
 <body>
@@ -49,7 +50,7 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-item active">
+                        <li class="sidebar-item ">
                             <a href="gestao_profissionais.html" class='sidebar-link'>
                                 <i class="bi bi-people-fill"></i>
                                 <span>Gestão de Profissionais</span>
@@ -63,7 +64,7 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-item ">
+                        <li class="sidebar-item active">
                             <a href="gestao_material.html" class='sidebar-link'>
                                 <i class="bi bi-palette2"></i>
                                 <span>Gestão de Material</span>
@@ -90,7 +91,7 @@
                             <i class="bi bi-gear-fill"></i>
                             <span>Definições de Conta</span>
                         </a> 
-                        <a href="../front-office/index.html" class='sidebar-link' id="logout">
+                        <a href="/front-office/index.html" class='sidebar-link' id="logout">
                             <i class="bi bi-box-arrow-right"></i>
                             <span>Logout</span>
                         </a>
@@ -110,116 +111,131 @@
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>Gestão de Profissionais</h3>
+                            <h3>Gestão de Materiais</h3>
                             <br>
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index_dist.html">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Gestão de Profissionais</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Gestão de Material</li>
                                 </ol>
                             </nav>
                         </div>
                     </div>
                 </div>
                 <section class="section">
-                    <div class="card">
+                    <div class="card" id="adicionar_material">
                         <div class="card-header">
-                            <h4 class="card-title">Adicionar profissional</h4>
+                            <h4 class="card-title">Adicionar Material</h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="basicInput">Nome</label>
-                                        <input type="text" class="form-control" id="nome"
+                                        <input type="text" class="form-control" v-model="nome"
                                             placeholder="Insira o nome">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="basicInput">Morada</label>
-                                        <input type="text" class="form-control" id="morada"
-                                            placeholder="Insira a morada">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="helpInputTop">Email</label>
-                                        <small class="text-muted"></small>
-                                        <input type="text" class="form-control" id="email" placeholder="email@example.com">
+                                        <label for="basicInput">Descrição</label>
+                                        <input type="text" class="form-control" v-model="descricao"
+                                            placeholder="Insira uma descrição">
                                     </div>
                                     <div class="form-group">
-                                        <label for="basicInput">Palavra-Passe</label>
-                                        <input type="text" class="form-control" id="palavra-passe"
-                                            placeholder="Insira palavra-passe">
+                                        <label for="basicInput">Quantidade</label>
+                                        <input type="number" class="form-control" v-model="quantidade"
+                                            placeholder="Insira uma quantidade">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="basicInput">ID</label>
-                                        <input type="text" class="form-control" id="id"
+                                        <label for="basicInput">ID do Material</label>
+                                        <input type="text" class="form-control" v-model="id"
                                             placeholder="Insira o ID">
                                     </div>
-                                    <div class="form-group">
-                                        <div class="form-group">
-                                            <label for="basicInput">Contacto Telefónico</label>
-                                            <input type="text" class="form-control" id="contacto"
-                                                placeholder="Insira contacto telefónico">
-                                        </div>
-                                        <label for="competencias">Competências</label>
-                                        <div class="form-group">
-                                            <select class="choices form-select multiple-remove" id="competencias"
-                                                multiple="multiple">
-                                                <option value="Crochê">Crochê</option>
-                                                <option value="Costura">Costura</option>
-                                                <option value="Cerâmica">Cerâmica</option>
-                                                <option value="Escultura">Escultura</option>
-                                                <option value="Pintura">Pintura</option>
-                                                <option value="Bordado">Bordado</option>
+                                    <label for="basicInput">Atividade</label>
+                                        <fieldset class="form-group">
+                                            <select class="form-select" v-model="atividade">
+                                                <option selected>Selecione uma atividade</option>
+                                                <option>Bordado</option>
+                                                <option>Costura</option>
+                                                <option>Crochê</option>
+                                                <option>Cerâmica</option>
+                                                <option>Escultura</option>
+                                                <option>Pintura</option>
                                             </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="basicInput">Preço</label>
-                                            <input type="text" class="form-control" id="preco"
-                                                placeholder="Insira preço por hora">
-                                        </div>
-                                    </div>
+                                        </fieldset> 
                                 </div>
                                 <div class="col-md-12">
-                                    <br>
-                                    <a href="#" id="adicionar_profissional" class="btn btn-primary">Inserir</a>
-                                    <a href="#" id="alterar_profissional" class="btn btn-primary">Alterar</a>
-                                    <a href="#" id="remover_profissional" class="btn btn-primary">Remover</a>
+                                    <br>  
+                                    <a href="#" class="btn btn-primary" @click="adicionarMaterial">Inserir</a> 
+                                    <a href="#" class="btn btn-primary" @click="alterarMaterial">Alterar</a>
+                                    <a href="#" class="btn btn-primary" @click="removerMaterial">Remover</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
                 </section>
                 <section class="section">
                     <div class="row" id="table-head">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Lista de profissionais</h4>
+                               <div class="card-header">
+                                    <h4 class="card-title">Lista de Material</h4>
                                 </div>
                                 <div class="card-content">
+                                    <!--<div class="card-body">
+                                        <p>Similar to tables and dark tables, use the modifier classes <code
+                                                class="highlighter-rouge">.thead-light</code> or <code
+                                                class="highlighter-rouge">.thead-dark</code> to
+                                            make <code class="highlighter-rouge">&lt;thead&gt;</code>s appear light or
+                                            dark gray.
+                                        </p>
+                                    </div>-->
                                     <!-- table head dark -->
                                     <div class="table-responsive">
-                                        <table class="table mb-0" id="tabela_profissionais">
+                                        <table class="table mb-0" id= "tabela_materiais">
                                             <thead class="thead-dark">
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Nome</th>
-                                                    <th>Morada</th>
-                                                    <th>Email</th>
-                                                    <th>Palavra-Passe</th>
-                                                    <th>Contacto</th>
-                                                    <th>Competências</th>
-                                                    <th>Preço</th>
+                                                    <th>Material</th>
+                                                    <th>Descrição</th>
+                                                    <th>Quantidade</th>
+                                                    <th>Atividade</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="table-body">
-                                                <!-- dados inseridos automaticamente de acordo com o que estiver armazenado -->
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td class="text-bold-500">Tecido</td>
+                                                    <td>Multicolorido, 1Mx2M</td>
+                                                    <td class="text-bold-500">4</td>
+                                                    <td>Costura</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td class="text-bold-500">Agulha crochê</td>
+                                                    <td>Metal, 5mm</td>
+                                                    <td class="text-bold-500">7</td>
+                                                    <td>Crochê</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td class="text-bold-500">Pincéis</td>
+                                                    <td>Aguarela e Guache, Nº14</td>
+                                                    <td class="text-bold-500">10</td>
+                                                    <td>Pintura</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>4</td>
+                                                    <td class="text-bold-500">Máquina de costura</td>
+                                                    <td>Marca Singer</td>
+                                                    <td class="text-bold-500">8</td>
+                                                    <td>Costura</td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -241,17 +257,16 @@
     </div>
     <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
-
+    
     <script src="assets/vendors/toastify/toastify.js"></script>
     <script src="assets/js/extensions/toastify.js"></script>
     <script src="assets/vendors/sweetalert2/sweetalert2.all.min.js"></script>
-    
+
     <!-- Include Choices JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
-
+    <script src="assets/vendors/choices.js/choices.min.js"></script>
     <script src="assets/js/main.js"></script>
-
-    <script src='assets/js/lista_profissionais.js'></script>
+    
+    <script src="assets/js/lista_materiais.js"></script>
 </body>
 
 </html>
